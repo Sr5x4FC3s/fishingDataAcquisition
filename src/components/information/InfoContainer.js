@@ -1,11 +1,32 @@
 import React from 'react';
 
-const styles = {
+import BarContainer from './barContainer';
+import InformationCard from './card';
 
+const styles = {
+  width: '90%',
+  height: '1000px',
+  marginLeft: '5%',
+  marginRight: '5%',
+  backgroundColor: 'pink',
+  marginTop:'.1%',
 };
 
-const InformationContainer = () => (
-  <div style={styles}></div>
-);
+export default class InformationContainer extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      current: '',
+      cardList: [],
+    };
+  }
 
-export default InformationContainer;
+  render() {
+    return (
+      <div style={styles}>
+        <BarContainer />
+        <InformationCard />
+      </div>
+    )
+  }
+};

@@ -8,11 +8,14 @@ export default class BarCard extends React.Component {
 
   render() {
     const styles = {
-
+      width: '100px',
+      height: '30px',
+      backgroundColor: 'blue',
+      float: 'left',
     };
 
     return (
-      <div style={styles}></div>
+      <div style={styles}>{this.props.value}</div>
     )
   }
 };
