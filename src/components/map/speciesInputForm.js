@@ -1,5 +1,8 @@
 import React from 'react';
 
+import IndividualCatchForm from './individualCatchForm';
+import FormWithDropDown from './formWithDropDown';
+
 export default class SpeciesInputForm extends React.Component {
   constructor(props) {
     super(props);
@@ -12,56 +15,42 @@ export default class SpeciesInputForm extends React.Component {
     // finish adding the rest of the info 
     return (
       <div id='species-input-container'>
-        <form id='species-name-form'>
-          <label>Species Name</label>
-          <input type='text' placeholder='Enter Species Name'/>
-          <button type='submit'>Search</button>
-        </form>
-        <div>Select Species</div>
-        <ul>
-          <li>category 1</li>  
-          <li>category 2</li>  
-          <li>category 3</li>  
-          <li>category 4</li>  
-        </ul>
-        <form id='species-scientific-name'>
-          <label>Species Scientific Name</label>
-          <input type='text' placeholder='Enter Scientific Name'/>
-          <label>label for all info needed for species information</label>
-        </form>
-        <div id='species-category'>Category</div>
-        <ul>
-          <li>category 1</li>  
-          <li>category 2</li>  
-          <li>category 3</li>  
-          <li>category 4</li>  
-        </ul>
-        <div id='species-weight-range'>Weight Range</div>
-        <ul>
-          <li>category 1</li>  
-          <li>category 2</li>  
-          <li>category 3</li>  
-          <li>category 4</li>  
-        </ul>
-        <div id='species-length-range'>Length Range</div>
-        <ul>
-          <li>category 1</li>  
-          <li>category 2</li>  
-          <li>category 3</li>  
-          <li>category 4</li>  
-        </ul>
-        <div id='species-region'>Regions</div>
-        <form>
-          <label>Add Regions</label>
-          <input type='text' placeholder='Add Region'/>
-          <input type='submit'/>
-        </form>
-        <ul>
-          <li>category 1</li>  
-          <li>category 2</li>  
-          <li>category 3</li>  
-          <li>category 4</li>  
-        </ul>
+        <FormWithDropDown 
+          options={{dropDown: true, search: true, textArea: false, submit: false, }}
+          category={`Species Name`}
+          placeholder={'Enter Species Name'}
+          dropDown={[]}
+        />
+        <FormWithDropDown 
+          options={{dropDown: true, search: true, textArea: false, submit: false, }}
+          category={`Species Scientific Name`}
+          placeholder={'Enter Scientific Name'}
+          dropDown={[]}
+        />
+        <FormWithDropDown 
+          options={{dropDown: true, search: false, textArea: false, submit: false, }}
+          category={`Species Category`}
+          dropDown={[]}
+        />
+        <FormWithDropDown 
+          options={{dropDown: true, search: false, textArea: false, submit: false, }}
+          category={`Weight Range`}
+          dropDown={[]}
+        />
+        <FormWithDropDown 
+          options={{dropDown: true, search: false, textArea: false, submit: false, }}
+          category={`Length Range`}
+          dropDown={[]}
+        />
+        <FormWithDropDown 
+          options={{dropDown: true, search: false, textArea: false, submit: true, }}
+          category={`Regions`}
+          placeholder={'Enter Region'}
+          dropDown={[]}
+        />
+        <button>Add Individual Details</button>
+        {/* this gets rendered when the above button is pressed */}
+        <IndividualCatchForm /> 
       </div>
     )
   }
