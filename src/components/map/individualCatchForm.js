@@ -11,18 +11,23 @@ export default class IndividualCatchForm extends React.Component {
     return (
       <div>
         <FormWithDropDown 
-          options={{dropDown: false, search: false, textArea: false, submit: true, }}
+          options={{dropDown: false, search: false, textArea: false, submit: true, date: false, }}
           category={`Individual Weight`}
           placeholder={'Enter Individual Weight'}
           dropDown={null}
         />
-        <div>Date of Capture (Render a calendar to select date)</div>
+        {/* <div>Date of Capture (Render a calendar to select date)</div> */}
+        <FormWithDropDown 
+          options={{dropDown: false, search: false, textArea: false, submit: false, date: true, }}
+          category={`Date of Capture`}
+          dropDown={null}
+        />
         <button>All Capture Dates</button>
         <div>Upload Photos here</div>
         <button>Show All Photos of Species</button>
         <div>if button is clicked, render a carousel of photos or something</div>
         <FormWithDropDown 
-          options={{dropDown: false, search: false, textArea: true, submit: false, }}
+          options={{dropDown: false, search: false, textArea: true, submit: false, date: false, }}
           category={`Tackle Used`}
           placeholder={'Enter Items Separated by Commas'}
           dropDown={null}
@@ -30,7 +35,7 @@ export default class IndividualCatchForm extends React.Component {
         <button>Show All Tackle Setups</button>
         <button>Price Compare Tackle</button>
         <FormWithDropDown 
-          options={{dropDown: false, search: false, textArea: false, submit: true, }}
+          options={{dropDown: false, search: false, textArea: false, submit: true, date: false, }}
           category={`Bait Used`}
           placeholder={'Enter Baits'}
           dropDown={null}
@@ -38,7 +43,7 @@ export default class IndividualCatchForm extends React.Component {
         <button>Show All Bait Used</button>
         <button>Price Compare Baits</button>
         <FormWithDropDown 
-          options={{dropDown: true, search: false, textArea: false, submit: false, }}
+          options={{dropDown: true, search: false, textArea: false, submit: false, date: false, }}
           category={`Region of Capture`}
           dropDown={null}
         />

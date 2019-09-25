@@ -6,44 +6,51 @@ import FormWithDropDown from './formWithDropDown';
 export default class SpeciesInputForm extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      toggleIndividualForm: false, 
+    };
+
+    this.toggleIndividualForm = this.toggleIndividualForm.bind(this);
   }
 
-  render() {
+  toggleIndividualForm() {
+    this.setState({
+      toggleIndividualForm: !this.state.toggleIndividualForm,
+    })
+  };
 
-    // break into different forms - modular 
-    // finish adding the rest of the info 
+  render() {
     return (
       <div id='species-input-container'>
         <FormWithDropDown 
-          options={{dropDown: true, search: true, textArea: false, submit: false, }}
+          options={{dropDown: true, search: true, textArea: false, submit: false, date: false, }}
           category={`Species Name`}
           placeholder={'Enter Species Name'}
           dropDown={[]}
         />
         <FormWithDropDown 
-          options={{dropDown: true, search: true, textArea: false, submit: false, }}
+          options={{dropDown: true, search: true, textArea: false, submit: false, date: false, }}
           category={`Species Scientific Name`}
           placeholder={'Enter Scientific Name'}
           dropDown={[]}
         />
         <FormWithDropDown 
-          options={{dropDown: true, search: false, textArea: false, submit: false, }}
+          options={{dropDown: true, search: false, textArea: false, submit: false, date: false, }}
           category={`Species Category`}
           dropDown={[]}
         />
         <FormWithDropDown 
-          options={{dropDown: true, search: false, textArea: false, submit: false, }}
+          options={{dropDown: true, search: false, textArea: false, submit: false, date: false, }}
           category={`Weight Range`}
           dropDown={[]}
         />
         <FormWithDropDown 
-          options={{dropDown: true, search: false, textArea: false, submit: false, }}
+          options={{dropDown: true, search: false, textArea: false, submit: false, date: false, }}
           category={`Length Range`}
           dropDown={[]}
         />
         <FormWithDropDown 
-          options={{dropDown: true, search: false, textArea: false, submit: true, }}
+          options={{dropDown: true, search: false, textArea: false, submit: true, date: false, }}
           category={`Regions`}
           placeholder={'Enter Region'}
           dropDown={[]}

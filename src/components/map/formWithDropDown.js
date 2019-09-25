@@ -11,6 +11,7 @@ export default class DropDownMenu extends React.Component {
         search: false, 
         textArea: false,
         submit: false, 
+        date: false, 
       },
     }
   }
@@ -32,7 +33,14 @@ export default class DropDownMenu extends React.Component {
             <label>{`Search ${this.props.category}`}</label>
             <input type='text' placeholder={this.props.placeholder}/>
             <input type='submit' /> 
-          </div>: null
+          </div> : null
+        }
+        {this.state.options.date ? 
+          <div>
+            <label>{this.props.category}</label>
+            <input type='date' />
+            <input type='submit' />
+          </div> : null
         }
         {this.state.options.dropDown ? 
           <div>
