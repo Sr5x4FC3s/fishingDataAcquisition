@@ -3,11 +3,11 @@ import React from 'react';
 import Map from './maps';
 
 const styles = {
-  width: '90%', 
+  width: '99%', 
   height:'1200px',
   backgroundColor: 'red',
-  marginLeft: '5%',
-  marginRight: '5%',
+  marginLeft: '.5%',
+  marginRight: '.5%',
 };
 
 const MapContainer = ()=> (
