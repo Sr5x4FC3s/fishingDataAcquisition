@@ -1,5 +1,7 @@
 import React from 'react';
 
+import Map from './maps';
+
 const styles = {
   width: '90%', 
   height:'1200px',
@@ -9,7 +11,9 @@ const styles = {
 };
 
 const MapContainer = ()=> (
-  <div style={styles}></div>
+  <div id='map' style={styles}>
+    <Map />
+  </div>
 );
 
 export default MapContainer;

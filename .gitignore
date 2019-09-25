@@ -3,3 +3,9 @@
 
 ##node modules 
 /node_modules/
+
+##env 
+/.env
+
+##access_key
+/utility/key.js
