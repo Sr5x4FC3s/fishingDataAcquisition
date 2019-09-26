@@ -2,18 +2,30 @@ import React from 'react';
 
 import Map from './maps';
 
-const styles = {
+const toggledStyle = {
+  width: '55%', 
+  height:'900px',
+  backgroundColor: 'green',
+  overflow: 'hidden',
+  float: 'right',
+};
+
+const untoggledStyle = {
   width: '99%', 
-  height:'1200px',
+  height:'900px',
   backgroundColor: 'red',
   marginLeft: '.5%',
   marginRight: '.5%',
 };
 
-const MapContainer = ()=> (
-  <div id='map' style={styles}>
-    <Map />
-  </div>
+const MapContainer = (props) => (
+  props.active ? 
+  <div id='map' style={toggledStyle}>
+    <Map toggle={props.toggle}/>
+  </div> : 
+  <div id='map' style={untoggledStyle}>
+    <Map toggle={props.toggle}/>
+  </div> 
 );
 
 export default MapContainer;

@@ -24,7 +24,6 @@ export default class SinglePointMenu extends React.Component {
 
     const longLatStyles = {
       float: 'left',
-      
     };
 
     const longLatContainerStyles = {

@@ -12,6 +12,7 @@ export default class DropDownMenu extends React.Component {
         textArea: false,
         submit: false, 
         date: false, 
+        time: false, 
       },
     }
   }
@@ -39,6 +40,13 @@ export default class DropDownMenu extends React.Component {
           <div>
             <label>{this.props.category}</label>
             <input type='date' />
+            <input type='submit' />
+          </div> : null
+        }
+        {this.state.options.time ? 
+          <div>
+            {/* <label>{this.props.category}</label> */}
+            <input type='time' />
             <input type='submit' />
           </div> : null
         }

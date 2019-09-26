@@ -1,7 +1,7 @@
 import React from 'react';
 import { Popup } from 'react-map-gl';
 
-import SpeciesInputForm from './speciesInputForm';
+import SpeciesInputForm from '../forms/speciesInputForm';
 
 export default class SpeciesForm extends React.Component {
   constructor(props) {

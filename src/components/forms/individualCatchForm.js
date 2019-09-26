@@ -1,6 +1,6 @@
 import React from 'react';
 
-import FormWithDropDown from './formWithDropDown';
+import FormWithDropDown from '../forms/formWithDropDown';
 
 export default class IndividualCatchForm extends React.Component {
   constructor(props) {
@@ -11,15 +11,15 @@ export default class IndividualCatchForm extends React.Component {
     return (
       <div>
         <FormWithDropDown 
-          options={{dropDown: false, search: false, textArea: false, submit: true, date: false, }}
+          options={{dropDown: false, search: false, textArea: false, submit: true, date: false, time: false, }}
           category={`Individual Weight`}
           placeholder={'Enter Individual Weight'}
           dropDown={null}
         />
         {/* <div>Date of Capture (Render a calendar to select date)</div> */}
         <FormWithDropDown 
-          options={{dropDown: false, search: false, textArea: false, submit: false, date: true, }}
-          category={`Date of Capture`}
+          options={{dropDown: false, search: false, textArea: false, submit: false, date: true, time: true, }}
+          category={`Date and Time of Capture`}
           dropDown={null}
         />
         <button>All Capture Dates</button>
@@ -27,7 +27,7 @@ export default class IndividualCatchForm extends React.Component {
         <button>Show All Photos of Species</button>
         <div>if button is clicked, render a carousel of photos or something</div>
         <FormWithDropDown 
-          options={{dropDown: false, search: false, textArea: true, submit: false, date: false, }}
+          options={{dropDown: false, search: false, textArea: true, submit: false, date: false, time: false, }}
           category={`Tackle Used`}
           placeholder={'Enter Items Separated by Commas'}
           dropDown={null}
@@ -35,7 +35,7 @@ export default class IndividualCatchForm extends React.Component {
         <button>Show All Tackle Setups</button>
         <button>Price Compare Tackle</button>
         <FormWithDropDown 
-          options={{dropDown: false, search: false, textArea: false, submit: true, date: false, }}
+          options={{dropDown: false, search: false, textArea: false, submit: true, date: false, time: false, }}
           category={`Bait Used`}
           placeholder={'Enter Baits'}
           dropDown={null}
@@ -43,7 +43,7 @@ export default class IndividualCatchForm extends React.Component {
         <button>Show All Bait Used</button>
         <button>Price Compare Baits</button>
         <FormWithDropDown 
-          options={{dropDown: true, search: false, textArea: false, submit: false, date: false, }}
+          options={{dropDown: true, search: false, textArea: false, submit: false, date: false, time: false, }}
           category={`Region of Capture`}
           dropDown={null}
         />

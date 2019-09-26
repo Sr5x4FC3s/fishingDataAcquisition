@@ -164,7 +164,10 @@ export default class Map extends React.Component {
         {...this.state.viewport}
         onViewportChange={(viewport) => this.setState({viewport})}
         mapboxApiAccessToken={access_key}
-        onClick={(evt) => this.getClickedCoordinates(evt)}
+        onClick={(evt) => {
+          this.getClickedCoordinates(evt);
+          this.props.toggle();
+        }}
       > 
         {!this.state.togglePointMenu ? null  : 
           <SinglePointMenu 
