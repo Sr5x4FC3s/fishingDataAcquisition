@@ -6,7 +6,7 @@ import { key } from '../../../utility/key';
 import SinglePointMenu from './singlePointMenu';
 import AddCoordinatesForm from './menuOptions/addCoordinatesForm';
 import LocationInformationForm from './menuOptions/locationForm';
-import SpeciesForm from './speciesInformation';
+import SpeciesForm from '../information/speciesInformation';
 
 export default class Map extends React.Component {
   constructor(props) {

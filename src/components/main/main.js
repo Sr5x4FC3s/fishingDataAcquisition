@@ -1,9 +1,8 @@
 import React from 'react';
 
 import MapContainer from '../map/mapContainer';
-import InformationWindow from '../map/informationWindow';
+import InformationWindow from '../information/informationWindow';
 import HeaderContainer from '../header/headerContainer';
-import InformationContainer from '../information/InfoContainer';
 
 export default class Main extends React.Component {
   constructor(props) {
@@ -13,11 +12,18 @@ export default class Main extends React.Component {
     };
 
     this.activateWindow = this.activateWindow.bind(this);
+    this.deactivateWindow = this.deactivateWindow.bind(this);
   }
 
   activateWindow() {
     this.setState({
-      leftWindowActive: !this.state.leftWindowActive,
+      leftWindowActive: true,
+    });
+  };
+
+  deactivateWindow() {
+    this.setState({
+      leftWindowActive: false, 
     });
   };
 

@@ -4,12 +4,14 @@ import GenericButton from './button';
 import Logo from './logo';
 import HamburgerMenu from './menu';
 import DropDownMenuContainer from './dropDownMenuContainer';
+import TabContainer from '../information/tabs/tabContainer';
 
 export default class HeaderContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       showMenu: false,
+      renderMapTabs: false, 
     };
     this.show = this.show.bind(this);
   }
@@ -34,12 +36,19 @@ export default class HeaderContainer extends React.Component {
       backgroundColor: 'purple',
       float: 'left',
     };
+
+    const barStyle = {
+      width: '1465px',
+      height: '50px',
+      backgroundColor: 'grey',
+      float: 'left',
+    };
     
     const menuStyles = {
       width: '100px',
       height: '50px',
       backgroundColor: 'blue',
-      float: 'right',
+      float: 'left',
       cursor: 'pointer',
     };
     
@@ -48,6 +57,9 @@ export default class HeaderContainer extends React.Component {
       <div id='header-container' style={styles}>
         <div style={logoStyles}>
           <Logo />
+        </div>
+        <div style={barStyle}>
+          <TabContainer /> 
         </div>
         <div style={menuStyles}>
           <HamburgerMenu show={this.show}/>
