@@ -11,7 +11,7 @@ export default class Tab extends React.Component {
   render() {
     const styles = {
       width: '100px',
-      height: '45px',
+      height: '40px',
       backgroundColor: 'blue',
       opacity: '0.5',
     };

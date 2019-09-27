@@ -51,6 +51,14 @@ export default class HeaderContainer extends React.Component {
       float: 'left',
       cursor: 'pointer',
     };
+
+    const innerStyle = {
+      width: '60%',
+      height: '80%',
+      backgroundColor: 'red',
+      marginLeft: '20%',
+      marginTop: '.69%',
+    };
     
     const headerValues = ['one', 'two', 'three', 'four', 'five'];
     return (
@@ -59,7 +67,9 @@ export default class HeaderContainer extends React.Component {
           <Logo />
         </div>
         <div style={barStyle}>
-          <TabContainer /> 
+          <div style={innerStyle}>
+            <TabContainer /> 
+          </div>
         </div>
         <div style={menuStyles}>
           <HamburgerMenu show={this.show}/>
