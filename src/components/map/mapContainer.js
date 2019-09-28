@@ -21,10 +21,10 @@ const untoggledStyle = {
 const MapContainer = (props) => (
   props.active ? 
   <div id='map' style={toggledStyle}>
-    <Map toggle={props.toggle}/>
+    <Map toggle={props.toggle} retrieveCoordinates={props.retrieveCoordinates}/>
   </div> : 
   <div id='map' style={untoggledStyle}>
-    <Map toggle={props.toggle}/>
+    <Map toggle={props.toggle} retrieveCoordinates={props.retrieveCoordinates}/>
   </div> 
 );
 

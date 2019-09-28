@@ -68,7 +68,7 @@ export default class HeaderContainer extends React.Component {
         </div>
         <div style={barStyle}>
           <div style={innerStyle}>
-            <TabContainer /> 
+            <TabContainer activeTabs={this.props.activeTabs}/> 
           </div>
         </div>
         <div style={menuStyles}>

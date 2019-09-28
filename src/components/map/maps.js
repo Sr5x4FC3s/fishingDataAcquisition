@@ -110,7 +110,10 @@ export default class Map extends React.Component {
     const currentCoordinate = evt.lngLat;
     this.setState({
       current: currentCoordinate,
-    }, () => this.toggleSinglePointMenu(currentCoordinate));
+    }, () => {
+      this.toggleSinglePointMenu(currentCoordinate);
+      this.props.retrieveCoordinates(currentCoordinate);
+    });
   };
 
   //toggle menu for a single point when map is clicked 

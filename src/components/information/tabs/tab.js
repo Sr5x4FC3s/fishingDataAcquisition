@@ -28,12 +28,14 @@ export default class Tab extends React.Component {
 
     const closeButtonStyle = {
       float: 'right',
+      width: '20px',
+      height: '20px',
     };
 
     return (
       <div style={styles}>
         <div id={`${this.props.value}-tab`} style={wordStyle}>{this.props.value}</div>
-        <div onClick={this.props.close} style={closeButtonStyle}>x</div>
+        <button onClick={this.props.close} style={closeButtonStyle}>x</button>
       </div>
     )
   }
