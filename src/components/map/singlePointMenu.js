@@ -44,19 +44,18 @@ export default class SinglePointMenu extends React.Component {
 
     return (
       <div>
-        <Marker latitude={this.props.coordinates[1]} longitude={this.props.coordinates[0]}><div style={markerStyles}></div></Marker>
-        <Popup
+        {/* <Popup
           latitude={this.props.coordinates[1]}
           longitude={this.props.coordinates[0]}
           closeButton={true}
           closeOnClick={false}
           onClose={() => this.props.close()}
           anchor="top" 
-          >
+          > */}
             <div>
               <div id='point-menu-coord-container' style={longLatContainerStyles}>
-                <div style={longLatStyles}>Longitude: {this.props.coordinates[0]}</div>
-                <div style={longLatStyles}>Latitude: {this.props.coordinates[1]}</div>
+                <div style={longLatStyles}>Longitude: {this.props.activeCoordinate[0]}</div>
+                <div style={longLatStyles}>Latitude: {this.props.activeCoordinate[1]}</div>
               </div>
               <div id='point-menu-button-container' style={buttonContainerStyles}>
                 {/*render add coordinates button if the coordinates have not been added to the database*/}
@@ -68,7 +67,7 @@ export default class SinglePointMenu extends React.Component {
                 <button style={buttonStyles} onClick={() => this.props.more('COORDINATE_INFO', this.props.coordinates)}>More Information</button>
               </div>
             </div>
-        </Popup>
+        {/* </Popup> */}
       </div>
     )
   }

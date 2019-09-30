@@ -23,7 +23,7 @@ export default class Tab extends React.Component {
       top: '50%',
       left: '50%',
       marginRight: '-50%',
-      transform: `translate(-50%, -50%)`
+      transform: `translate(-50%, -50%)`,
     };
 
     const closeButtonStyle = {
