@@ -159,6 +159,17 @@ export default class Map extends React.Component {
         pointerEvents: 'none',
     };
 
+    const currentMarkStyle = {
+      position: 'absolute',
+      content: '',
+      backgroundColor:'green',
+      borderRadius:'50%',
+      opacity:'0.5',
+      width: '10px',
+      height: '10px',
+      pointerEvents: 'none',
+    };
+
     //SDK access key
     const access_key = key;
   
@@ -177,7 +188,7 @@ export default class Map extends React.Component {
             latitude={this.props.activeCoordinate[1]} 
             longitude={this.props.activeCoordinate[0]}
           >
-            <div style={markerStyles}></div>
+            <div style={currentMarkStyle}></div>
           </Marker>: null
         }
         {/* {!this.state.toggleEdit ? null :
