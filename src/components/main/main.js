@@ -20,13 +20,10 @@ export default class Main extends React.Component {
         speciesInfo: false, 
         renderRemove: false, 
       }, 
-      toggleEdit: false,
-      toggleLocInfoEdit: false, 
+      activeTabs: [],
       togglePointMenu: false,
       toggleList: false,
       toggleAllCoordinates: false,
-      // renderRemove: false,
-      toggleSpeciesInfo: false,
     };
 
     this.activateWindow = this.activateWindow.bind(this);
@@ -35,16 +32,8 @@ export default class Main extends React.Component {
 
     this.getClickedCoordinates = this.getClickedCoordinates.bind(this);
     this.toggleSinglePointMenu = this.toggleSinglePointMenu.bind(this);
-    this.toggleClose = this.toggleClose.bind(this);
     this.addCoordinates = this.addCoordinates.bind(this);
     this.accessMoreInformation = this.accessMoreInformation.bind(this);
-    this.editCoordinateInfo = this.editCoordinateInfo.bind(this);
-    this.untoggleEditCoordinates = this.untoggleEditCoordinates.bind(this);
-    this.editLocationInfo = this.editLocationInfo.bind(this);
-    this.untoggleEditLocation = this.untoggleEditLocation.bind(this);
-    this.removeCoordinates = this.removeCoordinates.bind(this);
-    this.editSpeciesInformation = this.editSpeciesInformation.bind(this);
-    this.untoggleSpeciesInformation = this.untoggleSpeciesInformation.bind(this);
     this.toggleHandler = this.toggleHandler.bind(this);
   }
 
@@ -75,45 +64,11 @@ export default class Main extends React.Component {
     prevCoordinates.push(this.state.current);
     this.setState({
       coordinates: prevCoordinates,
-      renderRemove: true,
-    });
+    }, () => console.log(this.state.coordinates));
     //invoke validate points exist after coords have been added as current coords 
 
     //remove this and make new method to handle this action and create a small pop up to ask if user would like to edit information
     //when this funtion is invoked adn the coordinates are added, either render this button as green(or a different) color or remove the button so it can't be selected again
-  };
-
-  editCoordinateInfo() {
-    this.setState({
-      toggleEdit: !this.state.toggleEdit,
-    });
-
-    //refactor and combine editCoordinateInfo and untoggleEditCoordinates to reduce redundancy 
-  };
-
-  untoggleEditCoordinates() {
-    this.setState({
-      toggleEdit: false, 
-    });
-  };
-
-  editLocationInfo() {
-    this.setState({
-      toggleLocInfoEdit: !this.state.toggleLocInfoEdit,
-    });
-  };
-
-  untoggleEditLocation() {
-    this.setState({
-      toggleLocInfoEdit: false,
-    });
-  };
-
-  removeCoordinates() {
-    this.setState({
-      renderRemove: false,
-      // remove the all state that is associatd with the removed coordinates - update db 
-    })
   };
 
   accessMoreInformation(type, data) {
@@ -150,28 +105,6 @@ export default class Main extends React.Component {
     JSON.stringify(coords) !== JSON.stringify(this.state.start) ? this.setState({togglePointMenu: true}) : this.setState({togglePointMenu: !this.state.togglePointMenu});
   };
 
-  toggleClose() {
-    //can refactor this to close all things depends on which component needs to be closed
-
-    this.setState({
-      togglePointMenu: false,
-    })
-  };
-
-  editSpeciesInformation() {
-    //refactor
-    this.setState({
-      toggleSpeciesInfo: !this.state.toggleSpeciesInfo,
-    });
-  };
-
-  untoggleSpeciesInformation() {
-    //refactor
-    this.setState({
-      toggleSpeciesInfo: false,
-    });
-  };
-
   toggleHandler(eventType) {
     const activeInformation = this.state.activeInformation;
 
@@ -196,7 +129,7 @@ export default class Main extends React.Component {
         activeInformation.renderRemove = !this.state.activeInformation.renderRemove;
         this.setState({
           activeInformation: activeInformation,
-        });
+        }, () => this.addCoordinates());
         break;
       default:
         activeInformation.locationInfo = false;
