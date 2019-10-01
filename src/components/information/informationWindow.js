@@ -16,6 +16,7 @@ const styles = {
 const InformationWindow = (props) => (
   <div style={styles}>
     <SinglePointMenu 
+      activeInformation={props.activeInformation}
       activeCoordinate={props.activeCoordinate}
       toggle={props.toggleSinglePointMenu}
       toggleHandler={props.toggleHandler} 
@@ -27,16 +28,22 @@ const InformationWindow = (props) => (
       close={props.toggleClose}
       isRemoveActive={props.renderRemove}
     />
-    <AddCoordinatesForm 
-      toggleHandler={props.toggleHandler}
-      more={props.more} 
-    />
-    <LocationInformationForm 
-      toggleHandler={props.toggleHandler}
-    />
-    <SpeciesForm
-      toggleHandler={props.toggleHandler}
-    />
+    {props.activeInformation.edit ? 
+      <AddCoordinatesForm 
+        toggleHandler={props.toggleHandler}
+        more={props.more} 
+      /> : null
+    }
+    {props.activeInformation.locationInfo ? 
+      <LocationInformationForm 
+        toggleHandler={props.toggleHandler}
+      /> : null
+    }
+    {props.activeInformation.speciesInfo ? 
+      <SpeciesForm
+        toggleHandler={props.toggleHandler}
+      /> : null
+    }
   </div>
 );
 

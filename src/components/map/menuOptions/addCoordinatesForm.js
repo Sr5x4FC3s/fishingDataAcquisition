@@ -36,12 +36,6 @@ const AddCoordinateForm = (props) => {
     width: '100%',
   };
 
-  //temporary options 
-  const options = ['option1', 'option2', 'option2'];
-
-  //change div tag to img tag to house images
-  const imagesExample = ['img', 'img', 'img', 'img'];
-
   return (
     <div>
       <FormWithDropDown 

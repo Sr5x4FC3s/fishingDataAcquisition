@@ -18,13 +18,14 @@ export default class Main extends React.Component {
         edit: false, 
         locationInfo: false, 
         speciesInfo: false, 
+        renderRemove: false, 
       }, 
       toggleEdit: false,
       toggleLocInfoEdit: false, 
       togglePointMenu: false,
       toggleList: false,
       toggleAllCoordinates: false,
-      renderRemove: false,
+      // renderRemove: false,
       toggleSpeciesInfo: false,
     };
 
@@ -146,7 +147,6 @@ export default class Main extends React.Component {
 
   //toggle menu for a single point when map is clicked 
   toggleSinglePointMenu(coords) {
-    console.log('cords: ', coords)
     JSON.stringify(coords) !== JSON.stringify(this.state.start) ? this.setState({togglePointMenu: true}) : this.setState({togglePointMenu: !this.state.togglePointMenu});
   };
 
@@ -182,23 +182,29 @@ export default class Main extends React.Component {
         activeInformation.speciesInfo = false;
         this.setState({
           activeInformation: activeInformation,
-        })
+        });
         break;
       case('species'):
-      activeInformation.locationInfo = false;
-      activeInformation.edit = false;
-      activeInformation.speciesInfo = true;      
+        activeInformation.locationInfo = false;
+        activeInformation.edit = false;
+        activeInformation.speciesInfo = true;      
         this.setState({
           activeInformation: activeInformation,
-        })
+        });
+        break;
+      case('addCoordinates'):
+        activeInformation.renderRemove = !this.state.activeInformation.renderRemove;
+        this.setState({
+          activeInformation: activeInformation,
+        });
         break;
       default:
-      activeInformation.locationInfo = false;
-      activeInformation.edit = true;
-      activeInformation.speciesInfo = false;      
+        activeInformation.locationInfo = false;
+        activeInformation.edit = true;
+        activeInformation.speciesInfo = false;      
         this.setState({
           activeInformation: activeInformation,
-        })
+        });
     }
   };
 
