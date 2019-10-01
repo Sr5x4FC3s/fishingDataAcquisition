@@ -9,18 +9,17 @@ export default class Main extends React.Component {
     super(props);
     this.state = {
       leftWindowActive: false,
-      activeTabs: [], // object with true or false value, also data last saved to be rendered onto the window
       // current: null,
       current: [-122.41, 37.7577],
       start: [37.7577, -122.41],
       coordinates: [],
+      activeTabs: [], // object with true or false value, also data last saved to be rendered onto the window
       activeInformation: {
         edit: false, 
         locationInfo: false, 
         speciesInfo: false, 
         renderRemove: false, 
       }, 
-      activeTabs: [],
       togglePointMenu: false,
       toggleList: false,
       toggleAllCoordinates: false,
@@ -35,6 +34,7 @@ export default class Main extends React.Component {
     this.addCoordinates = this.addCoordinates.bind(this);
     this.accessMoreInformation = this.accessMoreInformation.bind(this);
     this.toggleHandler = this.toggleHandler.bind(this);
+    this.retrieveTabState = this.retrieveTabState.bind(this);
   }
 
   activateWindow() {
@@ -83,10 +83,12 @@ export default class Main extends React.Component {
   };
 
   getClickedCoordinates(coordinates) {
-    // const currentCoordinate = evt.lngLat;
     const currentCoordinate = coordinates;
     let activeTabs = this.state.activeTabs;
     //refactor to decorator
+    
+    //*********** might need to move toggleHandler and corresponding state to each individual tab */
+
     activeTabs.push({info: 'options', coordinates: coordinates}); // will need to be change to coordinates + corresponding information or use cached data
 
     this.setState({
@@ -108,6 +110,7 @@ export default class Main extends React.Component {
   toggleHandler(eventType) {
     const activeInformation = this.state.activeInformation;
 
+    // add toggle single point menu to switch and remove above method
     switch(eventType) {
       case('location'):
         activeInformation.locationInfo = true;
@@ -150,11 +153,15 @@ export default class Main extends React.Component {
       backgroundColor: 'green',
     };
 
-    console.log(this.state.activeInformation)
+    console.log('active Information: ', this.state.activeInformation);
+    console.log('active tabs: ', this.state.activeTabs);
+
 
     return (
       <div>
-        <HeaderContainer activeTabs={this.state.activeTabs}/>
+        <HeaderContainer 
+          activeTabs={this.state.activeTabs} // might not need to pass this
+        />
         <div id='map-container' style={styles}>
           {this.state.leftWindowActive ? 
             <InformationWindow 
@@ -162,12 +169,7 @@ export default class Main extends React.Component {
               activeCoordinate={this.state.current}
               toggle={this.toggleSinglePointMenu} 
               add={this.addCoordinates}
-              remove={this.removeCoordinates}
-              edit={this.editCoordinateInfo}
               more={this.accessMoreInformation} 
-              species={this.editSpeciesInformation}
-              close={this.toggleClose}
-              isRemoveActive={this.state.renderRemove}
               toggleHandler={this.toggleHandler}
             /> : null
           }

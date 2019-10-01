@@ -28,7 +28,7 @@ export default class TabContainer extends React.Component {
       <div id='tab-container' style={styles}>
         {this.props.activeTabs.map(tab => (
           <div style={tabStyle}>
-          <Tab value={tab.info} close={this.closeTab} />
+            <Tab value={tab.info} close={this.closeTab} />
           </div>
         ))}
       </div>

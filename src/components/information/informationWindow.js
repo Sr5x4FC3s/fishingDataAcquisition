@@ -20,13 +20,7 @@ const InformationWindow = (props) => (
       activeCoordinate={props.activeCoordinate}
       toggle={props.toggleSinglePointMenu}
       toggleHandler={props.toggleHandler} 
-      add={props.addCoordinates}
-      remove={props.removeCoordinates}
-      edit={props.editCoordinateInfo}
       more={props.more} 
-      species={props.editSpeciesInformation}
-      close={props.toggleClose}
-      isRemoveActive={props.renderRemove}
     />
     {props.activeInformation.edit ? 
       <AddCoordinatesForm 
