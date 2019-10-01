@@ -20,18 +20,11 @@ export default class SpeciesForm extends React.Component {
     };
     
     return (
-      <Popup
-        style={styles}
-        latitude={this.props.coordinates[1]}
-        longitude={this.props.coordinates[0]}
-        closeButton={true}
-        closeOnClick={false}
-        onClose={() => this.props.close()}
-      >
+      <div>
         <div>
-          {!this.state.infoAvailable ? <SpeciesInputForm /> : <div><div>RENDER SPECIES INFORMATION HERE FROM DB</div><button id='edit-info-button'>Edit Species Information</button></div>}
+          {!this.state.infoAvailable ? <SpeciesInputForm /> : <div><div>RENDER SPECIES INFORMATION HERE FROM DB</div><button id='edit-info-button' onClick={() => this.props.toggleHandler('species')}>Edit Species Information</button></div>}
         </div>
-      </Popup>
+      </div>
     );
   };
 };

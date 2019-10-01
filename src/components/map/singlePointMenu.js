@@ -42,8 +42,8 @@ export default class SinglePointMenu extends React.Component {
             {/*if it has been added, remove the button and render the remove button and vice versa*/}
             {/*can be accomplished with api call to check coordinates and setting a boolean on the active coordinates whether it has been saved or not*/}
             {!this.props.isRemoveActive ? <button style={buttonStyles} onClick={this.props.add}>Add Coordinates</button> : <button style={buttonStyles} onClick={this.props.remove}>Remove Coordinates</button>}
-            <button style={buttonStyles} onClick={this.props.edit}>Edit Information</button>
-            <button style={buttonStyles} onClick={this.props.species}>Species Information</button>
+            <button style={buttonStyles} onClick={() => this.props.toggleHandler()}>Edit Information</button>
+            <button style={buttonStyles} onClick={() => this.props.toggleHandler('species')}>Species Information</button>
             <button style={buttonStyles} onClick={() => this.props.more('COORDINATE_INFO', this.props.coordinates)}>More Information</button>
           </div>
         </div>

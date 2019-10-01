@@ -14,6 +14,11 @@ export default class Main extends React.Component {
       current: [-122.41, 37.7577],
       start: [37.7577, -122.41],
       coordinates: [],
+      activeInformation: {
+        edit: false, 
+        locationInfo: false, 
+        speciesInfo: false, 
+      }, 
       toggleEdit: false,
       toggleLocInfoEdit: false, 
       togglePointMenu: false,
@@ -39,6 +44,7 @@ export default class Main extends React.Component {
     this.removeCoordinates = this.removeCoordinates.bind(this);
     this.editSpeciesInformation = this.editSpeciesInformation.bind(this);
     this.untoggleSpeciesInformation = this.untoggleSpeciesInformation.bind(this);
+    this.toggleHandler = this.toggleHandler.bind(this);
   }
 
   activateWindow() {
@@ -166,6 +172,36 @@ export default class Main extends React.Component {
     });
   };
 
+  toggleHandler(eventType) {
+    const activeInformation = this.state.activeInformation;
+
+    switch(eventType) {
+      case('location'):
+        activeInformation.locationInfo = true;
+        activeInformation.edit = false;
+        activeInformation.speciesInfo = false;
+        this.setState({
+          activeInformation: activeInformation,
+        })
+        break;
+      case('species'):
+      activeInformation.locationInfo = false;
+      activeInformation.edit = false;
+      activeInformation.speciesInfo = true;      
+        this.setState({
+          activeInformation: activeInformation,
+        })
+        break;
+      default:
+      activeInformation.locationInfo = false;
+      activeInformation.edit = true;
+      activeInformation.speciesInfo = false;      
+        this.setState({
+          activeInformation: activeInformation,
+        })
+    }
+  };
+
   render() {
     const styles = {
       width: '1665px', //change based on width of the browser that is in use
@@ -175,12 +211,15 @@ export default class Main extends React.Component {
       backgroundColor: 'green',
     };
 
+    console.log(this.state.activeInformation)
+
     return (
       <div>
         <HeaderContainer activeTabs={this.state.activeTabs}/>
         <div id='map-container' style={styles}>
           {this.state.leftWindowActive ? 
             <InformationWindow 
+              activeInformation={this.state.activeInformation}
               activeCoordinate={this.state.current}
               toggle={this.toggleSinglePointMenu} 
               add={this.addCoordinates}
@@ -190,6 +229,7 @@ export default class Main extends React.Component {
               species={this.editSpeciesInformation}
               close={this.toggleClose}
               isRemoveActive={this.state.renderRemove}
+              toggleHandler={this.toggleHandler}
             /> : null
           }
           <MapContainer 

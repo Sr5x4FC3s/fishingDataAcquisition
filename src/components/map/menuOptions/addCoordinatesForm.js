@@ -43,14 +43,7 @@ const AddCoordinateForm = (props) => {
   const imagesExample = ['img', 'img', 'img', 'img'];
 
   return (
-    <Popup id='form-container' 
-      style={styles}
-      latitude={props.coordinates[1]}
-      longitude={props.coordinates[0]}
-      closeButton={true}
-      closeOnClick={false}
-      onClose={() => props.close()}
-      anchor="top">
+    <div>
       <form id='add-coordinates-form'>
         <label id='marker-label'>[Marker Image] Color</label>
         <DropDownMenu values={options} />
@@ -58,10 +51,10 @@ const AddCoordinateForm = (props) => {
         <DropDownMenu values={imagesExample} />
       </form>
       <div id='location-button-container' style={locationContainerStyles}>
-        <button id='add-location-info' onClick={props.toggleLoc}>Add Location Information</button>
+        <button id='add-location-info' onClick={() => props.toggleHandler('location')}>Add Location Information</button>
         <button id='add-photos'>Upload Photo(s)</button>
       </div>
-    </Popup>
+    </div>
   )
 };
 
