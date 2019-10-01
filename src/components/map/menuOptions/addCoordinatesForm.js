@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Marker, Popup } from  'react-map-gl';
 
-import DropDownMenu from './dropDown';
+import FormWithDropDown from '../../forms/formWithDropDown';
 
 const preMountComponent = () => {
   useEffect(() => console.log('mounted'), setFormValues({menuList: ['item', 'item', 'item', 'item', 'item']}));
@@ -44,12 +44,16 @@ const AddCoordinateForm = (props) => {
 
   return (
     <div>
-      <form id='add-coordinates-form'>
-        <label id='marker-label'>[Marker Image] Color</label>
-        <DropDownMenu values={options} />
-        <label id='marker-image-label'>[Marker Image] Color</label>
-        <DropDownMenu values={imagesExample} />
-      </form>
+      <FormWithDropDown 
+        options={{dropDown: true, search: false, textArea: false, submit: false, date: false, time: false, }}
+        category={`[Marker Image] Change Marker Color`}
+        dropDown={[]}
+      />        
+      <FormWithDropDown 
+        options={{dropDown: true, search: false, textArea: false, submit: false, date: false, time: false, }}
+        category={`[Marker Image] Change Marker Image`}
+        dropDown={[]}
+      />      
       <div id='location-button-container' style={locationContainerStyles}>
         <button id='add-location-info' onClick={() => props.toggleHandler('location')}>Add Location Information</button>
         <button id='add-photos'>Upload Photo(s)</button>

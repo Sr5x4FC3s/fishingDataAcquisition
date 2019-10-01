@@ -24,7 +24,6 @@ const MapContainer = (props) => (
     <Map 
       toggle={props.toggle}
       activeCoordinate={props.activeCoordinate} 
-      // retrieveCoordinates={props.retrieveCoordinates}
       getClickedCoordinates={props.getClickedCoordinates}
     />
   </div> : 
@@ -32,7 +31,6 @@ const MapContainer = (props) => (
     <Map 
       toggle={props.toggle}
       activeCoordinate={props.activeCoordinate}
-      // retrieveCoordinates={props.retrieveCoordinates}
       getClickedCoordinates={props.getClickedCoordinates} 
     />
   </div> 
