@@ -10,12 +10,6 @@ export default class SinglePointMenu extends React.Component {
     this.switchButtons = this.switchButtons.bind(this);
   }
 
-  componentDidMount() {
-    this.setState({
-      renderRemove: this.props.currentTabState.coordinatesAdded
-    }, () => console.log('single point: ', this.state))
-  }
-
   switchButtons() {
     this.setState({
       renderRemove: !this.state.renderRemove,
