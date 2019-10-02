@@ -70,6 +70,7 @@ export default class HeaderContainer extends React.Component {
             <TabContainer 
               activeTabs={this.props.activeTabs}
               removeActiveTab={this.props.removeActiveTab}
+              updateCoordinate={this.props.updateCoordinate}
             /> 
           </div>
         </div>

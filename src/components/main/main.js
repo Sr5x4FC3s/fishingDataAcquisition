@@ -9,7 +9,6 @@ export default class Main extends React.Component {
     super(props);
     this.state = {
       leftWindowActive: false,
-      // current: null,
       current: [-122.41, 37.7577],
       start: [37.7577, -122.41],
       coordinates: [],
@@ -35,6 +34,7 @@ export default class Main extends React.Component {
     this.accessMoreInformation = this.accessMoreInformation.bind(this);
     this.toggleHandler = this.toggleHandler.bind(this);
     this.removeActiveTab = this.removeActiveTab.bind(this);
+    this.updateCurrentCoord = this.updateCurrentCoord.bind(this);
   }
 
   activateWindow() {
@@ -52,14 +52,31 @@ export default class Main extends React.Component {
   removeActiveTab(tab) {
     let activeTabs = this.state.activeTabs;
     let targetIndex = 0;
+
+    /** defaults to true unless tabs are all closed */
+    let leftWindowActive = true;
+
     activeTabs.forEach((item, index) => {
       if (JSON.stringify(item.coordinates) === JSON.stringify(tab)) {
         targetIndex = index;
       };
     });
     activeTabs.splice(targetIndex, 1);
+
+    /** Handles closing of the information window */
+    if (activeTabs.length === 0) {
+      leftWindowActive = false;
+    }
+
     this.setState({
       activeTabs: activeTabs,
+      leftWindowActive: leftWindowActive,
+    });
+  };
+
+  updateCurrentCoord(coordinate) {
+    this.setState({
+      current: coordinate,
     });
   };
 
@@ -100,8 +117,6 @@ export default class Main extends React.Component {
     const currentCoordinate = coordinates;
     let activeTabs = this.state.activeTabs;
     //refactor to decorator
-
-    //*********** might need to move toggleHandler and corresponding state to each individual tab */
 
     activeTabs.push({info: {state: true, isOpen: true,}, coordinates: coordinates}); // will need to be change to coordinates + corresponding information or use cached data
 
@@ -176,6 +191,7 @@ export default class Main extends React.Component {
         <HeaderContainer 
           activeTabs={this.state.activeTabs} // might not need to pass this
           removeActiveTab={this.removeActiveTab}
+          updateCoordinate={this.updateCurrentCoord}
         />
         <div id='map-container' style={styles}>
           {this.state.leftWindowActive ? 

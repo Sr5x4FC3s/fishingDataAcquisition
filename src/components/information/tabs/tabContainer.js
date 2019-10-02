@@ -27,6 +27,7 @@ export default class TabContainer extends React.Component {
               isActive={tab.info.state}
               isOpen={tab.info.isOpen}
               removeActiveTab={this.props.removeActiveTab}
+              updateCoordinate={this.props.updateCoordinate}
             />
           </div>
         ))}

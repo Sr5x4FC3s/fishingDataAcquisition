@@ -44,7 +44,7 @@ export default class Tab extends React.Component {
     };
 
     return (
-      <div style={styles}>
+      <div style={styles} onClick={() => this.props.updateCoordinate(this.state.coordinates)}>
         <div id={`${this.props.value}-tab`} style={wordStyle}>{this.props.value}</div>
         <button style={closeButtonStyle} onClick={() => this.props.removeActiveTab(this.state.coordinates)}>x</button>
       </div>
