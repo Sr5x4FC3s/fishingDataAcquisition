@@ -34,7 +34,7 @@ export default class Main extends React.Component {
     this.addCoordinates = this.addCoordinates.bind(this);
     this.accessMoreInformation = this.accessMoreInformation.bind(this);
     this.toggleHandler = this.toggleHandler.bind(this);
-    this.retrieveTabState = this.retrieveTabState.bind(this);
+    this.removeActiveTab = this.removeActiveTab.bind(this);
   }
 
   activateWindow() {
@@ -49,11 +49,25 @@ export default class Main extends React.Component {
     });
   };
 
+  removeActiveTab(tab) {
+    let activeTabs = this.state.activeTabs;
+    let targetIndex = 0;
+    activeTabs.forEach((item, index) => {
+      if (JSON.stringify(item.coordinates) === JSON.stringify(tab)) {
+        targetIndex = index;
+      };
+    });
+    activeTabs.splice(targetIndex, 1);
+    this.setState({
+      activeTabs: activeTabs,
+    });
+  };
+
   retrieveCoordinates(coordindates) {
     console.log(coordindates);
     let activeTabs = this.state.activeTabs;
     //refactor to decorator
-    activeTabs.push({info: 'options', coordinates: coordindates}); // will need to be change to coordinates + corresponding information or use cached data
+    activeTabs.push({info: {state: true, isOpen: true,}, coordinates: coordindates}); // will need to be change to coordinates + corresponding information or use cached data
     this.setState({
       activeTabs: activeTabs,
     }, () => console.log(this.state.activeTabs));
@@ -86,10 +100,10 @@ export default class Main extends React.Component {
     const currentCoordinate = coordinates;
     let activeTabs = this.state.activeTabs;
     //refactor to decorator
-    
+
     //*********** might need to move toggleHandler and corresponding state to each individual tab */
 
-    activeTabs.push({info: 'options', coordinates: coordinates}); // will need to be change to coordinates + corresponding information or use cached data
+    activeTabs.push({info: {state: true, isOpen: true,}, coordinates: coordinates}); // will need to be change to coordinates + corresponding information or use cached data
 
     this.setState({
       current: currentCoordinate,
@@ -161,6 +175,7 @@ export default class Main extends React.Component {
       <div>
         <HeaderContainer 
           activeTabs={this.state.activeTabs} // might not need to pass this
+          removeActiveTab={this.removeActiveTab}
         />
         <div id='map-container' style={styles}>
           {this.state.leftWindowActive ? 

@@ -5,8 +5,17 @@ export default class Tab extends React.Component {
     super(props);
     this.state = {
       active: false,
-      coordinates: null, 
+      coordinates: null,
+      isOpen: false,  
     }
+  }
+
+  componentDidMount() {
+    this.setState({
+      active: this.props.isActive,
+      coordinates: this.props.value,
+      isOpen: this.props.isOpen,
+    }, () => console.log('state: ', this.state))
   }
 
   render() {
@@ -19,6 +28,7 @@ export default class Tab extends React.Component {
     };
 
     const wordStyle = {
+      fontSize: 8,
       float: 'left',
       position: 'absolute',
       top: '50%',
@@ -36,7 +46,7 @@ export default class Tab extends React.Component {
     return (
       <div style={styles}>
         <div id={`${this.props.value}-tab`} style={wordStyle}>{this.props.value}</div>
-        <button onClick={this.props.close} style={closeButtonStyle}>x</button>
+        <button style={closeButtonStyle} onClick={() => this.props.removeActiveTab(this.state.coordinates)}>x</button>
       </div>
     )
   }

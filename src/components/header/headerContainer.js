@@ -60,7 +60,6 @@ export default class HeaderContainer extends React.Component {
       marginTop: '.69%',
     };
     
-    const headerValues = ['one', 'two', 'three', 'four', 'five'];
     return (
       <div id='header-container' style={styles}>
         <div style={logoStyles}>
@@ -70,6 +69,7 @@ export default class HeaderContainer extends React.Component {
           <div style={innerStyle}>
             <TabContainer 
               activeTabs={this.props.activeTabs}
+              removeActiveTab={this.props.removeActiveTab}
             /> 
           </div>
         </div>
