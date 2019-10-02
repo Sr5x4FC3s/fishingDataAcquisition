@@ -21,6 +21,7 @@ const InformationWindow = (props) => (
       toggle={props.toggleSinglePointMenu}
       toggleHandler={props.toggleHandler} 
       more={props.more} 
+      currentTabState={props.currentTabState}
     />
     {props.activeInformation.edit ? 
       <AddCoordinatesForm 

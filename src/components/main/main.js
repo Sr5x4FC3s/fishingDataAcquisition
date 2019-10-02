@@ -9,6 +9,7 @@ export default class Main extends React.Component {
     super(props);
     this.state = {
       leftWindowActive: false,
+      currentTabState: {},
       current: [-122.41, 37.7577],
       start: [37.7577, -122.41],
       coordinates: [],
@@ -74,17 +75,26 @@ export default class Main extends React.Component {
     });
   };
 
-  updateCurrentCoord(coordinate) {
-    this.setState({
-      current: coordinate,
+  updateCurrentCoord(coordinates, tabState) {
+    let targetTab = this.state.activeTabs.filter((item, index) => {
+      if (JSON.stringify(item.coordinates) === JSON.stringify(coordinates)) {
+        return item;
+      } else {
+        return null;
+      }
     });
+
+    this.setState({
+      current: coordinates,
+      currentTabState: targetTab[0].info,
+    }, () => console.log('current tab state: ', this.state.currentTabState));
   };
 
   retrieveCoordinates(coordindates) {
     console.log(coordindates);
     let activeTabs = this.state.activeTabs;
     //refactor to decorator
-    activeTabs.push({info: {state: true, isOpen: true,}, coordinates: coordindates}); // will need to be change to coordinates + corresponding information or use cached data
+    activeTabs.push({info: {active: true, isOpen: true, coordinatesAdded: false,}, coordinates: coordindates}); // will need to be change to coordinates + corresponding information or use cached data
     this.setState({
       activeTabs: activeTabs,
     }, () => console.log(this.state.activeTabs));
@@ -118,7 +128,7 @@ export default class Main extends React.Component {
     let activeTabs = this.state.activeTabs;
     //refactor to decorator
 
-    activeTabs.push({info: {state: true, isOpen: true,}, coordinates: coordinates}); // will need to be change to coordinates + corresponding information or use cached data
+    activeTabs.push({info: {active: true, isOpen: true, coordinatesAdded: false,}, coordinates: coordinates}); // will need to be change to coordinates + corresponding information or use cached data
 
     this.setState({
       current: currentCoordinate,
@@ -159,8 +169,11 @@ export default class Main extends React.Component {
         break;
       case('addCoordinates'):
         activeInformation.renderRemove = !this.state.activeInformation.renderRemove;
+        let currentTabState = this.state.currentTabState;
+        currentTabState.coordinatesAdded = !this.state.currentTabState.coordinatesAdded;
         this.setState({
           activeInformation: activeInformation,
+          currentTabState: currentTabState,
         }, () => this.addCoordinates());
         break;
       default:
@@ -192,6 +205,8 @@ export default class Main extends React.Component {
           activeTabs={this.state.activeTabs} // might not need to pass this
           removeActiveTab={this.removeActiveTab}
           updateCoordinate={this.updateCurrentCoord}
+          activeInformation={this.state.activeInformation}
+          currentTabState={this.state.currentTabState}
         />
         <div id='map-container' style={styles}>
           {this.state.leftWindowActive ? 
@@ -202,6 +217,7 @@ export default class Main extends React.Component {
               add={this.addCoordinates}
               more={this.accessMoreInformation} 
               toggleHandler={this.toggleHandler}
+              currentTabState={this.state.currentTabState}
             /> : null
           }
           <MapContainer 

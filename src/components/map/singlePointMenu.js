@@ -5,9 +5,22 @@ export default class SinglePointMenu extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-
+      renderRemove: false, 
     };
+    this.switchButtons = this.switchButtons.bind(this);
   }
+
+  componentDidMount() {
+    this.setState({
+      renderRemove: this.props.currentTabState.coordinatesAdded
+    }, () => console.log('single point: ', this.state))
+  }
+
+  switchButtons() {
+    this.setState({
+      renderRemove: !this.state.renderRemove,
+    });
+  };
 
   render() {
     const longLatStyles = {
@@ -41,10 +54,26 @@ export default class SinglePointMenu extends React.Component {
             {/*render add coordinates button if the coordinates have not been added to the database*/}
             {/*if it has been added, remove the button and render the remove button and vice versa*/}
             {/*can be accomplished with api call to check coordinates and setting a boolean on the active coordinates whether it has been saved or not*/}
-            {!this.props.activeInformation.renderRemove ? 
-              <button style={buttonStyles} onClick={() => this.props.toggleHandler('addCoordinates')}>Add Coordinates</button> 
+            {!this.props.currentTabState.coordinatesAdded ? 
+              <button 
+                style={buttonStyles} 
+                onClick={() => {
+                  this.props.toggleHandler('addCoordinates');
+                  this.switchButtons();
+                }}
+              >
+                Add Coordinates
+              </button> 
               : 
-              <button style={buttonStyles} onClick={() => this.props.toggleHandler('addCoordinates')}>Remove Coordinates</button>
+              <button 
+                style={buttonStyles} 
+                onClick={() => {
+                  this.props.toggleHandler('addCoordinates');
+                  this.switchButtons();
+                }}
+              >
+                Remove Coordinates
+              </button>
             }
             <button style={buttonStyles} onClick={() => this.props.toggleHandler()}>Edit Information</button>
             <button style={buttonStyles} onClick={() => this.props.toggleHandler('species')}>Species Information</button>

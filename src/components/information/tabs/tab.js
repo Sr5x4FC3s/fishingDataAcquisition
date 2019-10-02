@@ -6,7 +6,8 @@ export default class Tab extends React.Component {
     this.state = {
       active: false,
       coordinates: null,
-      isOpen: false,  
+      isOpen: false,
+      coordinatesAdded: false,   
     }
   }
 
@@ -15,7 +16,8 @@ export default class Tab extends React.Component {
       active: this.props.isActive,
       coordinates: this.props.value,
       isOpen: this.props.isOpen,
-    }, () => console.log('state: ', this.state))
+      coordinatesAdded: this.props.currentTabState.coordinatesAdded,
+    })
   }
 
   render() {
@@ -44,7 +46,7 @@ export default class Tab extends React.Component {
     };
 
     return (
-      <div style={styles} onClick={() => this.props.updateCoordinate(this.state.coordinates)}>
+      <div style={styles} onClick={() => this.props.updateCoordinate(this.state.coordinates, this.state)}>
         <div id={`${this.props.value}-tab`} style={wordStyle}>{this.props.value}</div>
         <button style={closeButtonStyle} onClick={() => this.props.removeActiveTab(this.state.coordinates)}>x</button>
       </div>

@@ -24,10 +24,12 @@ export default class TabContainer extends React.Component {
           <div style={tabStyle}>
             <Tab 
               value={tab.coordinates} 
-              isActive={tab.info.state}
+              isActive={tab.info.active}
               isOpen={tab.info.isOpen}
               removeActiveTab={this.props.removeActiveTab}
               updateCoordinate={this.props.updateCoordinate}
+              activeInformation={this.props.activeInformation}
+              currentTabState={this.props.currentTabState}
             />
           </div>
         ))}
