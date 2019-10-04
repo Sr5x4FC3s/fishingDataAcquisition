@@ -26,6 +26,8 @@ const InformationWindow = (props) => (
     {props.activeInformation.edit ? 
       <AddCoordinatesForm 
         toggleHandler={props.toggleHandler}
+        activeCoordinate={props.activeCoordinate}
+        updateTabState={props.updateTabState}
         more={props.more} 
       /> : null
     }

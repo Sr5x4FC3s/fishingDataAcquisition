@@ -36,6 +36,7 @@ export default class Main extends React.Component {
     this.toggleHandler = this.toggleHandler.bind(this);
     this.removeActiveTab = this.removeActiveTab.bind(this);
     this.updateCurrentCoord = this.updateCurrentCoord.bind(this);
+    this.updateTabState = this.updateTabState.bind(this);
   }
 
   activateWindow() {
@@ -83,15 +84,33 @@ export default class Main extends React.Component {
         return null;
       }
     });
-
-    this.setState({
-      current: coordinates,
-      currentTabState: targetTab[0].info,
-    }, () => console.log('current tab state: ', this.state.currentTabState));
+    
+    /** Handles when a tab is closed */
+    if (targetTab.length > 0) {
+      this.setState({
+        current: coordinates,
+        currentTabState: targetTab[0].info,
+      }, () => console.log('current tab state: ', this.state.currentTabState));
+    }
   };
 
-  retrieveCoordinates(coordindates) {
-    console.log(coordindates);
+  updateTabState(event, type, activeCoordinates) {
+    //refactor to switch eventually to handle all forms and information areas
+    
+    //refactor targetTab to a utility function since it's used multiple times on this page to search for a specific tab -> make it handle both finding index and also finding the object
+    let targetTab = this.state.activeTabs.filter((item, index) => {
+      console.log(activeCoordinates, item.coordinates)
+      if (JSON.stringify(item.coordinates) === JSON.stringify(activeCoordinates)) {
+        return item;
+      } else {
+        return null;
+      }
+    });
+    console.log('the target: ', targetTab);
+  };
+
+  retrieveCoordinates(coordinates) {
+    console.log(coordinates);
     let activeTabs = this.state.activeTabs;
     //refactor to decorator
     activeTabs.push({info: {active: true, isOpen: true, coordinatesAdded: false,}, coordinates: coordindates}); // will need to be change to coordinates + corresponding information or use cached data
@@ -136,8 +155,9 @@ export default class Main extends React.Component {
       this.toggleSinglePointMenu(currentCoordinate);
       // this.props.retrieveCoordinates(currentCoordinate);
       this.setState({
+        currentTabState: activeTabs[activeTabs.length - 1].info, 
         activeTabs: activeTabs,
-      }, () => console.log(this.state.activeTabs));
+      });
     });
   };
 
@@ -197,6 +217,7 @@ export default class Main extends React.Component {
 
     console.log('active Information: ', this.state.activeInformation);
     console.log('active tabs: ', this.state.activeTabs);
+    console.log('current tab: ', this.state.currentTabState);
 
 
     return (
@@ -218,6 +239,7 @@ export default class Main extends React.Component {
               more={this.accessMoreInformation} 
               toggleHandler={this.toggleHandler}
               currentTabState={this.state.currentTabState}
+              updateTabState={this.updateTabState}
             /> : null
           }
           <MapContainer 

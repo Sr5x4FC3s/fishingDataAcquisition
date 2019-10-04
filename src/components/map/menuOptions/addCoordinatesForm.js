@@ -4,7 +4,7 @@ import { Marker, Popup } from  'react-map-gl';
 import FormWithDropDown from '../../forms/formWithDropDown';
 
 const preMountComponent = () => {
-  useEffect(() => console.log('mounted'), setFormValues({menuList: ['item', 'item', 'item', 'item', 'item']}));
+  useEffect(() => console.log('mounted'), setFormValues({}));
   return 'component is supposed;y mounted';
 };
 
@@ -36,12 +36,15 @@ const AddCoordinateForm = (props) => {
     width: '100%',
   };
 
+  const markerColorOptions = ['#E74C3C', '#8E44AD', '#3498DB', '#45B39D', '#28B463', '#F1C40F', '#17202A'];
+  //create a custom color generator for marker colors
+
   return (
     <div>
       <FormWithDropDown 
         options={{dropDown: true, search: false, textArea: false, submit: false, date: false, time: false, }}
         category={`[Marker Image] Change Marker Color`}
-        dropDown={[]}
+        dropDown={markerColorOptions}
       />        
       <FormWithDropDown 
         options={{dropDown: true, search: false, textArea: false, submit: false, date: false, time: false, }}
@@ -50,7 +53,7 @@ const AddCoordinateForm = (props) => {
       />      
       <div id='location-button-container' style={locationContainerStyles}>
         <button id='add-location-info' onClick={() => props.toggleHandler('location')}>Add Location Information</button>
-        <button id='add-photos'>Upload Photo(s)</button>
+        <button id='add-photos' onClick={() => props.updateTabState(null, null, props.activeCoordinate)}>Upload Photo(s)</button>
       </div>
     </div>
   )

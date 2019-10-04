@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class DropDownMenu extends React.Component {
+export default class FormWithDropDown extends React.Component {
   constructor(props) {
     super(props);
     
@@ -24,15 +24,13 @@ export default class DropDownMenu extends React.Component {
   };
 
   render() {
-    // temporary array of options 
-    const tempOptions = ['option', 'option', 'option', 'option', 'option', 'option',];
     return (
       <div id={`${this.props.category}-dropdown`}>
         <form id={`${this.props.category}-form`}>
         {this.state.options.search ?
           <div>
             <label>{`Search ${this.props.category}`}</label>
-            <input type='text' placeholder={this.props.placeholder}/>
+            <input type='text' placeholder={this.props.placeholder} onChange={() => this.props.capture(event, this.props.type)}/>
             <input type='submit' /> 
           </div> : null
         }
@@ -45,7 +43,6 @@ export default class DropDownMenu extends React.Component {
         }
         {this.state.options.time ? 
           <div>
-            {/* <label>{this.props.category}</label> */}
             <input type='time' />
             <input type='submit' />
           </div> : null
@@ -53,8 +50,8 @@ export default class DropDownMenu extends React.Component {
         {this.state.options.dropDown ? 
           <div>
             <label>{this.props.category}</label>
-            <select>
-              {tempOptions.map(options => (
+            <select id={`${this.props.category}-dropDown`}>
+              {this.props.dropDown.map(options => (
                 <option value={options}>{options}</option>
               ))}
             </select> 
@@ -63,13 +60,13 @@ export default class DropDownMenu extends React.Component {
         {this.state.options.textArea ? 
           <div>
             <label>{`${this.props.category}`}</label>
-            <textarea type='text' placeholder={this.props.placeholder}/>
+            <textarea type='text' placeholder={this.props.placeholder} onChange={this.props.capture}/>
           </div> : null
         }
         {this.state.options.submit ? 
           <div>
             <label>{`Add ${this.props.category}`}</label>
-            <input type='text' placeholder={this.props.placeholder}/>
+            <input type='text' placeholder={this.props.placeholder} onChange={this.props.capture}/>
             <input type='submit' /> 
           </div> : null
         }

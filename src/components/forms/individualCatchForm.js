@@ -14,13 +14,13 @@ export default class IndividualCatchForm extends React.Component {
           options={{dropDown: false, search: false, textArea: false, submit: true, date: false, time: false, }}
           category={`Individual Weight`}
           placeholder={'Enter Individual Weight'}
-          dropDown={null}
+          dropDown={[]}
         />
         {/* <div>Date of Capture (Render a calendar to select date)</div> */}
         <FormWithDropDown 
           options={{dropDown: false, search: false, textArea: false, submit: false, date: true, time: true, }}
           category={`Date and Time of Capture`}
-          dropDown={null}
+          dropDown={[]}
         />
         <button>All Capture Dates</button>
         <div>Upload Photos here</div>
@@ -30,7 +30,7 @@ export default class IndividualCatchForm extends React.Component {
           options={{dropDown: false, search: false, textArea: true, submit: false, date: false, time: false, }}
           category={`Tackle Used`}
           placeholder={'Enter Items Separated by Commas'}
-          dropDown={null}
+          dropDown={[]}
         />
         <button>Show All Tackle Setups</button>
         <button>Price Compare Tackle</button>
@@ -38,14 +38,14 @@ export default class IndividualCatchForm extends React.Component {
           options={{dropDown: false, search: false, textArea: false, submit: true, date: false, time: false, }}
           category={`Bait Used`}
           placeholder={'Enter Baits'}
-          dropDown={null}
+          dropDown={[]}
         />
         <button>Show All Bait Used</button>
         <button>Price Compare Baits</button>
         <FormWithDropDown 
           options={{dropDown: true, search: false, textArea: false, submit: false, date: false, time: false, }}
           category={`Region of Capture`}
-          dropDown={null}
+          dropDown={[]}
         />
           <button>Show Other Region of Capture</button>
           <button>Show Seafloor Topography</button>
