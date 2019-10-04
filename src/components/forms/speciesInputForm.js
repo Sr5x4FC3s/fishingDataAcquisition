@@ -65,7 +65,14 @@ export default class SpeciesInputForm extends React.Component {
     return (
       <div id='species-input-container'>
         <FormWithDropDown 
-          options={{dropDown: true, search: true, textArea: false, submit: false, date: false, time: false, }}
+          options={{
+            dropDown: true, 
+            search: true, 
+            textArea: false, 
+            submit: false, 
+            date: false, 
+            time: false, 
+          }}
           category={`Species Name`}
           placeholder={'Enter Species Name'}
           dropDown={[]}
@@ -73,7 +80,14 @@ export default class SpeciesInputForm extends React.Component {
           capture={this.captureValue}
         />
         <FormWithDropDown 
-          options={{dropDown: true, search: true, textArea: false, submit: false, date: false, time: false, }}
+          options={{
+            dropDown: true, 
+            search: true, 
+            textArea: false, 
+            submit: false, 
+            date: false, 
+            time: false, 
+          }}
           category={`Species Scientific Name`}
           placeholder={'Enter Scientific Name'}
           dropDown={[]}
@@ -81,28 +95,56 @@ export default class SpeciesInputForm extends React.Component {
           capture={this.captureValue}
         />
         <FormWithDropDown 
-          options={{dropDown: true, search: false, textArea: false, submit: false, date: false, time: false, }}
+          options={{
+            dropDown: true, 
+            search: false, 
+            textArea: false, 
+            submit: false, 
+            date: false, 
+            time: false, 
+          }}
           category={`Species Category`}
           dropDown={[]}
           type={'SPECIES_CATEGORY'}
           capture={this.captureValue}
         />
         <FormWithDropDown 
-          options={{dropDown: true, search: false, textArea: false, submit: false, date: false, time: false, }}
+          options={{
+            dropDown: true, 
+            search: false, 
+            textArea: false, 
+            submit: false, 
+            date: false, 
+            time: false, 
+          }}
           category={`Weight Range`}
           dropDown={[]}
           type={'WEIGHT'}
           capture={this.captureValue}
         />
         <FormWithDropDown 
-          options={{dropDown: true, search: false, textArea: false, submit: false, date: false, time: false, }}
+          options={{
+            dropDown: true, 
+            search: false, 
+            textArea: false, 
+            submit: false, 
+            date: false, 
+            time: false, 
+          }}
           category={`Length Range`}
           dropDown={[]}
           type={'LENGTH'}
           capture={this.captureValue}
         />
         <FormWithDropDown 
-          options={{dropDown: true, search: false, textArea: false, submit: true, date: false, time: false, }}
+          options={{
+            dropDown: true, 
+            search: false, 
+            textArea: false, 
+            submit: true, 
+            date: false, 
+            time: false, 
+          }}
           category={`Regions`}
           placeholder={'Enter Region'}
           dropDown={[]}
