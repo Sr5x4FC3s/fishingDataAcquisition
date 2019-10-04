@@ -10,7 +10,7 @@ export default class SpeciesInputForm extends React.Component {
       toggleIndividualForm: false,
       formValue: '',
       formType: '',
-      information: {}, 
+      information: {}, //will likely need to add default values to prevent errors
     };
 
     this.toggleIndividualForm = this.toggleIndividualForm.bind(this);
@@ -34,24 +34,41 @@ export default class SpeciesInputForm extends React.Component {
         information.speciesName = this.state.formValue;
         this.setState({
           information: information,
-        }, () => console.log('changes to the state: ', this.state.information))
+        }, () => console.log(this.state.information));
         break;
       case('SCIENTIFIC_NAME'):
         information.scientificName = this.state.formValue;
         this.setState({
           information: information,
-        }, () => console.log('changes to the state: ', this.state.information))
+        }, () => console.log(this.state.information));
+        break;
+      case('SPECIES_CATEGORY'):
+        information.speciesCategory = this.state.formValue;
+        this.setState({
+          information: information,
+        }, () => console.log(this.state.information));
+        break;
+      case('WEIGHT'):
+        information.speciesWeight = this.state.formValue;
+        this.setState({
+          information: information,
+        }, () => console.log(this.state.information));
+        break;
+      case('LENGTH'):
+        information.speciesLength = this.state.formValue;
+        this.setState({
+          information: information,
+        }, () => console.log(this.state.information));
         break;
       case('REGIONS'):
+        //needs to handle additional renders to the list from adding and also the adding from the database - options will not be hardcoded 
         information.regions = this.state.formValue;
         this.setState({
           information: information,
-        }, () => console.log('changes to the state: ', this.state.information))
+        }, () => console.log(this.state.information));
         break;
     }
-  }
-
-  //build a set to overall object method to handle captured value after user is done editting a specific field 
+  };
 
   captureValue(event, type) {
     this.setState({
@@ -62,6 +79,13 @@ export default class SpeciesInputForm extends React.Component {
   };
 
   render() {
+    const speciesName = ['---------', 'rod cod', 'lingcod', 'big eye', 'tuna'];
+    const scientificName = ['---------', 'cod', 'bread', 'shake'];
+    const speciesCategory = ['---------', 'fish', 'crustacean', 'mollusk'];
+    const weightRange = ['---------', 1,5,10,15,20,25,30,35,40,45,50];
+    const lengthRange = ['---------', '5"','10"','15"','20"','25"','30"'];
+    const regions = ['---------', 'north', 'south', 'east', 'west'];
+
     return (
       <div id='species-input-container'>
         <FormWithDropDown 
@@ -75,7 +99,7 @@ export default class SpeciesInputForm extends React.Component {
           }}
           category={`Species Name`}
           placeholder={'Enter Species Name'}
-          dropDown={[]}
+          dropDown={speciesName}
           type={'SPECIES_NAME'}
           capture={this.captureValue}
         />
@@ -90,7 +114,7 @@ export default class SpeciesInputForm extends React.Component {
           }}
           category={`Species Scientific Name`}
           placeholder={'Enter Scientific Name'}
-          dropDown={[]}
+          dropDown={scientificName}
           type={'SCIENTIFIC_NAME'}
           capture={this.captureValue}
         />
@@ -104,7 +128,7 @@ export default class SpeciesInputForm extends React.Component {
             time: false, 
           }}
           category={`Species Category`}
-          dropDown={[]}
+          dropDown={speciesCategory}
           type={'SPECIES_CATEGORY'}
           capture={this.captureValue}
         />
@@ -118,7 +142,7 @@ export default class SpeciesInputForm extends React.Component {
             time: false, 
           }}
           category={`Weight Range`}
-          dropDown={[]}
+          dropDown={weightRange}
           type={'WEIGHT'}
           capture={this.captureValue}
         />
@@ -132,7 +156,7 @@ export default class SpeciesInputForm extends React.Component {
             time: false, 
           }}
           category={`Length Range`}
-          dropDown={[]}
+          dropDown={lengthRange}
           type={'LENGTH'}
           capture={this.captureValue}
         />
@@ -147,7 +171,7 @@ export default class SpeciesInputForm extends React.Component {
           }}
           category={`Regions`}
           placeholder={'Enter Region'}
-          dropDown={[]}
+          dropDown={regions}
           type={'REGIONS'}
           capture={this.captureValue}
         />

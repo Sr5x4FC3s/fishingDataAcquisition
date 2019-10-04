@@ -37,20 +37,23 @@ export default class FormWithDropDown extends React.Component {
         {this.state.options.date ? 
           <div>
             <label>{this.props.category}</label>
-            <input type='date' />
+            <input type='date' onChange={() => this.props.capture(event, this.props.type)}/>
             <input type='submit' />
           </div> : null
         }
         {this.state.options.time ? 
           <div>
-            <input type='time' />
+            <input type='time' onChange={() => this.props.capture(event, this.props.type)}/>
             <input type='submit' />
           </div> : null
         }
         {this.state.options.dropDown ? 
           <div>
             <label>{this.props.category}</label>
-            <select id={`${this.props.category}-dropDown`}>
+            <select 
+              id={`${this.props.category}-dropDown`} 
+              onChange={() => this.props.capture(event, this.props.type)}
+            >
               {this.props.dropDown.map(options => (
                 <option value={options}>{options}</option>
               ))}

@@ -5,9 +5,67 @@ import FormWithDropDown from '../forms/formWithDropDown';
 export default class IndividualCatchForm extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      formValue: '',
+      formType: '',
+      information: {}, //will likely need to add default values to prevent errors
+    };
+
+    this.captureValue = this.captureValue.bind(this);
+    this.setValues = this.setValues.bind(this);
+  };
+
+  setValues(type) {
+    /** Capture the initial information object state */
+    let information = this.state.information;
+
+    /** Based on type, mutate the information object and update the state of the changes */
+    switch(type) {
+      case('INDIVIDUAL_WEIGHT'):
+        information.individualWeight = this.state.formValue;
+        this.setState({
+          information: information,
+        }, () => console.log(this.state.information));
+        break;
+      case('DATE_TIME'):
+        //will need edge cases added to handle two different types of inputs
+        information.scientificName = this.state.formValue;
+        this.setState({
+          information: information,
+        }, () => console.log(this.state.information));
+        break;
+      case('TACKLE'):
+        information.tackle = this.state.formValue;
+        this.setState({
+          information: information,
+        }, () => console.log(this.state.information));
+        break;
+      case('BAIT'):
+        information.bait = this.state.formValue;
+        this.setState({
+          information: information,
+        }, () => console.log(this.state.information));
+        break;
+      case('REGION_CAPTURED'):
+        information.regionCaptured = this.state.formValue;
+        this.setState({
+          information: information,
+        }, () => console.log(this.state.information));
+        break;
+    }
+  };
+
+  captureValue(event, type) {
+    this.setState({
+      formValue: event.target.value,
+      formType: type,
+    }, () => this.setValues(type));
+    event.preventDefault();
   };
 
   render() {
+    const regions = ['---------', 'north', 'south', 'east', 'west'];
+
     return (
       <div>
         <FormWithDropDown 
@@ -15,12 +73,16 @@ export default class IndividualCatchForm extends React.Component {
           category={`Individual Weight`}
           placeholder={'Enter Individual Weight'}
           dropDown={[]}
+          type={'INDIVIDUAL_WEIGHT'}
+          capture={this.captureValue}
         />
         {/* <div>Date of Capture (Render a calendar to select date)</div> */}
         <FormWithDropDown 
           options={{dropDown: false, search: false, textArea: false, submit: false, date: true, time: true, }}
           category={`Date and Time of Capture`}
           dropDown={[]}
+          type={'DATE_TIME'}
+          capture={this.captureValue}
         />
         <button>All Capture Dates</button>
         <div>Upload Photos here</div>
@@ -31,6 +93,8 @@ export default class IndividualCatchForm extends React.Component {
           category={`Tackle Used`}
           placeholder={'Enter Items Separated by Commas'}
           dropDown={[]}
+          type={'TACKLE'}
+          capture={this.captureValue}
         />
         <button>Show All Tackle Setups</button>
         <button>Price Compare Tackle</button>
@@ -39,13 +103,17 @@ export default class IndividualCatchForm extends React.Component {
           category={`Bait Used`}
           placeholder={'Enter Baits'}
           dropDown={[]}
+          type={'BAIT'}
+          capture={this.captureValue}
         />
         <button>Show All Bait Used</button>
         <button>Price Compare Baits</button>
         <FormWithDropDown 
           options={{dropDown: true, search: false, textArea: false, submit: false, date: false, time: false, }}
           category={`Region of Capture`}
-          dropDown={[]}
+          dropDown={regions}
+          type={'REGION_CAPTURED'}
+          capture={this.captureValue}
         />
           <button>Show Other Region of Capture</button>
           <button>Show Seafloor Topography</button>
