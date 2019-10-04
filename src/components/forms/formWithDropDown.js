@@ -60,13 +60,13 @@ export default class FormWithDropDown extends React.Component {
         {this.state.options.textArea ? 
           <div>
             <label>{`${this.props.category}`}</label>
-            <textarea type='text' placeholder={this.props.placeholder} onChange={this.props.capture}/>
+            <textarea type='text' placeholder={this.props.placeholder} onChange={() => this.props.capture(event, this.props.type)}/>
           </div> : null
         }
         {this.state.options.submit ? 
           <div>
             <label>{`Add ${this.props.category}`}</label>
-            <input type='text' placeholder={this.props.placeholder} onChange={this.props.capture}/>
+            <input type='text' placeholder={this.props.placeholder} onChange={() => this.props.capture(event, this.props.type)}/>
             <input type='submit' /> 
           </div> : null
         }

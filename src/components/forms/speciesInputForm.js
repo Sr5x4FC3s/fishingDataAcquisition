@@ -15,6 +15,7 @@ export default class SpeciesInputForm extends React.Component {
 
     this.toggleIndividualForm = this.toggleIndividualForm.bind(this);
     this.captureValue = this.captureValue.bind(this);
+    this.setValues = this.setValues.bind(this);
   }
 
   toggleIndividualForm() {
@@ -23,13 +24,40 @@ export default class SpeciesInputForm extends React.Component {
     })
   };
 
+  setValues(type) {
+    /** Capture the initial information object state */
+    let information = this.state.information;
+
+    /** Based on type, mutate the information object and update the state of the changes */
+    switch(type) {
+      case('SPECIES_NAME'):
+        information.speciesName = this.state.formValue;
+        this.setState({
+          information: information,
+        }, () => console.log('changes to the state: ', this.state.information))
+        break;
+      case('SCIENTIFIC_NAME'):
+        information.scientificName = this.state.formValue;
+        this.setState({
+          information: information,
+        }, () => console.log('changes to the state: ', this.state.information))
+        break;
+      case('REGIONS'):
+        information.regions = this.state.formValue;
+        this.setState({
+          information: information,
+        }, () => console.log('changes to the state: ', this.state.information))
+        break;
+    }
+  }
+
   //build a set to overall object method to handle captured value after user is done editting a specific field 
 
   captureValue(event, type) {
     this.setState({
       formValue: event.target.value,
       formType: type,
-    });
+    }, () => this.setValues(type));
     event.preventDefault();
   };
 
@@ -82,6 +110,7 @@ export default class SpeciesInputForm extends React.Component {
           capture={this.captureValue}
         />
         <button>Add Individual Details</button>
+        <button>Save</button>
         {/* this gets rendered when the above button is pressed */}
         <IndividualCatchForm /> 
       </div>
