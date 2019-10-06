@@ -119,6 +119,22 @@ export default class LocationInformationForm extends React.Component {
       zIndex: 11,
     };    
 
+    const seasons = ['-----', 'Spring', 'Summer', 'Fall', 'Winter'];
+    const airTemperature = ['-----', 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115];
+    /** make select all that apply */
+    const windSpeed = ['-----', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 25, 30];
+    const typeOfSkies = ['-----', 'Clear', 'Overcast', 'Cloudy', 'Rainy', 'Thunder Storm', 'Hurricane'];
+    const pressure = ['-----', 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35];
+    /** make select all that apply */
+    const weatherEvents = ['-----', 'rain', 'snow', 'excessive heat', 'hail', 'thunder', 'lightning', ];
+    const waterClarity = ['-----', 'clear', 'murky', ];
+    const waterTemperature = ['-----', 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100, 105, 110, 115];
+    const waterPH = ['-----', 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12];
+    /** make select all that apply */
+    const sedimentType = ['-----', 'silt', 'clay', 'rocky', 'sandy', 'shale'];
+    /** make select all that apply */
+    const floorType = ['-----', 'rocky', 'sandy', 'flat'];
+
     return (
       <div>
       <div id="location-information-container">
@@ -133,7 +149,7 @@ export default class LocationInformationForm extends React.Component {
             time: false, 
           }}
           category={`Season`}
-          dropDown={[]}
+          dropDown={seasons}
           type={'SEASONS'}
           capture={this.captureValue}
         />
@@ -147,7 +163,7 @@ export default class LocationInformationForm extends React.Component {
             time: false, 
           }}
           category={`Air Temperature Range`}
-          dropDown={[]}
+          dropDown={airTemperature}
           type={'AIR_TEMP'}
           capture={this.captureValue}
         />  
@@ -161,7 +177,7 @@ export default class LocationInformationForm extends React.Component {
             time: false, 
           }}
           category={`Wind Speed`}
-          dropDown={[]}
+          dropDown={windSpeed}
           type={'WIND_SPEED'}
           capture={this.captureValue}
         />  
@@ -175,7 +191,7 @@ export default class LocationInformationForm extends React.Component {
             time: false, 
           }}
           category={`Type of Skies`}
-          dropDown={[]}
+          dropDown={typeOfSkies}
           type={'TYPE_OF_SKIES'}
           capture={this.captureValue}
         />  
@@ -189,7 +205,7 @@ export default class LocationInformationForm extends React.Component {
             time: false, 
           }}
           category={`Barometer Pressure`}
-          dropDown={[]}
+          dropDown={pressure}
           type={'PRESSURE'}
           capture={this.captureValue}
         />
@@ -203,7 +219,7 @@ export default class LocationInformationForm extends React.Component {
                time: false, 
               }}
           category={`Weather Events`}
-          dropDown={[]}
+          dropDown={weatherEvents}
           type={'WEATHER_EVENTS'}
           capture={this.captureValue}
         />  
@@ -218,6 +234,7 @@ export default class LocationInformationForm extends React.Component {
             }}
           category={`Notable Weather`}
           dropDown={[]}
+          placeholder={'Add Notable Weather Details'}
           type={'NOTABLE'}
           capture={this.captureValue}
         />      
@@ -232,7 +249,7 @@ export default class LocationInformationForm extends React.Component {
             time: false, 
           }}
           category={`Water Clarity`}
-          dropDown={[]}
+          dropDown={waterClarity}
           type={'WATER_CLARITY'}
           capture={this.captureValue}
         />
@@ -246,7 +263,7 @@ export default class LocationInformationForm extends React.Component {
             time: false, 
           }}
           category={`Water Temperature Range`}
-          dropDown={[]}
+          dropDown={waterTemperature}
           type={'WATER_TEMP'}
           capture={this.captureValue}
         />
@@ -260,7 +277,7 @@ export default class LocationInformationForm extends React.Component {
             time: false, 
           }}
           category={`Water PH Levels`}
-          dropDown={[]}
+          dropDown={waterPH}
           type={'WATER_PH'}
           capture={this.captureValue}
         />
@@ -274,7 +291,7 @@ export default class LocationInformationForm extends React.Component {
             time: false, 
           }}
           category={`Sediment Type`}
-          dropDown={[]}
+          dropDown={sedimentType}
           type={'SEDIMENT'}
           capture={this.captureValue}
         />
@@ -288,7 +305,7 @@ export default class LocationInformationForm extends React.Component {
             time: false, 
           }}
           category={`Floor Type`}
-          dropDown={[]}
+          dropDown={floorType}
           type={'FLOOR_TYPE'}
           capture={this.captureValue}
         />          
