@@ -35,38 +35,38 @@ export default class SpeciesInputForm extends React.Component {
         information.speciesName = this.state.formValue;
         this.setState({
           information: information,
-        }, () => console.log(this.state.information));
+        });
         break;
       case('SCIENTIFIC_NAME'):
         information.scientificName = this.state.formValue;
         this.setState({
           information: information,
-        }, () => console.log(this.state.information));
+        });
         break;
       case('SPECIES_CATEGORY'):
         information.speciesCategory = this.state.formValue;
         this.setState({
           information: information,
-        }, () => console.log(this.state.information));
+        });
         break;
       case('WEIGHT'):
         information.speciesWeight = this.state.formValue;
         this.setState({
           information: information,
-        }, () => console.log(this.state.information));
+        });
         break;
       case('LENGTH'):
         information.speciesLength = this.state.formValue;
         this.setState({
           information: information,
-        }, () => console.log(this.state.information));
+        });
         break;
       case('REGIONS'):
         //needs to handle additional renders to the list from adding and also the adding from the database - options will not be hardcoded 
         information.regions = this.state.formValue;
         this.setState({
           information: information,
-        }, () => console.log(this.state.information));
+        });
         break;
     }
   };
@@ -176,16 +176,12 @@ export default class SpeciesInputForm extends React.Component {
           type={'REGIONS'}
           capture={this.captureValue}
         />
-        <button>Add Individual Details</button>
+        <button id='individual-catch-info-button' onClick={() => this.props.toggleHandler('individual')}>Add Individual Details</button>
         <SaveButton 
           save={this.props.save}
           type={'SPECIES_INPUT'}
           state={this.state.information}
         />
-        {/* this gets rendered when the above button is pressed */}
-        <IndividualCatchForm 
-          save={this.props.save}
-        /> 
       </div>
     )
   }

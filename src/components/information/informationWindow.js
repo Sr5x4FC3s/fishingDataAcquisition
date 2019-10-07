@@ -4,6 +4,7 @@ import SinglePointMenu from '../map/singlePointMenu';
 import AddCoordinatesForm from '../map/menuOptions/addCoordinatesForm';
 import LocationInformationForm from '../map/menuOptions/locationForm';
 import SpeciesForm from '../information/speciesInformation';
+import IndividualCatchForm from '../forms/individualCatchForm';
 
 const styles = {
   width: '45%',
@@ -41,6 +42,12 @@ const InformationWindow = (props) => (
     }
     {props.activeInformation.speciesInfo ? 
       <SpeciesForm
+        toggleHandler={props.toggleHandler}
+        save={props.save}
+      /> : null
+    }
+    {props.activeInformation.individualInfo ? 
+      <IndividualCatchForm
         toggleHandler={props.toggleHandler}
         save={props.save}
       /> : null

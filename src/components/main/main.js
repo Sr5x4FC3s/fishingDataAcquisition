@@ -18,6 +18,7 @@ export default class Main extends React.Component {
         edit: false, 
         locationInfo: false, 
         speciesInfo: false, 
+        individualInfo: false,
         renderRemove: false, 
       }, 
       togglePointMenu: false,
@@ -112,39 +113,35 @@ export default class Main extends React.Component {
 
   handleSave(formState, formName) {
     let prevTabState = this.state.currentTabState;
-    
+
     switch(formName) {
       case('SPECIES_INPUT'):
-        console.log('SPECIES_INPUT')
         prevTabState.speciesInput = formState;
 
         this.setState({
           currentTabState: prevTabState,
-        }, () => console.log(this.state.currentTabState));
+        });
         break;
       case('INDIVIDUAL_DETAILS'):
-        console.log('INDIVIDUAL_DETAILS')
         prevTabState.individualDetails = formState;
 
         this.setState({
           currentTabState: prevTabState,
-        }, () => console.log(this.state.currentTabState));
+        });
         break;
       case('LOCATION'):
-        console.log('LOCATION')
         prevTabState.location = formState;
 
         this.setState({
           currentTabState: prevTabState,
-        }, () => console.log(this.state.currentTabState));
+        });
         break;
       case('COORDINATES'):
-        console.log('COORDINATES')
         prevTabState.coordinates = formState;
 
         this.setState({
           currentTabState: prevTabState,
-        }, () => console.log(this.state.currentTabState));
+        });
         break;
     }
   };
@@ -215,6 +212,7 @@ export default class Main extends React.Component {
         activeInformation.locationInfo = true;
         activeInformation.edit = false;
         activeInformation.speciesInfo = false;
+        activeInformation.individualInfo = false;    
         this.setState({
           activeInformation: activeInformation,
         });
@@ -222,7 +220,8 @@ export default class Main extends React.Component {
       case('species'):
         activeInformation.locationInfo = false;
         activeInformation.edit = false;
-        activeInformation.speciesInfo = true;      
+        activeInformation.speciesInfo = true;  
+        activeInformation.individualInfo = false;        
         this.setState({
           activeInformation: activeInformation,
         });
@@ -236,10 +235,20 @@ export default class Main extends React.Component {
           currentTabState: currentTabState,
         }, () => this.addCoordinates());
         break;
+      case('individual'):
+        activeInformation.locationInfo = false;
+        activeInformation.edit = false;
+        activeInformation.speciesInfo = false;  
+        activeInformation.individualInfo = true;    
+        this.setState({
+          activeInformation: activeInformation,
+        });
+        break;
       default:
         activeInformation.locationInfo = false;
         activeInformation.edit = true;
-        activeInformation.speciesInfo = false;      
+        activeInformation.speciesInfo = false; 
+        activeInformation.individualInfo = false;         
         this.setState({
           activeInformation: activeInformation,
         });

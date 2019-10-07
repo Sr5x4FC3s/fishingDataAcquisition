@@ -23,7 +23,8 @@ export default class SpeciesForm extends React.Component {
       <div>
         <div>
           {!this.state.infoAvailable ? 
-            <SpeciesInputForm 
+            <SpeciesInputForm
+              toggleHandler={this.props.toggleHandler} 
               save={this.props.save}
             /> : 
             <div>

@@ -26,32 +26,32 @@ export default class IndividualCatchForm extends React.Component {
         information.individualWeight = this.state.formValue;
         this.setState({
           information: information,
-        }, () => console.log(this.state.information));
+        });
         break;
       case('DATE_TIME'):
         //will need edge cases added to handle two different types of inputs
         information.scientificName = this.state.formValue;
         this.setState({
           information: information,
-        }, () => console.log(this.state.information));
+        });
         break;
       case('TACKLE'):
         information.tackle = this.state.formValue;
         this.setState({
           information: information,
-        }, () => console.log(this.state.information));
+        });
         break;
       case('BAIT'):
         information.bait = this.state.formValue;
         this.setState({
           information: information,
-        }, () => console.log(this.state.information));
+        });
         break;
       case('REGION_CAPTURED'):
         information.regionCaptured = this.state.formValue;
         this.setState({
           information: information,
-        }, () => console.log(this.state.information));
+        });
         break;
     }
   };
