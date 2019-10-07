@@ -18,9 +18,6 @@ export default class Map extends React.Component {
   };
 
   render() {
-    //demo 
-    const array = [[37.83, -122.58], [38.83, -122.58], [39.83, -122.58], [40.83, -122.58]];
-
     //temp marker styles 
     const markerStyles = {
         position: 'absolute',
@@ -65,13 +62,6 @@ export default class Map extends React.Component {
             <div style={currentMarkStyle}></div>
           </Marker>: null
         }
-        {array.map(coordinates => (
-          <Marker 
-            latitude={coordinates[0]} 
-            longitude={coordinates[1]}>
-            <div style={markerStyles}></div>
-          </Marker>
-        ))}
       </ReactMapGL>
     );
   }

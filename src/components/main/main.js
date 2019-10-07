@@ -29,7 +29,6 @@ export default class Main extends React.Component {
     this.activateWindow = this.activateWindow.bind(this);
     this.deactivateWindow = this.deactivateWindow.bind(this);
     this.retrieveCoordinates = this.retrieveCoordinates.bind(this);
-
     this.getClickedCoordinates = this.getClickedCoordinates.bind(this);
     this.toggleSinglePointMenu = this.toggleSinglePointMenu.bind(this);
     this.addCoordinates = this.addCoordinates.bind(this);
