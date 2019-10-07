@@ -30,21 +30,18 @@ export default class FormWithDropDown extends React.Component {
         {this.state.options.search ?
           <div>
             <label>{`Search ${this.props.category}`}</label>
-            <input type='text' placeholder={this.props.placeholder} onChange={() => this.props.capture(event, this.props.type)}/>
-            <input type='submit' /> 
+            <input type='text' placeholder={this.props.placeholder} onChange={() => this.props.capture(event, this.props.type)}/> 
           </div> : null
         }
         {this.state.options.date ? 
           <div>
             <label>{this.props.category}</label>
             <input type='date' onChange={() => this.props.capture(event, this.props.type)}/>
-            <input type='submit' />
           </div> : null
         }
         {this.state.options.time ? 
           <div>
             <input type='time' onChange={() => this.props.capture(event, this.props.type)}/>
-            <input type='submit' />
           </div> : null
         }
         {this.state.options.dropDown ? 
@@ -70,7 +67,6 @@ export default class FormWithDropDown extends React.Component {
           <div>
             <label>{`Add ${this.props.category}`}</label>
             <input type='text' placeholder={this.props.placeholder} onChange={() => this.props.capture(event, this.props.type)}/>
-            <input type='submit' /> 
           </div> : null
         }
         </form>

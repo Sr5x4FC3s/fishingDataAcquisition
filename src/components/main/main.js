@@ -37,6 +37,7 @@ export default class Main extends React.Component {
     this.removeActiveTab = this.removeActiveTab.bind(this);
     this.updateCurrentCoord = this.updateCurrentCoord.bind(this);
     this.updateTabState = this.updateTabState.bind(this);
+    this.handleSave = this.handleSave.bind(this);
   }
 
   activateWindow() {
@@ -84,7 +85,7 @@ export default class Main extends React.Component {
         return null;
       }
     });
-    
+
     /** Handles when a tab is closed */
     if (targetTab.length > 0) {
       this.setState({
@@ -107,6 +108,45 @@ export default class Main extends React.Component {
       }
     });
     console.log('the target: ', targetTab);
+  };
+
+  handleSave(formState, formName) {
+    let prevTabState = this.state.currentTabState;
+    
+    switch(formName) {
+      case('SPECIES_INPUT'):
+        console.log('SPECIES_INPUT')
+        prevTabState.speciesInput = formState;
+
+        this.setState({
+          currentTabState: prevTabState,
+        }, () => console.log(this.state.currentTabState));
+        break;
+      case('INDIVIDUAL_DETAILS'):
+        console.log('INDIVIDUAL_DETAILS')
+        prevTabState.individualDetails = formState;
+
+        this.setState({
+          currentTabState: prevTabState,
+        }, () => console.log(this.state.currentTabState));
+        break;
+      case('LOCATION'):
+        console.log('LOCATION')
+        prevTabState.location = formState;
+
+        this.setState({
+          currentTabState: prevTabState,
+        }, () => console.log(this.state.currentTabState));
+        break;
+      case('COORDINATES'):
+        console.log('COORDINATES')
+        prevTabState.coordinates = formState;
+
+        this.setState({
+          currentTabState: prevTabState,
+        }, () => console.log(this.state.currentTabState));
+        break;
+    }
   };
 
   retrieveCoordinates(coordinates) {
@@ -240,6 +280,7 @@ export default class Main extends React.Component {
               toggleHandler={this.toggleHandler}
               currentTabState={this.state.currentTabState}
               updateTabState={this.updateTabState}
+              save={this.handleSave}
             /> : null
           }
           <MapContainer 

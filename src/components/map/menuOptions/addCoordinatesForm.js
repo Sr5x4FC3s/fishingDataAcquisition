@@ -1,18 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import { Marker, Popup } from  'react-map-gl';
 
 import FormWithDropDown from '../../forms/formWithDropDown';
-
-const preMountComponent = () => {
-  useEffect(() => console.log('mounted'), setFormValues({}));
-  return 'component is supposed;y mounted';
-};
+import SaveButton from '../../forms/saveButton';
 
 const AddCoordinateForm = (props) => {
-  const [formValues, setFormValues] = useState(null);
+  const [image, setImage] = useState('');
+  const [color, setColor] = useState('');
+  const [information, setInformation] = useState({});
+
+  const captureValue = (event, type) => {
+    switch(type) {
+      case('COLOR'):
+        setColor(event.target.value);
+        break;
+      case('IMAGE'):
+        setImage(event.target.value);
+        break;
+      case('COORDINATES'):
+        setInformation(information.color = color);
+        setInformation(information.image = image);
+        props.save(information, 'COORDINATES');
+        break;
+    }
+  };
+
   //track marker color selections
   //on load, populate all drop down fields before first render 
-  console.log('values: ', formValues);
 
   const styles = {
     height: '300px',
@@ -42,16 +55,40 @@ const AddCoordinateForm = (props) => {
   return (
     <div>
       <FormWithDropDown 
-        options={{dropDown: true, search: false, textArea: false, submit: false, date: false, time: false, }}
+        options={{
+          dropDown: true, 
+          search: false, 
+          textArea: false, 
+          submit: false, 
+          date: false, 
+          time: false, 
+        }}
         category={`[Marker Image] Change Marker Color`}
         dropDown={markerColorOptions}
+        type={'COLOR'}
+        capture={captureValue}
       />        
       <FormWithDropDown 
-        options={{dropDown: true, search: false, textArea: false, submit: false, date: false, time: false, }}
+        options={{
+          dropDown: true, 
+          search: false, 
+          textArea: false, 
+          submit: false, 
+          date: false, 
+          time: false, 
+        }}
         category={`[Marker Image] Change Marker Image`}
-        dropDown={[]}
+        dropDown={markerColorOptions}
+        type={'IMAGE'}
+        capture={captureValue}
       />      
       <div id='location-button-container' style={locationContainerStyles}>
+        <SaveButton
+          // save={props.save}
+          save={captureValue}
+          type={'COORDINATES'}
+          state={information}
+        />
         <button id='add-location-info' onClick={() => props.toggleHandler('location')}>Add Location Information</button>
         <button id='add-photos' onClick={() => props.updateTabState(null, null, props.activeCoordinate)}>Upload Photo(s)</button>
       </div>

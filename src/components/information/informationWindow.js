@@ -22,6 +22,7 @@ const InformationWindow = (props) => (
       toggleHandler={props.toggleHandler} 
       more={props.more} 
       currentTabState={props.currentTabState}
+      save={props.save}
     />
     {props.activeInformation.edit ? 
       <AddCoordinatesForm 
@@ -29,16 +30,19 @@ const InformationWindow = (props) => (
         activeCoordinate={props.activeCoordinate}
         updateTabState={props.updateTabState}
         more={props.more} 
+        save={props.save}
       /> : null
     }
     {props.activeInformation.locationInfo ? 
       <LocationInformationForm 
         toggleHandler={props.toggleHandler}
+        save={props.save}
       /> : null
     }
     {props.activeInformation.speciesInfo ? 
       <SpeciesForm
         toggleHandler={props.toggleHandler}
+        save={props.save}
       /> : null
     }
   </div>

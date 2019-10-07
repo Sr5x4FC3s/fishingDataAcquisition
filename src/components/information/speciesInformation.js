@@ -23,7 +23,9 @@ export default class SpeciesForm extends React.Component {
       <div>
         <div>
           {!this.state.infoAvailable ? 
-            <SpeciesInputForm /> : 
+            <SpeciesInputForm 
+              save={this.props.save}
+            /> : 
             <div>
               <div>RENDER SPECIES INFORMATION HERE FROM DB</div>
               <button id='edit-info-button' onClick={() => this.props.toggleHandler('species')}>Edit Species Information</button>

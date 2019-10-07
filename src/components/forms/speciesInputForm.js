@@ -2,6 +2,7 @@ import React from 'react';
 
 import IndividualCatchForm from '../forms/individualCatchForm';
 import FormWithDropDown from '../forms/formWithDropDown';
+import SaveButton from '../forms/saveButton';
 
 export default class SpeciesInputForm extends React.Component {
   constructor(props) {
@@ -176,9 +177,15 @@ export default class SpeciesInputForm extends React.Component {
           capture={this.captureValue}
         />
         <button>Add Individual Details</button>
-        <button>Save</button>
+        <SaveButton 
+          save={this.props.save}
+          type={'SPECIES_INPUT'}
+          state={this.state.information}
+        />
         {/* this gets rendered when the above button is pressed */}
-        <IndividualCatchForm /> 
+        <IndividualCatchForm 
+          save={this.props.save}
+        /> 
       </div>
     )
   }

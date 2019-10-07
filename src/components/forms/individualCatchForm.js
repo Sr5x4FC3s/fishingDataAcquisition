@@ -1,6 +1,7 @@
 import React from 'react';
 
 import FormWithDropDown from '../forms/formWithDropDown';
+import SaveButton from '../forms/saveButton';
 
 export default class IndividualCatchForm extends React.Component {
   constructor(props) {
@@ -115,9 +116,14 @@ export default class IndividualCatchForm extends React.Component {
           type={'REGION_CAPTURED'}
           capture={this.captureValue}
         />
-          <button>Show Other Region of Capture</button>
-          <button>Show Seafloor Topography</button>
-          <button>Search Web for Largest Recorded Catch of Species</button>
+        <SaveButton 
+          save={this.props.save} 
+          type={'INDIVIDUAL_DETAILS'}
+          state={this.state.information}
+        />
+        <button>Show Other Region of Capture</button>
+        <button>Show Seafloor Topography</button>
+        <button>Search Web for Largest Recorded Catch of Species</button>
       </div>
     )
   }

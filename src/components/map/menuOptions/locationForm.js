@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
 import FormWithDropDown from '../../forms/formWithDropDown';
+import SaveButton from '../../forms/saveButton';
 
 export default class LocationInformationForm extends React.Component {
   constructor(props) {
@@ -25,80 +26,80 @@ export default class LocationInformationForm extends React.Component {
         information.seasons = this.state.formValue;
         this.setState({
           information: information,
-        }, () => console.log(this.state.information));
+        });
         break;
       case('AIR_TEMP'):
         information.airTemperature = this.state.formValue;
         this.setState({
           information: information,
-        }, () => console.log(this.state.information));
+        });
         break;
       case('WIND_SPEED'):
         information.windSpeed = this.state.formValue;
         this.setState({
           information: information,
-        }, () => console.log(this.state.information));
+        });
         break;
       case('TYPE_OF_SKIES'):
         information.typeOfSkies = this.state.formValue;
         this.setState({
           information: information,
-        }, () => console.log(this.state.information));
+        });
         break;
       case('PRESSURE'):
         information.pressure = this.state.formValue;
         this.setState({
           information: information,
-        }, () => console.log(this.state.information));
+        });
         break;
       case('WEATHER_EVENTS'):
         //needs to handle additional renders to the list from adding and also the adding from the database - options will not be hardcoded 
         information.weatherEvents = this.state.formValue;
         this.setState({
           information: information,
-        }, () => console.log(this.state.information));
+        });
         break;
       case('NOTABLE'):
         //needs to handle additional renders to the list from adding and also the adding from the database - options will not be hardcoded 
         information.notable = this.state.formValue;
         this.setState({
           information: information,
-        }, () => console.log(this.state.information));
+        });
         break;
       case('WATER_TEMP'):
         //needs to handle additional renders to the list from adding and also the adding from the database - options will not be hardcoded 
         information.waterTemperature = this.state.formValue;
         this.setState({
           information: information,
-        }, () => console.log(this.state.information));
+        });
         break;
       case('WATER_CLARITY'):
         //needs to handle additional renders to the list from adding and also the adding from the database - options will not be hardcoded 
         information.waterClarity = this.state.formValue;
         this.setState({
           information: information,
-        }, () => console.log(this.state.information));
+        });
         break;
       case('WATER_PH'):
         //needs to handle additional renders to the list from adding and also the adding from the database - options will not be hardcoded 
         information.waterPh = this.state.formValue;
         this.setState({
           information: information,
-        }, () => console.log(this.state.information));
+        });
         break;
       case('SEDIMENT'):
         //needs to handle additional renders to the list from adding and also the adding from the database - options will not be hardcoded 
         information.sediment = this.state.formValue;
         this.setState({
           information: information,
-        }, () => console.log(this.state.information));
+        });
         break;
       case('FLOOR_TYPE'):
         //needs to handle additional renders to the list from adding and also the adding from the database - options will not be hardcoded 
         information.floorType = this.state.formValue;
         this.setState({
           information: information,
-        }, () => console.log(this.state.information));
+        });
         break;
     }
   };
@@ -311,6 +312,11 @@ export default class LocationInformationForm extends React.Component {
         />          
         {/* water clarity, water temperature, water ph, sediment type, water floor types, what season, air temperature, wind speed, type of skies, pressure barometer, weather events, notables */}
         <div>create drop down and localization of user, edit place, area, features, etc </div>
+        <SaveButton 
+          save={this.props.save} 
+          type={'LOCATION'}
+          state={this.state.information}
+        />
         <button onClick={() => this.props.toggleHandler('species')}>Add Fish Data</button>
       </div>
     </div>
