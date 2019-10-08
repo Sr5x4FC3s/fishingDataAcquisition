@@ -20,7 +20,8 @@ export default class Main extends React.Component {
         speciesInfo: false, 
         individualInfo: false,
         renderRemove: false, 
-      }, 
+      },
+      toggleDisplay: false,
       togglePointMenu: false,
       toggleList: false,
       toggleAllCoordinates: false,
@@ -243,6 +244,11 @@ export default class Main extends React.Component {
           activeInformation: activeInformation,
         });
         break;
+      case('display'): 
+        this.setState({
+          toggleDisplay: !this.state.toggleDisplay,
+        }, () => console.log(this.state.toggleDisplay));
+        break;
       default:
         activeInformation.locationInfo = false;
         activeInformation.edit = true;
@@ -286,6 +292,7 @@ export default class Main extends React.Component {
               add={this.addCoordinates}
               more={this.accessMoreInformation} 
               toggleHandler={this.toggleHandler}
+              toggleDisplay={this.state.toggleDisplay}
               currentTabState={this.state.currentTabState}
               updateTabState={this.updateTabState}
               save={this.handleSave}

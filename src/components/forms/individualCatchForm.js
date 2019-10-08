@@ -85,7 +85,7 @@ export default class IndividualCatchForm extends React.Component {
           type={'DATE_TIME'}
           capture={this.captureValue}
         />
-        <button>All Capture Dates</button>
+        <button onClick={() => this.props.toggleHandler('display')} >All Capture Dates</button>
         <div>Upload Photos here</div>
         <button>Show All Photos of Species</button>
         <div>if button is clicked, render a carousel of photos or something</div>

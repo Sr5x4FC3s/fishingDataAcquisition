@@ -5,6 +5,7 @@ import AddCoordinatesForm from '../map/menuOptions/addCoordinatesForm';
 import LocationInformationForm from '../map/menuOptions/locationForm';
 import SpeciesForm from '../information/speciesInformation';
 import IndividualCatchForm from '../forms/individualCatchForm';
+import DisplayContainer from './information/container/displayContainer';
 
 const styles = {
   width: '45%',
@@ -50,6 +51,10 @@ const InformationWindow = (props) => (
       <IndividualCatchForm
         toggleHandler={props.toggleHandler}
         save={props.save}
+      /> : null
+    }
+    {props.toggleDisplay ? 
+      <DisplayContainer 
       /> : null
     }
   </div>
