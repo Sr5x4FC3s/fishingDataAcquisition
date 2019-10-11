@@ -24,11 +24,11 @@ export default class IndividualDisplay extends React.Component {
     };
 
     return (
-      <div style={styles}>
+      <div style={styles} onClick={() => alert('clicked')}>
       {/* test data*/}
       <div>{this.props.information.date}</div>
       <div>{this.props.information.name}</div>
-      <div>{this.props.information.category}</div>
+      <div>{this.props.category}</div>
         {/* {this.state.display.date ? <div>date</div> : null}
         {this.state.display.name ? <div>name</div> : null}
         {this.state.display.category ? <div>category</div> : null} */}

@@ -10,14 +10,11 @@ export default class GenericButton extends React.Component {
     const styles = {
       width: '200px',
       height: '100%',
-      float: 'right',
       backgroundColor: 'white',
     };
 
     return (
-      <div style={styles}>
-        <a id={this.props.value}>{this.props.value}</a>
-      </div>
+      <button id={this.props.name}  style={styles} onClick={this.props.action}>{this.props.name}</button>
     )
   }
 };

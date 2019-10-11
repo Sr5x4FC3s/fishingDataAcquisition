@@ -55,6 +55,8 @@ const InformationWindow = (props) => (
     }
     {props.toggleDisplay ? 
       <DisplayContainer 
+        activeCoordinate={props.activeCoordinate}
+        selectedData={props.selectedData}
       /> : null
     }
   </div>

@@ -2,6 +2,7 @@ import React from 'react';
 
 import FormWithDropDown from '../forms/formWithDropDown';
 import SaveButton from '../forms/saveButton';
+import GenericButton from '../header/button';
 
 export default class IndividualCatchForm extends React.Component {
   constructor(props) {
@@ -10,6 +11,7 @@ export default class IndividualCatchForm extends React.Component {
       formValue: '',
       formType: '',
       information: {}, //will likely need to add default values to prevent errors
+      
     };
 
     this.captureValue = this.captureValue.bind(this);
@@ -77,7 +79,6 @@ export default class IndividualCatchForm extends React.Component {
           type={'INDIVIDUAL_WEIGHT'}
           capture={this.captureValue}
         />
-        {/* <div>Date of Capture (Render a calendar to select date)</div> */}
         <FormWithDropDown 
           options={{dropDown: false, search: false, textArea: false, submit: false, date: true, time: true, }}
           category={`Date and Time of Capture`}
@@ -85,7 +86,15 @@ export default class IndividualCatchForm extends React.Component {
           type={'DATE_TIME'}
           capture={this.captureValue}
         />
-        <button onClick={() => this.props.toggleHandler('display')} >All Capture Dates</button>
+        <GenericButton 
+          action={
+            () => {
+             this.props.toggleHandler('display');
+             this.props.toggleHandler('date');
+            }
+          }
+          name={'Show All Capture Dates'}
+        />
         <div>Upload Photos here</div>
         <button>Show All Photos of Species</button>
         <div>if button is clicked, render a carousel of photos or something</div>
@@ -97,7 +106,15 @@ export default class IndividualCatchForm extends React.Component {
           type={'TACKLE'}
           capture={this.captureValue}
         />
-        <button>Show All Tackle Setups</button>
+        <GenericButton 
+          action={
+            () => {
+              this.props.toggleHandler('display');
+              this.props.toggleHandler('tackle');
+            }
+          }
+          name={'Show All Tackle Setups'}
+        />
         <button>Price Compare Tackle</button>
         <FormWithDropDown 
           options={{dropDown: false, search: false, textArea: false, submit: true, date: false, time: false, }}
@@ -107,7 +124,15 @@ export default class IndividualCatchForm extends React.Component {
           type={'BAIT'}
           capture={this.captureValue}
         />
-        <button>Show All Bait Used</button>
+        <GenericButton 
+          action={
+            () => {
+              this.props.toggleHandler('display');
+              this.props.toggleHandler('bait');
+            }
+          }
+          name={'Show All Baits'}
+        />
         <button>Price Compare Baits</button>
         <FormWithDropDown 
           options={{dropDown: true, search: false, textArea: false, submit: false, date: false, time: false, }}

@@ -19,8 +19,9 @@ export default class Main extends React.Component {
         locationInfo: false, 
         speciesInfo: false, 
         individualInfo: false,
-        renderRemove: false, 
+        renderRemove: false,
       },
+      selectedDataToDisplay: null,
       toggleDisplay: false,
       togglePointMenu: false,
       toggleList: false,
@@ -29,7 +30,6 @@ export default class Main extends React.Component {
 
     this.activateWindow = this.activateWindow.bind(this);
     this.deactivateWindow = this.deactivateWindow.bind(this);
-    this.retrieveCoordinates = this.retrieveCoordinates.bind(this);
     this.getClickedCoordinates = this.getClickedCoordinates.bind(this);
     this.toggleSinglePointMenu = this.toggleSinglePointMenu.bind(this);
     this.addCoordinates = this.addCoordinates.bind(this);
@@ -40,6 +40,11 @@ export default class Main extends React.Component {
     this.updateTabState = this.updateTabState.bind(this);
     this.handleSave = this.handleSave.bind(this);
   }
+
+  componentDidMount() {
+    //do a db query to get all setups and update state 
+    //when exiting this window, save all entries that were added to the data base 
+  };
 
   activateWindow() {
     this.setState({
@@ -143,17 +148,14 @@ export default class Main extends React.Component {
           currentTabState: prevTabState,
         });
         break;
-    }
-  };
+      case('RETRIEVE_DATA'):
+        prevTabState.data = formState,
 
-  retrieveCoordinates(coordinates) {
-    console.log(coordinates);
-    let activeTabs = this.state.activeTabs;
-    //refactor to decorator
-    activeTabs.push({info: {active: true, isOpen: true, coordinatesAdded: false,}, coordinates: coordindates}); // will need to be change to coordinates + corresponding information or use cached data
-    this.setState({
-      activeTabs: activeTabs,
-    }, () => console.log(this.state.activeTabs));
+        this.setState({
+          currentTabState: prevTabState,
+        });
+        break;
+    }
   };
 
   addCoordinates() {
@@ -184,13 +186,28 @@ export default class Main extends React.Component {
     let activeTabs = this.state.activeTabs;
     //refactor to decorator
 
-    activeTabs.push({info: {active: true, isOpen: true, coordinatesAdded: false,}, coordinates: coordinates}); // will need to be change to coordinates + corresponding information or use cached data
+    activeTabs.push(
+      {
+        info: 
+          {
+            active: true, 
+            isOpen: true, 
+            coordinatesAdded: false,
+          }, 
+        coordinates: coordinates, 
+        data: 
+          {
+            dates: [], 
+            tackle: [], 
+            bait: [],
+          }, 
+      }
+    ); // will need to be change to coordinates + corresponding information or use cached data
 
     this.setState({
       current: currentCoordinate,
     }, () => {
       this.toggleSinglePointMenu(currentCoordinate);
-      // this.props.retrieveCoordinates(currentCoordinate);
       this.setState({
         currentTabState: activeTabs[activeTabs.length - 1].info, 
         activeTabs: activeTabs,
@@ -249,6 +266,21 @@ export default class Main extends React.Component {
           toggleDisplay: !this.state.toggleDisplay,
         }, () => console.log(this.state.toggleDisplay));
         break;
+      case('date'):
+        this.setState({
+          selectedDataToDisplay: 'date',
+        });
+        break;
+      case('tackle'):
+        this.setState({
+          selectedDataToDisplay: 'tackle',
+        });
+        break;
+      case('bait'):
+        this.setState({
+          selectedDataToDisplay: 'bait',
+        });
+        break;
       default:
         activeInformation.locationInfo = false;
         activeInformation.edit = true;
@@ -296,13 +328,13 @@ export default class Main extends React.Component {
               currentTabState={this.state.currentTabState}
               updateTabState={this.updateTabState}
               save={this.handleSave}
+              selectedData={this.state.selectedDataToDisplay}
             /> : null
           }
           <MapContainer 
             active={this.state.leftWindowActive} 
             toggle={this.activateWindow} 
             activeCoordinate={this.state.current}
-            // retrieveCoordinates={this.retrieveCoordinates}
             getClickedCoordinates={this.getClickedCoordinates}
           />
         </div>

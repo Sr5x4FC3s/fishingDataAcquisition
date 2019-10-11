@@ -5,7 +5,7 @@ const port = 3003;
 
 /***************************** ROUTES *****************************/
 const map_info = require('./routes/mapInformation');
-
+const coordinate_info =  require('./routes/retrieveCoordinateInformation');
 
 
 const app = express();
@@ -22,6 +22,6 @@ app.get('*', (req, res) => {
 
 /***************************** MIDDLEWARES *************************/
 
-app.use('/', [map_info,]);
+app.use('/', [map_info, coordinate_info]);
 
 app.listen(port, () => console.log(`Listening on port: ${port}`));

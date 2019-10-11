@@ -1,6 +1,5 @@
 import React from 'react';
 
-import GenericButton from './button';
 import Logo from './logo';
 import HamburgerMenu from './menu';
 import DropDownMenuContainer from './dropDownMenuContainer';
