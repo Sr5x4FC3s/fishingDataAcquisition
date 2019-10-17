@@ -23,6 +23,8 @@ export default class Main extends React.Component {
       },
       selectedDataToDisplay: null,
       toggleDisplay: false,
+      toggleInfoCard: false, 
+      infoCardData: {}, 
       togglePointMenu: false,
       toggleList: false,
       toggleAllCoordinates: false,
@@ -39,6 +41,7 @@ export default class Main extends React.Component {
     this.updateCurrentCoord = this.updateCurrentCoord.bind(this);
     this.updateTabState = this.updateTabState.bind(this);
     this.handleSave = this.handleSave.bind(this);
+    this.retrieveData = this.retrieveData.bind(this);
   }
 
   componentDidMount() {
@@ -148,13 +151,13 @@ export default class Main extends React.Component {
           currentTabState: prevTabState,
         });
         break;
-      case('RETRIEVE_DATA'):
-        prevTabState.data = formState,
+      // case('RETRIEVE_DATA'):
+      //   prevTabState.data = formState,
 
-        this.setState({
-          currentTabState: prevTabState,
-        });
-        break;
+      //   this.setState({
+      //     currentTabState: prevTabState,
+      //   });
+      //   break;
     }
   };
 
@@ -264,7 +267,16 @@ export default class Main extends React.Component {
       case('display'): 
         this.setState({
           toggleDisplay: !this.state.toggleDisplay,
-        }, () => console.log(this.state.toggleDisplay));
+        });
+        break;
+      case('info_card'):
+        //will need to adjust state of the previously rendered window and rerender 
+        // that window when the card is closed completely
+
+        // other option would be to render a modal overlay or something similar 
+        this.setState({
+          toggleInfoCard: !this.state.toggleInfoCard,
+        }, () => console.log('toggle info card status: ', this.state.toggleInfoCard));
         break;
       case('date'):
         this.setState({
@@ -290,6 +302,13 @@ export default class Main extends React.Component {
           activeInformation: activeInformation,
         });
     }
+  };
+
+  /** Method used in Component: DisplayContainer -- returns info from selected card */
+  retrieveData(data) {    
+    this.setState({
+      infoCardData: data,
+    }, () => console.log('info card data: ', this.state.infoCardData));
   };
 
   render() {
@@ -322,13 +341,16 @@ export default class Main extends React.Component {
               activeCoordinate={this.state.current}
               toggle={this.toggleSinglePointMenu} 
               add={this.addCoordinates}
+              infoCardData={this.state.infoCardData}
               more={this.accessMoreInformation} 
               toggleHandler={this.toggleHandler}
               toggleDisplay={this.state.toggleDisplay}
+              toggleInfoCard={this.state.toggleInfoCard}
               currentTabState={this.state.currentTabState}
               updateTabState={this.updateTabState}
               save={this.handleSave}
               selectedData={this.state.selectedDataToDisplay}
+              retrieveData={this.retrieveData}
             /> : null
           }
           <MapContainer 

@@ -64,13 +64,15 @@ export default class DisplayContainer extends React.Component {
       zIndex: 20,
     };
 
-    console.log('selected data type: ', this.props.selectedData)
     return (
       <div style={styles}>
         {this.state.activeData.map(data => (
           <IndividualDisplay
             type={data.category}
             information={data.information} 
+            data={data.information.data}
+            toggleHandler={this.props.toggleHandler}
+            retrieveData={this.props.retrieveData}
           />
         ))}
       </div>

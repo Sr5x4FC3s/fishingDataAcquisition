@@ -6,57 +6,57 @@ const instanceOfTab = [
       [
         {
           category: 'date',
-          information: {date: '10-20-2020', name: 'name', data: {}}
+          information: {date: '10-20-2020', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'date',
-          information: {date: '10-22-2020', name: 'name', data: {}}
+          information: {date: '10-22-2020', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'date',
-          information: {date: '11-02-2109', name: 'name', data: {}}
+          information: {date: '11-02-2109', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'date',
-          information: {date: '03-23-2019', name: 'name', data: {}}
+          information: {date: '03-23-2019', name: 'name', data: {some:'sort', of:'data'}}
         },
       ],
     tackle: 
       [
         {
           category: 'tackle',
-          information: {date: '09-23-2019', name: 'name', data:{}}
+          information: {date: '09-23-2019', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'tackle',
-          information: {date: '01-22-2012', name: 'name', data:{}}
+          information: {date: '01-22-2012', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'tackle',
-          information: {date: '03-020-2011', name: 'name', data:{}}
+          information: {date: '03-020-2011', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'tackle',
-          information: {date: '05-22-2019', name: 'name', data:{}}
+          information: {date: '05-22-2019', name: 'name', data: {some:'sort', of:'data'}}
         },
       ],
     bait: 
       [
         {
           category: 'bait',
-          information: {date: '01-22-2019', name: 'name', data: {}}
+          information: {date: '01-22-2019', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'bait',
-          information: {date: '09-09-2010', name: 'name', data: {}}
+          information: {date: '09-09-2010', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'bait',
-          information: {date: '09-23-1999', name: 'name', data: {}}
+          information: {date: '09-23-1999', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'bait',
-          information: {date: '09-24-2019', name: 'name', data: {}}
+          information: {date: '09-24-2019', name: 'name', data: {some:'sort', of:'data'}}
         },
       ],
   },
@@ -66,57 +66,57 @@ const instanceOfTab = [
       [
         {
           category: 'date',
-          information: {date: '10-20-2020', name: 'name', data: {}}
+          information: {date: '10-20-2020', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'date',
-          information: {date: '10-22-2020', name: 'name', data: {}}
+          information: {date: '10-22-2020', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'date',
-          information: {date: '11-02-2109', name: 'name', data: {}}
+          information: {date: '11-02-2109', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'date',
-          information: {date: '03-23-2019', name: 'name', data: {}}
+          information: {date: '03-23-2019', name: 'name', data: {some:'sort', of:'data'}}
         },
       ],
     tackle: 
       [
         {
           category: 'tackle',
-          information: {date: '09-23-2019', name: 'name', data:{}}
+          information: {date: '09-23-2019', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'tackle',
-          information: {date: '01-22-2012', name: 'name', data:{}}
+          information: {date: '01-22-2012', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'tackle',
-          information: {date: '03-020-2011', name: 'name', data:{}}
+          information: {date: '03-020-2011', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'tackle',
-          information: {date: '05-22-2019', name: 'name', data:{}}
+          information: {date: '05-22-2019', name: 'name', data: {some:'sort', of:'data'}}
         },
       ],
     bait: 
       [
         {
           category: 'bait',
-          information: {date: '01-22-2019', name: 'name', data: {}}
+          information: {date: '01-22-2019', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'bait',
-          information: {date: '09-09-2010', name: 'name', data: {}}
+          information: {date: '09-09-2010', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'bait',
-          information: {date: '09-23-1999', name: 'name', data: {}}
+          information: {date: '09-23-1999', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'bait',
-          information: {date: '09-24-2019', name: 'name', data: {}}
+          information: {date: '09-24-2019', name: 'name', data: {some:'sort', of:'data'}}
         },
       ],
   },
@@ -126,57 +126,57 @@ const instanceOfTab = [
       [
         {
           category: 'date',
-          information: {date: '10-20-2020', name: 'name', data: {}}
+          information: {date: '10-20-2020', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'date',
-          information: {date: '10-22-2020', name: 'name', data: {}}
+          information: {date: '10-22-2020', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'date',
-          information: {date: '11-02-2109', name: 'name', data: {}}
+          information: {date: '11-02-2109', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'date',
-          information: {date: '03-23-2019', name: 'name', data: {}}
+          information: {date: '03-23-2019', name: 'name', data: {some:'sort', of:'data'}}
         },
       ],
     tackle: 
       [
         {
           category: 'tackle',
-          information: {date: '09-23-2019', name: 'name', data:{}}
+          information: {date: '09-23-2019', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'tackle',
-          information: {date: '01-22-2012', name: 'name', data:{}}
+          information: {date: '01-22-2012', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'tackle',
-          information: {date: '03-020-2011', name: 'name', data:{}}
+          information: {date: '03-020-2011', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'tackle',
-          information: {date: '05-22-2019', name: 'name', data:{}}
+          information: {date: '05-22-2019', name: 'name', data: {some:'sort', of:'data'}}
         },
       ],
     bait: 
       [
         {
           category: 'bait',
-          information: {date: '01-22-2019', name: 'name', data: {}}
+          information: {date: '01-22-2019', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'bait',
-          information: {date: '09-09-2010', name: 'name', data: {}}
+          information: {date: '09-09-2010', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'bait',
-          information: {date: '09-23-1999', name: 'name', data: {}}
+          information: {date: '09-23-1999', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'bait',
-          information: {date: '09-24-2019', name: 'name', data: {}}
+          information: {date: '09-24-2019', name: 'name', data: {some:'sort', of:'data'}}
         },
       ],
   },
@@ -186,57 +186,57 @@ const instanceOfTab = [
       [
         {
           category: 'date',
-          information: {date: '10-20-2020', name: 'name', data: {}}
+          information: {date: '10-20-2020', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'date',
-          information: {date: '10-22-2020', name: 'name', data: {}}
+          information: {date: '10-22-2020', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'date',
-          information: {date: '11-02-2109', name: 'name', data: {}}
+          information: {date: '11-02-2109', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'date',
-          information: {date: '03-23-2019', name: 'name', data: {}}
+          information: {date: '03-23-2019', name: 'name', data: {some:'sort', of:'data'}}
         },
       ],
     tackle: 
       [
         {
           category: 'tackle',
-          information: {date: '09-23-2019', name: 'name', data:{}}
+          information: {date: '09-23-2019', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'tackle',
-          information: {date: '01-22-2012', name: 'name', data:{}}
+          information: {date: '01-22-2012', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'tackle',
-          information: {date: '03-020-2011', name: 'name', data:{}}
+          information: {date: '03-020-2011', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'tackle',
-          information: {date: '05-22-2019', name: 'name', data:{}}
+          information: {date: '05-22-2019', name: 'name', data: {some:'sort', of:'data'}}
         },
       ],
     bait: 
       [
         {
           category: 'bait',
-          information: {date: '01-22-2019', name: 'name', data: {}}
+          information: {date: '01-22-2019', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'bait',
-          information: {date: '09-09-2010', name: 'name', data: {}}
+          information: {date: '09-09-2010', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'bait',
-          information: {date: '09-23-1999', name: 'name', data: {}}
+          information: {date: '09-23-1999', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'bait',
-          information: {date: '09-24-2019', name: 'name', data: {}}
+          information: {date: '09-24-2019', name: 'name', data: {some:'sort', of:'data'}}
         },
       ],
   },
@@ -246,57 +246,57 @@ const instanceOfTab = [
       [
         {
           category: 'date',
-          information: {date: '10-20-2020', name: 'name', data: {}}
+          information: {date: '10-20-2020', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'date',
-          information: {date: '10-22-2020', name: 'name', data: {}}
+          information: {date: '10-22-2020', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'date',
-          information: {date: '11-02-2109', name: 'name', data: {}}
+          information: {date: '11-02-2109', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'date',
-          information: {date: '03-23-2019', name: 'name', data: {}}
+          information: {date: '03-23-2019', name: 'name', data: {some:'sort', of:'data'}}
         },
       ],
     tackle: 
       [
         {
           category: 'tackle',
-          information: {date: '09-23-2019', name: 'name', data:{}}
+          information: {date: '09-23-2019', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'tackle',
-          information: {date: '01-22-2012', name: 'name', data:{}}
+          information: {date: '01-22-2012', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'tackle',
-          information: {date: '03-020-2011', name: 'name', data:{}}
+          information: {date: '03-020-2011', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'tackle',
-          information: {date: '05-22-2019', name: 'name', data:{}}
+          information: {date: '05-22-2019', name: 'name', data: {some:'sort', of:'data'}}
         },
       ],
     bait: 
       [
         {
           category: 'bait',
-          information: {date: '01-22-2019', name: 'name', data: {}}
+          information: {date: '01-22-2019', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'bait',
-          information: {date: '09-09-2010', name: 'name', data: {}}
+          information: {date: '09-09-2010', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'bait',
-          information: {date: '09-23-1999', name: 'name', data: {}}
+          information: {date: '09-23-1999', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'bait',
-          information: {date: '09-24-2019', name: 'name', data: {}}
+          information: {date: '09-24-2019', name: 'name', data: {some:'sort', of:'data'}}
         },
       ],
   },
@@ -306,57 +306,57 @@ const instanceOfTab = [
       [
         {
           category: 'date',
-          information: {date: '10-20-2020', name: 'name', data: {}}
+          information: {date: '10-20-2020', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'date',
-          information: {date: '10-22-2020', name: 'name', data: {}}
+          information: {date: '10-22-2020', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'date',
-          information: {date: '11-02-2109', name: 'name', data: {}}
+          information: {date: '11-02-2109', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'date',
-          information: {date: '03-23-2019', name: 'name', data: {}}
+          information: {date: '03-23-2019', name: 'name', data: {some:'sort', of:'data'}}
         },
       ],
     tackle: 
       [
         {
           category: 'tackle',
-          information: {date: '09-23-2019', name: 'name', data:{}}
+          information: {date: '09-23-2019', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'tackle',
-          information: {date: '01-22-2012', name: 'name', data:{}}
+          information: {date: '01-22-2012', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'tackle',
-          information: {date: '03-020-2011', name: 'name', data:{}}
+          information: {date: '03-020-2011', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'tackle',
-          information: {date: '05-22-2019', name: 'name', data:{}}
+          information: {date: '05-22-2019', name: 'name', data: {some:'sort', of:'data'}}
         },
       ],
     bait: 
       [
         {
           category: 'bait',
-          information: {date: '01-22-2019', name: 'name', data: {}}
+          information: {date: '01-22-2019', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'bait',
-          information: {date: '09-09-2010', name: 'name', data: {}}
+          information: {date: '09-09-2010', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'bait',
-          information: {date: '09-23-1999', name: 'name', data: {}}
+          information: {date: '09-23-1999', name: 'name', data: {some:'sort', of:'data'}}
         },
         {
           category: 'bait',
-          information: {date: '09-24-2019', name: 'name', data: {}}
+          information: {date: '09-24-2019', name: 'name', data: {some:'sort', of:'data'}}
         },
       ],
   },

@@ -1,18 +1,23 @@
 import React from 'react';
 
+import DisplayInformationCard from './displayInformationCard';
+
 export default class IndividualDisplay extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      display: {
-        date: false, 
-        name: false,
-        category: false,
-      },
-      information: {},
-      active: false, 
+      active: false,
     };
+
+    this.toggle = this.toggle.bind(this);
   }
+
+  toggle() {
+    this.setState({
+      active: !this.state.active,
+    }, () => this.props.toggleHandler('info_card'));
+  };
+
   render() {
     const styles = {
       height: '100px',
@@ -24,15 +29,16 @@ export default class IndividualDisplay extends React.Component {
     };
 
     return (
-      <div style={styles} onClick={() => alert('clicked')}>
-      {/* test data*/}
-      <div>{this.props.information.date}</div>
-      <div>{this.props.information.name}</div>
-      <div>{this.props.category}</div>
-        {/* {this.state.display.date ? <div>date</div> : null}
-        {this.state.display.name ? <div>name</div> : null}
-        {this.state.display.category ? <div>category</div> : null} */}
+      <div 
+        style={styles} 
+        onClick={() => {
+            this.toggle()
+            this.props.retrieveData(this.props.data)
+        }}
+      >
+        <div>{this.props.information.date}</div>
+        <div>{this.props.information.name}</div>
       </div> 
     )
   }
-}
+};

@@ -6,6 +6,7 @@ import LocationInformationForm from '../map/menuOptions/locationForm';
 import SpeciesForm from '../information/speciesInformation';
 import IndividualCatchForm from '../forms/individualCatchForm';
 import DisplayContainer from './information/container/displayContainer';
+import DisplayInformationCard from './information/displayInformationCard';
 
 const styles = {
   width: '45%',
@@ -57,6 +58,13 @@ const InformationWindow = (props) => (
       <DisplayContainer 
         activeCoordinate={props.activeCoordinate}
         selectedData={props.selectedData}
+        toggleHandler={props.toggleHandler}
+        retrieveData={props.retrieveData}
+      /> : null
+    }
+    {props.toggleInfoCard ? 
+      <DisplayInformationCard 
+      infoCardData={props.infoCardData}
       /> : null
     }
   </div>
