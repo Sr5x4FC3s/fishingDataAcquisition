@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { fetch } from '../../../utility/apiUtility';
+
 import MapContainer from '../map/mapContainer';
 import InformationWindow from '../information/informationWindow';
 import HeaderContainer from '../header/headerContainer';
@@ -8,6 +10,7 @@ export default class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      databaseStatus: null,
       leftWindowActive: false,
       currentTabState: {},
       current: [-122.41, 37.7577],
@@ -45,6 +48,17 @@ export default class Main extends React.Component {
   }
 
   componentDidMount() {
+    if (this.state.databaseStatus === null) {
+      fetch('DATABASE_STATUS').then(result => {
+        this.setState({
+          databaseStatus: result, 
+        });
+      }).catch(err => {
+        console.log(err);
+      })
+    } else if (this.state.databaseStatus === false) {
+      console.log('render a "database is disconnected banner');
+    }
     //do a db query to get all setups and update state 
     //when exiting this window, save all entries that were added to the data base 
   };

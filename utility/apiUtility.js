@@ -11,6 +11,18 @@ export const httpPost = (route, data) => {
       throw err;
     })
 };
+
+export const httpGet = (route) => {
+  return axios.get(route)
+  .then(res => {
+    return res;
+  })
+  .catch(err => {
+    console.log(err);
+    throw err;
+  })
+}; 
+
 /**
  * 
  * @function fetch
@@ -20,10 +32,42 @@ export const httpPost = (route, data) => {
  * @return {*} some sort of response which is dependent on type of data we're trying to access
  */
 export const fetch = (type, data) => {
-
   switch(type) {
     case 'COORDINATE_INFO':
-      let request = axios.post(`/map_info`, data)
+      return axios.post(`/map_info`, data)
+        .then(res => {
+          return res;
+        })
+        .catch(err => {
+          console.log(err);
+          throw err;
+        }); 
+      break;
+    case 'DATABASE_STATUS':
+      return axios.post(`/check_database`, {})
+        .then(res => {
+          return res;
+        })
+        .catch(err => {
+          console.log(err);
+          throw err;
+        });
+      break;
+    default:
+      //some code 
+  }
+};
+
+/**
+ * @function retrieve
+ * @param {String} type
+ * type legend: 'DATABASE_STATUS'
+ * @return {*} response that is relative to which case is executed
+ */
+export const retrieve = (type) => {
+  switch(type) {
+    case 'DATABASE_STATUS':
+      let request = axios.get(`/checkDatabase`)
         .then(res => {
           return res;
         })
@@ -33,7 +77,7 @@ export const fetch = (type, data) => {
         });
       return request;
       break;
-    default:
-      //some code 
+    default: 
+      //some code
   }
 };
