@@ -65,7 +65,7 @@ const createTable = (tableName, options) => {
   
   if (options.primary.exists) {
     primaryKeySegment = addPrimaryKey(options.primary.key);
-    syntax = syntax.substring(0, syntax.length - 1) + primaryKeySegment;
+    syntax = syntax.substring(0, syntax.length - 3) + primaryKeySegment;
   }
   
   if (options.foreign.length > 0) {
