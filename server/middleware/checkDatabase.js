@@ -16,28 +16,26 @@ const tableData = require('../../database/functions/tables/index').tableData;
  */
 
 const check_database = express.Router();
+
 check_database.route('/check_database').post((req, res, next) => {
   checkTableExistencePromise.then(result => {
     if (result) {
-      console.log(`Success, database is currently populated with all the correct tables. All is well.`);
       res.status(200).send(result);
     } else {
-      console.log('Load Status: ',result);
+      console.log(`Load Status: ${result}`);
       console.log('Error: Failed attempt to check validity or existence of tables. Please try again.');
       
       populate(tableData, createTable)
         .then(() => alterTable(tableData, addForeignKey))
         .then(result => {
-          console.log(result);
+          res.status(200).send();
         })
         .catch(err => {
           console.log(err);
         })
-      
-      res.status(200).send(result);
     }
   }).catch(err => {
-    console.log('Error: A problem was encountered while verifying database status');
+    console.log(`Error: ${err}. \n A problem was encountered while verifying database status`);
     res.status(404).send(err);
   })
 });
