@@ -41,8 +41,8 @@ const addPrimaryKey = (key) => {
  * @return { String } 
  */
 
-const addForeignKey = (tableReferenced, id) => {
-  return `FOREIGN KEY (${tableReferenced}_id) REFERENCES ${tableReferenced} (${id}), `
+const addForeignKey = (currentTable, tableReferenced, id) => {
+  return `ALTER TABLE ${currentTable} ADD FOREIGN KEY (${id}) REFERENCES ${tableReferenced}(${id});`
 };
 
 
@@ -60,32 +60,21 @@ const addForeignKey = (tableReferenced, id) => {
 const createTable = (tableName, options) => {
   let columns = buildColumns(options.columnOptions, options.constraintOptions);
   let primaryKeySegment;
-  let foreignKeySegment;
-  let syntax = `CREATE TABLE ${tableName} (${columns})`;
+  let syntax = `CREATE TABLE IF NOT EXISTS ${tableName} (${columns})`;
   
   if (options.primary.exists) {
     primaryKeySegment = addPrimaryKey(options.primary.key);
     syntax = syntax.substring(0, syntax.length - 3) + primaryKeySegment;
   }
   
-  if (options.foreign.length > 0) {
-    options.foreign.forEach(table => {
-      foreignKeySegment = addForeignKey(table.table, table.pk_id);
-
-      if (!primaryKeySegment) {
-          syntax = syntax.substring(0, syntax.length - 1) + foreignKeySegment;
-      }
-
-      syntax += foreignKeySegment;
-    })
-  }
-  if (primaryKeySegment || foreignKeySegment) {
-    return syntax.substring(0, syntax.length - 2) + `)`
+  if (primaryKeySegment) {
+    return syntax.substring(0, syntax.length - 2) + `);`
   }
 
-  return syntax.substring(0, syntax.length - 3) + `)`;
+  return syntax.substring(0, syntax.length - 3) + `);`;
 };
 
 module.exports = {
   createTable,
+  addForeignKey,
 };

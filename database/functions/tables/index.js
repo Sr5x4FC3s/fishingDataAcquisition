@@ -13,8 +13,8 @@ exports.tableData = [
           pk_id: 'LongLatPair',
         }
       ],
-      columnOptions: ['coordinate_id'],
-      constraintOptions: ['INT'],
+      columnOptions: ['coordinate_id', 'LongLatPair', ],
+      constraintOptions: ['INT', 'VARCHAR(255)', ],
     }
   },
   {
@@ -36,8 +36,8 @@ exports.tableData = [
           pk_id: 'water_id',
         },
       ],
-      columnOptions: ['LongLatPair', 'longitude', 'latitude', 'name', 'marker_color', 'marker_image',],
-      constraintOptions: ['VARCHAR(255)', 'INT', 'INT', 'VARCHAR(255)', 'VARCHAR(255)', 'VARCHAR(255)',],
+      columnOptions: ['LongLatPair', 'longitude', 'latitude', 'name', 'marker_color', 'marker_image', 'species_name', 'weather_id', 'water_id', ],
+      constraintOptions: ['VARCHAR(255)', 'INT', 'INT', 'VARCHAR(255)', 'VARCHAR(255)', 'VARCHAR(255)', 'VARCHAR(255)', 'INT', 'INT', ],
     }
   },
   {
@@ -52,8 +52,8 @@ exports.tableData = [
           pk_id: 'date',
         }
       ],
-      columnOptions: ['weather_id', 'season', 'air_temp', 'wind_speed', 'sky_type', 'barometer_pressure', 'weather_events', 'notable_weather',],
-      constraintOptions: ['INT', 'VARCHAR(255)', 'VARCHAR(255)', 'INT', 'VARCHAR(255)', 'INT', 'VARCHAR(255)', 'VARCHAR(255)', ],
+      columnOptions: ['weather_id', 'season', 'air_temp', 'wind_speed', 'sky_type', 'barometer_pressure', 'weather_events', 'notable_weather', 'date', ],
+      constraintOptions: ['INT', 'VARCHAR(255)', 'VARCHAR(255)', 'INT', 'VARCHAR(255)', 'INT', 'VARCHAR(255)', 'VARCHAR(255)', 'INT', ],
     }
   },
   {
@@ -68,8 +68,8 @@ exports.tableData = [
           pk_id: 'date',
         }
       ],
-      columnOptions: ['water_id', 'water_clarity', 'water_temp', 'ph_level', 'sediment_type', 'floor_type', ],
-      constraintOptions: ['INT', 'VARCHAR(55)', 'INT', 'INT', 'VARCHAR(255)', 'VARCHAR(255)'],
+      columnOptions: ['water_id', 'water_clarity', 'water_temp', 'ph_level', 'sediment_type', 'floor_type', 'date', ],
+      constraintOptions: ['INT', 'VARCHAR(55)', 'INT', 'INT', 'VARCHAR(255)', 'VARCHAR(255)', 'INT', ],
     }
   },
   {
@@ -92,8 +92,8 @@ exports.tableData = [
           pk_id: 'photo_id',
         },
       ],
-      columnOptions: ['region_id'],
-      constraintOptions: ['INT'],
+      columnOptions: ['region_id', 'species_name', 'catch_id', 'photo_id', ],
+      constraintOptions: ['INT', 'VARCHAR(255)', 'INT', 'INT', ],
     }
   },
   {
@@ -120,8 +120,8 @@ exports.tableData = [
           pk_id: 'photo_id',
         },
       ],
-      columnOptions: ['date'],
-      constraintOptions: ['INT'],
+      columnOptions: ['date', 'weather_id', 'water_id', 'catch_id', 'photo_id', ],
+      constraintOptions: ['INT', 'INT', 'INT', 'INT', 'INT', ],
     }
   },
   {
@@ -156,8 +156,8 @@ exports.tableData = [
           pk_id: 'rig_name',
         },
       ],
-      columnOptions: ['photo_id', ],
-      constraintOptions: ['INT', ],
+      columnOptions: ['photo_id', 'date', 'region_id', 'catch_id', 'bait_name', 'tackle_name', 'rig_name', ],
+      constraintOptions: ['INT', 'INT', 'INT', 'INT', 'VARCHAR(255)', 'VARCHAR(255)', 'VARCHAR(255)', ],
     }
   },
   {
@@ -168,7 +168,7 @@ exports.tableData = [
       },
       foreign: [],
       columnOptions: ['bait_name', 'information', ],
-      constraintOptions: ['VARCHAR(155)', 'BLOB'],
+      constraintOptions: ['VARCHAR(155)', 'BLOB', ],
     }
   },
   {
@@ -194,8 +194,8 @@ exports.tableData = [
           pk_id: 'tackle_name',
         }
       ],
-      columnOptions: ['rig_name', 'tackle_combination', ],
-      constraintOptions: ['VARCHAR(255)', 'VARCHAR(255)', ],
+      columnOptions: ['rig_name', 'tackle_combination', 'tackle_name', ],
+      constraintOptions: ['VARCHAR(255)', 'VARCHAR(255)', 'VARCHAR(255)', ],
     }
   },
   {
@@ -210,8 +210,8 @@ exports.tableData = [
           pk_id: 'region_id',
         }
       ],
-      columnOptions: ['species_name', 'scientific_name', 'species_category', 'weight', 'length', 'species_description', ],
-      constraintOptions: ['VARCHAR(255)', 'VARCHAR(255)', 'VARCHAR(255)', 'VARCHAR(255)', 'VARCHAR(255)', 'VARCHAR(255)', ],
+      columnOptions: ['species_name', 'scientific_name', 'species_category', 'weight', 'length', 'species_description', 'region_id', ],
+      constraintOptions: ['VARCHAR(255)', 'VARCHAR(255)', 'VARCHAR(255)', 'VARCHAR(255)', 'VARCHAR(255)', 'VARCHAR(255)', 'INT', ],
     }
   },
   {
@@ -242,8 +242,8 @@ exports.tableData = [
           pk_id: 'photo_id',
         },
       ],
-      columnOptions: ['catch_id', 'time', 'method_description', ],
-      constraintOptions: ['INT', 'INT', 'VARCHAR(255)', ],
+      columnOptions: ['catch_id', 'time', 'method_description', 'region_id', 'date', 'water_id', 'weather_id', 'photo_id', ],
+      constraintOptions: ['INT', 'INT', 'VARCHAR(255)', 'INT', 'INT', 'INT', 'INT', 'INT', ],
     }
   },
 ];
