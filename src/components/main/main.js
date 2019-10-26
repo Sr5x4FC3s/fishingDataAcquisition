@@ -11,6 +11,7 @@ export default class Main extends React.Component {
     super(props);
     this.state = {
       databaseStatus: null,
+      dbBanner: false, 
       leftWindowActive: false,
       currentTabState: {},
       current: [-122.41, 37.7577],
@@ -49,16 +50,39 @@ export default class Main extends React.Component {
 
   componentDidMount() {
     if (this.state.databaseStatus === null) {
-      fetch('DATABASE_STATUS').then(result => {
-        this.setState({
-          databaseStatus: result, 
-        });
-      }).catch(err => {
-        console.log(err);
-      })
+      fetch('DATABASE_STATUS')
+        .then(result => {
+          this.setState({
+            databaseStatus: result, 
+          }, () => console.log(this.state.databaseStatus));
+        })
+        .catch(err => {
+          console.log(err);
+        })
     } else if (this.state.databaseStatus === false) {
-      console.log('render a "database is disconnected banner');
-    }
+      try {
+        /** Attempt to reconstruct the database and repopulate it  */
+        fetch('DATABASE_INIT')
+          .then(result => {
+            console.log(result);
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      }
+      catch(err) {
+        /** set dbBanner to true if repopulating database fails -- will trigger 
+         * rendering of a banner that informs the user that the database is 
+         * disconnected or inactive
+         */
+        this.setState({
+          dbBanner: true,
+        }, () => console.error(err));
+      }
+      finally {
+        console.log('fill_me');
+      }
+    } 
     //do a db query to get all setups and update state 
     //when exiting this window, save all entries that were added to the data base 
   };

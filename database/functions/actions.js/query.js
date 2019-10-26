@@ -10,7 +10,6 @@ const { connection } = require('../../connection/index');
 
 const query = (queryString, actionType) => {
   return new Promise ((resolve, reject) => {
-    console.log('string: ', queryString);
     connection.query(queryString, (err, result) => {
       if (err) {
         console.log(`Error: ${actionType} failed. Please try again.`);

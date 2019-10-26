@@ -5,6 +5,10 @@ const initializeDatabase = () => {
   return query(`CREATE DATABASE fishing`, 'CREATE DATABASE');
 };
 
+const initializeDatabasePromise = new Promise((resolve, reject) => {
+  resolve(initializeDatabase());
+});
+
 module.exports = {
-  initializeDatabase, 
+  initializeDatabasePromise,
 };

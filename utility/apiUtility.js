@@ -53,6 +53,16 @@ export const fetch = (type, data) => {
           throw err;
         });
       break;
+    case 'DATABASE_INIT':
+      return axios.post(`/database_init`, {})
+        .then(res => {
+          return res;
+        })
+        .catch(err => {
+          console.log(err);
+          throw err;
+        });
+      break;
     default:
       //some code 
   }
