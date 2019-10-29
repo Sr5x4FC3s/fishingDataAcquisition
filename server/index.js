@@ -6,6 +6,8 @@ const port = 3003;
 /*************************** MIDDLEWARE ***************************/
 const { check_database } = require('./middleware/checkDatabase');
 const { initialize_database } = require('./middleware/initializeDatabase');
+const { drop_database } = require('./middleware/dropDatabase');
+const { reset_database } = require('./middleware/resetDatabase');
 
 /***************************** ROUTES *****************************/
 const map_info = require('./routes/mapInformation');
@@ -31,6 +33,6 @@ app.get('*', (req, res) => {
 // app.use('/', [check_database, ]);
 
 /*************************** POST HANDLERS *************************/
-app.use('/', [check_database, initialize_database, map_info, coordinate_info, ]);
+app.use('/', [check_database, initialize_database, drop_database, reset_database, map_info, coordinate_info, ]);
 
 app.listen(port, () => console.log(`Listening on port: ${port}`));
