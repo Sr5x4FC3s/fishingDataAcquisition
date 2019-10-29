@@ -2,7 +2,7 @@ const mysql = require('mysql');
 const { query } = require('./actions.js/query');
 
 const initializeDatabase = () => {
-  return query(`CREATE DATABASE fishing`, 'CREATE DATABASE');
+  return query(`CREATE DATABASE fishing2`, 'CREATE DATABASE');
 };
 
 const initializeDatabasePromise = new Promise((resolve, reject) => {
