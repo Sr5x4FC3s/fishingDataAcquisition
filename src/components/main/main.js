@@ -5,13 +5,14 @@ import { fetch } from '../../../utility/apiUtility';
 import MapContainer from '../map/mapContainer';
 import InformationWindow from '../information/informationWindow';
 import HeaderContainer from '../header/headerContainer';
+import BannerContainer from '../banners/bannerContainer';
 
 export default class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       databaseStatus: null,
-      dbBanner: false, 
+      dbBanner: true, 
       leftWindowActive: false,
       currentTabState: {},
       current: [-122.41, 37.7577],
@@ -46,6 +47,8 @@ export default class Main extends React.Component {
     this.updateTabState = this.updateTabState.bind(this);
     this.handleSave = this.handleSave.bind(this);
     this.retrieveData = this.retrieveData.bind(this);
+    this.databaseReset = this.databaseReset.bind(this);
+    this.dismissDatabaseStatus = this.dismissDatabaseStatus.bind(this);
   }
 
   componentDidMount() {
@@ -53,7 +56,7 @@ export default class Main extends React.Component {
       fetch('DATABASE_STATUS')
         .then(result => {
           this.setState({
-            databaseStatus: result, 
+            databaseStatus: result.data, 
           }, () => console.log(this.state.databaseStatus));
         })
         .catch(err => {
@@ -349,6 +352,22 @@ export default class Main extends React.Component {
     }, () => console.log('info card data: ', this.state.infoCardData));
   };
 
+  /** Method used in Component: DatabaseBanner -- executes database reset */
+  databaseReset() {
+    fetch('RESET_DATABASE')
+      .then(result => {
+        console.log(result);
+      })
+      .catch(err => console.log(err));
+  };
+
+  /** Method used in Component: DatabaseBanner -- Dismisses that the database is offline and removes the banner */
+  dismissDatabaseStatus() {
+    this.setState({
+      dbBanner: false,
+    });
+  };
+
   render() {
     const styles = {
       width: '1665px', //change based on width of the browser that is in use
@@ -398,6 +417,11 @@ export default class Main extends React.Component {
             getClickedCoordinates={this.getClickedCoordinates}
           />
         </div>
+        <BannerContainer 
+          databaseStatus={this.state.dbBanner}
+          reset={this.databaseReset}
+          dismiss={this.dismissDatabaseStatus}
+        />
       </div>
     )
   }
