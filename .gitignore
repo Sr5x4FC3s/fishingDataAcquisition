@@ -9,3 +9,15 @@
 
 ##access_key
 /utility/key.js
+
+##virtualenv bin
+/python/ENV/bin
+
+##virtualenv include
+/python/ENV/include
+
+##virtualenv include
+/python/ENV/lib
+
+##virtualenv python
+/python/ENV/.Python
