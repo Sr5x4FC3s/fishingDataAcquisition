@@ -63,8 +63,16 @@ export const fetch = (type, data) => {
           throw err;
         });
       break;
-    default:
-      //some code 
+    case 'RESET_DATABASE':
+      return axios.post(`/database_reset`, {})
+        .then(res => {
+          return res;
+        })
+        .catch(err => {
+          console.log(err);
+          throw err;
+        });
+      break;
   }
 };
 
