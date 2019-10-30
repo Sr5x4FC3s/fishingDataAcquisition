@@ -27,19 +27,25 @@ const text = {
 const DatabaseBanner = (props) => (
   <div style={styles}>
     <div>
-      <div style={text}>Database is currently offline. Press button to attempt to reactivate database.</div>
+      {!props.loading ? 
+        <div style={text}>Database is currently offline. Press button to attempt to reactivate database.</div>
+        :
+        <div style={text}>Database is currently loading...</div>
+      }
       <div style={dismissButton}>
         <GenericButton 
           name={'Dismiss'}
           action={props.dismiss}
         />
       </div>
-      <div style={reactivateButton}>
-        <GenericButton 
-          name={'Reactivate'}
-          action={props.reset}
-        />
-      </div>
+      {!props.loading && !props.loadResults ? 
+        <div style={reactivateButton}>
+          <GenericButton 
+            name={'Reactivate'}
+            action={props.reset}
+          />
+        </div> 
+      : null}
     </div>
   </div>
 );

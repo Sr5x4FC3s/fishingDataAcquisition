@@ -6,9 +6,12 @@ export default class BannerContainer extends React.Component {
     super(props);
     this.state = {
       failedDatabase: false, 
+      databaseIsLoading: false, 
+      loadingResults: false, 
     }
 
     this.removeBanner = this.removeBanner.bind(this);
+    this.currentlyLoadingDB = this.currentlyLoadingDB.bind(this);
   }
 
   componentDidMount() {
@@ -17,6 +20,12 @@ export default class BannerContainer extends React.Component {
         failedDatabase: true,
       })
     }
+  }
+
+  currentlyLoadingDB() {
+    this.setState({
+      databaseIsLoading: !this.state.databaseIsLoading,
+    })
   }
 
   removeBanner() {
@@ -30,7 +39,12 @@ export default class BannerContainer extends React.Component {
       <div>
         {this.state.failedDatabase ? 
           <DatabaseBanner 
-            reset={this.props.reset} 
+            loading={this.state.databaseIsLoading}
+            loadResults={this.state.loadingResults}
+            reset={() => {
+              this.props.reset();
+              this.currentlyLoadingDB();
+            }} 
             dismiss={() => {
               this.props.dismiss();
               this.removeBanner();

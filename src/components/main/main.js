@@ -354,9 +354,13 @@ export default class Main extends React.Component {
 
   /** Method used in Component: DatabaseBanner -- executes database reset */
   databaseReset() {
-    fetch('RESET_DATABASE')
+    fetch('RESET_DATABASE', {flag: true})
       .then(result => {
-        console.log(result);
+        if (result.data.status === 'success') {
+          console.log('watch me')
+        } else {
+          console.log('failed')
+        }
       })
       .catch(err => console.log(err));
   };

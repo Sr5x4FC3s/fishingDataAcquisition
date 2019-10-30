@@ -64,7 +64,7 @@ export const fetch = (type, data) => {
         });
       break;
     case 'RESET_DATABASE':
-      return axios.post(`/database_reset`, {})
+      return axios.post(`/database_reset`, data)
         .then(res => {
           return res;
         })
