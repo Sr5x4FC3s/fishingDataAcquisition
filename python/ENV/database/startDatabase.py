@@ -66,23 +66,25 @@ def execute():
   values = createTables()
   tableCommands = values['createTable']
   fkCommands = values['foreignKey']
+  flag = True
 
   try: 
     createDatabase()
 
     for table in tableCommands: 
-      print(table)
       dbInstance.execute(table)
 
     for fk in fkCommands: 
-      print(fk)
       dbInstance.execute(fk)
 
   except mysql.connector.Error as err:
     print("Something went wrong: {}".format(err))
 
-  finally: 
-    print('completed')
+    # set flag value to false indicating there was an error
+    flag = False
 
+  finally: 
+    print(flag)
+    
 if __name__ == "__main__":
   execute()
