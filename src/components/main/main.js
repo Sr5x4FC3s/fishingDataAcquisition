@@ -13,6 +13,11 @@ export default class Main extends React.Component {
     this.state = {
       databaseStatus: null,
       dbBanner: true, 
+      dbActivelyLoading: false, 
+      dbLoadStatus: {
+        status: null,
+        failedAttempts: 0, 
+      },
       leftWindowActive: false,
       currentTabState: {},
       current: [-122.41, 37.7577],
@@ -354,15 +359,32 @@ export default class Main extends React.Component {
 
   /** Method used in Component: DatabaseBanner -- executes database reset */
   databaseReset() {
-    fetch('RESET_DATABASE', {flag: true})
-      .then(result => {
-        if (result.data.status === 'success') {
-          console.log('watch me')
-        } else {
-          console.log('failed')
-        }
-      })
-      .catch(err => console.log(err));
+    this.setState({
+      dbActivelyLoading: true,
+    }, () => {
+      fetch('RESET_DATABASE', {flag: true})
+        .then(result => {
+          let dbStatus = this.state.dbLoadStatus;
+
+          if (result.data.status === 'success') {
+            dbStatus.status = true;
+
+            this.setState({
+              dbLoadStatus: dbStatus,
+              dbActivelyLoading: false,
+            });
+          } else {
+            dbStatus.status = false;
+            dbStatus.failedAttempts++;
+
+            this.setState({
+              dbLoadStatus: dbStatus,
+              dbActivelyLoading: false, 
+            });
+          }
+        })
+        .catch(err => console.log(err));
+    })
   };
 
   /** Method used in Component: DatabaseBanner -- Dismisses that the database is offline and removes the banner */
@@ -423,6 +445,8 @@ export default class Main extends React.Component {
         </div>
         <BannerContainer 
           databaseStatus={this.state.dbBanner}
+          dbActivelyLoading={this.state.dbActivelyLoading}
+          loadStatus={this.state.dbLoadStatus}
           reset={this.databaseReset}
           dismiss={this.dismissDatabaseStatus}
         />

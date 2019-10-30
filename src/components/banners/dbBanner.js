@@ -22,27 +22,40 @@ const reactivateButton = {
 
 const text = {
   float: 'left',
-}
+};
 
-const DatabaseBanner = (props) => (
+const bannerTextOptions = {
+  offline: 'Database is currently offline. Press button to attempt to reactivate database.',
+  loading: 'Database is currently loading...',
+  success: 'Database has been activated',
+  failure: 'Attempt to reactivate the database has failed. Please try again',
+};
+
+const DatabaseBanner = ({reset, dismiss, loading, loadStatus}) => (
   <div style={styles}>
     <div>
-      {!props.loading ? 
-        <div style={text}>Database is currently offline. Press button to attempt to reactivate database.</div>
-        :
-        <div style={text}>Database is currently loading...</div>
+      {!loading ? 
+        !loadStatus.status ?
+          loadStatus.failedAttempts >= 1 ? 
+            <div style={text}>{bannerTextOptions.failure}</div>
+            :
+            <div style={text}>{bannerTextOptions.offline}</div>
+            :
+            <div style={text}>{bannerTextOptions.success}</div>
+            :
+            <div style={text}>{bannerTextOptions.loading}</div>
       }
       <div style={dismissButton}>
         <GenericButton 
           name={'Dismiss'}
-          action={props.dismiss}
+          action={dismiss}
         />
       </div>
-      {!props.loading && !props.loadResults ? 
+      {!loading && !loadStatus.status ? 
         <div style={reactivateButton}>
           <GenericButton 
             name={'Reactivate'}
-            action={props.reset}
+            action={reset}
           />
         </div> 
       : null}

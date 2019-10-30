@@ -17,9 +17,12 @@ reset_database.route('/database_reset').post((req, res, next) => {
       cwd: cur_dir + pyFileLocation,
     });
 
-    py.stdout.on('data', function (data) {   process.stdout.write(data.toString());
+    py.stdout.on('data', data => {   
+      process.stdout.write(data.toString());
+
       let regex = 'True';
       let findBoolean = data.toString().match(regex);
+
       if (findBoolean) {
         res.status(200).send({status: 'success'});
       } else {
