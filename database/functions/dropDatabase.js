@@ -2,14 +2,14 @@ const mysql = require('mysql');
 
 const { query } = require('./actions.js/query');
 
-const dropDatabase = () => {
-  return query(`DROP DATABASE fishing2`, 'DROP DATABASE');
+const dropDatabase = (database) => {
+  let command = `DROP DATABASE IF EXISTS ${database};`;
+
+  return new Promise((resolve, reject) => {
+    resolve(query(command, 'DROP_DATABASE'));
+  });
 };
 
-const dropDatabasePromise = new Promise ((resolve, reject) => {
-  resolve(dropDatabase());
-});
-
 module.exports = {
-  dropDatabasePromise,
+  dropDatabase, 
 };

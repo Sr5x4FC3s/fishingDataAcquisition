@@ -1,7 +1,5 @@
-const mysql = require('mysql');
-
 /** 
- * @function
+ * @function buildColumns
  * @param { Array } columnOptions
  * @param { Array } constraintOptions
  * @return { String } - MySQL syntax 
@@ -24,7 +22,7 @@ const buildColumns = (columnOptions, constraintOptions) => {
 
 
 /** 
- * @function 
+ * @function addPrimaryKey
  * @param { String } key
  * @return { String } 
  */
@@ -35,7 +33,7 @@ const addPrimaryKey = (key) => {
 
 
 /** 
- * @function 
+ * @function addForeignKey
  * @param { String } tableReferenced
  * @param { String, Integer } id
  * @return { String } 
@@ -45,9 +43,22 @@ const addForeignKey = (currentTable, tableReferenced, id) => {
   return `ALTER TABLE ${currentTable} ADD FOREIGN KEY (${id}) REFERENCES ${tableReferenced}(${id});`
 };
 
+/** 
+ * @function addAutoIncrement
+ * @param { Object } currentTable
+ * @return { String, Null }
+ */
+
+const addAutoIncrement = (tableName, currentTable) => {
+  if (currentTable.primary.key.match ('_id') && currentTable.primary.exists) {
+    return `ALTER TABLE ${tableName} MODIFY ${currentTable.primary.key} INTEGER NOT NULL AUTO_INCREMENT;`;
+  } else {
+    return null;
+  }
+};
 
 /** 
- * @function
+ * @function createTable
  * @param { String } tableName
  * @param { Object } options  
  * @param options.columnOptions - list of column headers 
@@ -77,4 +88,5 @@ const createTable = (tableName, options) => {
 module.exports = {
   createTable,
   addForeignKey,
+  addAutoIncrement,
 };

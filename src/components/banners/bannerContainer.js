@@ -6,7 +6,6 @@ export default class BannerContainer extends React.Component {
     super(props);
     this.state = {
       failedDatabase: false, 
-      loadingResults: false, 
     }
 
     this.removeBanner = this.removeBanner.bind(this);
@@ -32,7 +31,6 @@ export default class BannerContainer extends React.Component {
         {this.state.failedDatabase ? 
           <DatabaseBanner 
             loading={this.props.dbActivelyLoading}
-            // loadResults={this.state.loadingResults}
             loadStatus={this.props.loadStatus}
             reset={this.props.reset} 
             dismiss={() => {

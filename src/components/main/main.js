@@ -12,7 +12,7 @@ export default class Main extends React.Component {
     super(props);
     this.state = {
       databaseStatus: null,
-      dbBanner: true, 
+      dbBanner: false, 
       dbActivelyLoading: false, 
       dbLoadStatus: {
         status: null,
@@ -67,6 +67,7 @@ export default class Main extends React.Component {
         .catch(err => {
           console.log(err);
         })
+        
     } else if (this.state.databaseStatus === false) {
       try {
         /** Attempt to reconstruct the database and repopulate it  */

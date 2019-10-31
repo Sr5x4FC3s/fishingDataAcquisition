@@ -26,7 +26,7 @@ def convertJSON():
 
 # function: creating MySQL database
 def createDatabase(): 
-  dbInstance.execute("CREATE DATABASE FISHING_2")
+  dbInstance.execute("CREATE DATABASE fishing")
 
 # function: creating MySQL tables
 def createTables(): 

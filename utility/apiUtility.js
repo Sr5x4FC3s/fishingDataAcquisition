@@ -73,6 +73,16 @@ export const fetch = (type, data) => {
           throw err;
         });
       break;
+    case 'INSERT_DATA':
+      return axios.post(`/insert_data`, data)
+        .then(res => {
+          return res;
+        })
+        .catch(err => {
+          console.log(err);
+          throw err;
+        });
+      break;
   }
 };
 

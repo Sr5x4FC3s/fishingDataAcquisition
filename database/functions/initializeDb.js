@@ -1,14 +1,14 @@
 const mysql = require('mysql');
 const { query } = require('./actions.js/query');
 
-const initializeDatabase = () => {
-  return query(`CREATE DATABASE fishing2`, 'CREATE DATABASE');
+const initializeDatabase = (database) => {
+  let command = `CREATE DATABASE ${database};`;
+
+  return new Promise ((resolve, reject) => {
+    resolve(query(command, 'CREATE_DATABASE'));
+  });
 };
 
-const initializeDatabasePromise = new Promise((resolve, reject) => {
-  resolve(initializeDatabase());
-});
-
 module.exports = {
-  initializeDatabasePromise,
+  initializeDatabase,
 };
