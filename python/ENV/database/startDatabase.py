@@ -12,7 +12,7 @@ mydb = mysql.connector.connect(
   host = "localhost",
   user = os.getenv("DB_USER"),
   passwd = os.getenv("DB_PASSWORD"),
-  database = "fishing"
+  database = "fishing_2"
 )
 
 dbInstance = mydb.cursor()
