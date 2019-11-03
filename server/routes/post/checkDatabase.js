@@ -1,13 +1,13 @@
 const express = require('express');
 
-const { checkTableExistence } = require('../../database/functions/checkExistence');
-const { connection } = require('../../database/connection/index');
-const { initializeDatabase } = require('../../database/functions/initializeDb');
-const { dropDatabase } = require('../../database/functions/dropDatabase');
-const { populate } = require('../../database/functions/populate'); 
-const { alterTable } = require('../../database/functions/alterTables');
-const { createTable, addForeignKey, addAutoIncrement } = require('../../database/functions/createTable');
-const tableData = require('../../database/functions/tables/index').tableData;
+const { checkTableExistence } = require('../../../database/functions/checkExistence');
+const { connection } = require('../../../database/connection/index');
+const { initializeDatabase } = require('../../../database/functions/initializeDb');
+const { dropDatabase } = require('../../../database/functions/dropDatabase');
+const { populate } = require('../../../database/functions/populate'); 
+const { alterTable } = require('../../../database/functions/alterTables');
+const { createTable, addForeignKey, addAutoIncrement } = require('../../../database/functions/createTable');
+const tableData = require('../../../database/functions/tables/index').tableData;
 
 /** Database check will occur once on the initial load to ensure that the
  *  database is in correctly setup -- if not, measures will be taken to ensure 

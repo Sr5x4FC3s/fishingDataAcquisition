@@ -1,6 +1,6 @@
 const express = require('express');
 
-const instanceOfTab = require('../../tempData/index').instanceOfTab;
+const instanceOfTab = require('../../../tempData/index').instanceOfTab;
 
 const coordinate_info = express.Router();
 

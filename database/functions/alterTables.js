@@ -4,6 +4,8 @@ const { query } = require('./actions.js/query');
  * @function alterTable 
  * @param { Array } tableInformation
  * @param { Function } callback
+ * @param { String } type 
+ * @param { Array } failedFkList
  * @return { Promise } a promise list of commands in MySQL syntax
  */
 

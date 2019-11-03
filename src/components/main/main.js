@@ -62,12 +62,12 @@ export default class Main extends React.Component {
         .then(result => {
           this.setState({
             databaseStatus: result.data, 
-          }, () => console.log(this.state.databaseStatus));
+          });
         })
         .catch(err => {
           console.log(err);
         })
-        
+
     } else if (this.state.databaseStatus === false) {
       try {
         /** Attempt to reconstruct the database and repopulate it  */
@@ -156,7 +156,7 @@ export default class Main extends React.Component {
     
     //refactor targetTab to a utility function since it's used multiple times on this page to search for a specific tab -> make it handle both finding index and also finding the object
     let targetTab = this.state.activeTabs.filter((item, index) => {
-      console.log(activeCoordinates, item.coordinates)
+      console.log('active coordinates & item coordinates: ', activeCoordinates, item.coordinates)
       if (JSON.stringify(item.coordinates) === JSON.stringify(activeCoordinates)) {
         return item;
       } else {
@@ -171,6 +171,8 @@ export default class Main extends React.Component {
 
     switch(formName) {
       case('SPECIES_INPUT'):
+
+      /** most input features here will be removed and only a additional notes sections will be available */
         prevTabState.speciesInput = formState;
 
         this.setState({
@@ -198,13 +200,6 @@ export default class Main extends React.Component {
           currentTabState: prevTabState,
         });
         break;
-      // case('RETRIEVE_DATA'):
-      //   prevTabState.data = formState,
-
-      //   this.setState({
-      //     currentTabState: prevTabState,
-      //   });
-      //   break;
     }
   };
 

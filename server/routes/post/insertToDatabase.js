@@ -1,7 +1,7 @@
 const express = require('express');
 
-const { listofRows } = require('../../database/functions/createInsert');
-const { bulkInsertRows, filterTables } = require('../../database/functions/insertRows');
+const { listofRows } = require('../../../database/functions/createInsert');
+const { bulkInsertRows, filterTables } = require('../../../database/functions/insertRows');
 
 const insert_data = express.Router();
 

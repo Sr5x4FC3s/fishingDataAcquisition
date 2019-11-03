@@ -27,7 +27,7 @@ export const httpGet = (route) => {
  * 
  * @function fetch
  * @param {String} type 
- * type legend: 'COORDINATE_INFO'
+ * type legend: COORDINATE_INFO, DATABASE_STATUS, DATABASE_INIT, RESET_DATABASE, INSERT_DATA
  * @param {*} data 
  * @return {*} some sort of response which is dependent on type of data we're trying to access
  */

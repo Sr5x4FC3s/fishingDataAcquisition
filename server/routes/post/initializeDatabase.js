@@ -3,7 +3,7 @@ const express = require('express');
 const initialize_database = express.Router();
 
 initialize_database.route('/database_init').post((req, res, next) => {
-  const { initializeDatabasePromise } = require('../../database/functions/initializeDb'); 
+  const { initializeDatabasePromise } = require('../../../database/functions/initializeDb'); 
 
   initializeDatabasePromise.then(result => {
     console.log(`Database has been successfully initialized.`);

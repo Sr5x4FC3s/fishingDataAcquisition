@@ -4,15 +4,15 @@ const path = require('path');
 const port = 3003;
 
 /*************************** MIDDLEWARE ***************************/
-const { check_database } = require('./middleware/checkDatabase');
-const { initialize_database } = require('./middleware/initializeDatabase');
-const { drop_database } = require('./middleware/dropDatabase');
-const { reset_database } = require('./middleware/resetDatabase');
-const { insert_data } = require('./middleware/insertToDatabase'); 
+const { check_database } = require('./routes/post/checkDatabase');
+const { initialize_database } = require('./routes/post/initializeDatabase');
+const { drop_database } = require('./routes/post/dropDatabase');
+const { reset_database } = require('./routes/post/resetDatabase');
+const { insert_data } = require('./routes/post/insertToDatabase'); 
 
 /***************************** ROUTES *****************************/
-const map_info = require('./routes/mapInformation');
-const coordinate_info =  require('./routes/retrieveCoordinateInformation');
+const map_info = require('./routes/post/mapInformation');
+const coordinate_info =  require('./routes/post/retrieveCoordinateInformation');
 
 
 const app = express();
