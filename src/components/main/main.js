@@ -177,28 +177,28 @@ export default class Main extends React.Component {
 
         this.setState({
           currentTabState: prevTabState,
-        });
+        }, () => fetch('INSERT_DATA', {type: 'SPECIES', data: this.state.currentTabState.speciesInput}));
         break;
       case('INDIVIDUAL_DETAILS'):
         prevTabState.individualDetails = formState;
 
         this.setState({
           currentTabState: prevTabState,
-        });
+        }, () => fetch('INSERT_DATA', {type: 'INDIVIDUAL_DETAILS', data: this.state.currentTabState.individualDetails}));
         break;
       case('LOCATION'):
         prevTabState.location = formState;
 
         this.setState({
           currentTabState: prevTabState,
-        });
+        }), () => fetch('INSERT_DATA', {type: 'LOCATION', data: this.state.currentTabState.location});
         break;
       case('COORDINATES'):
         prevTabState.coordinates = formState;
 
         this.setState({
           currentTabState: prevTabState,
-        });
+        }, () => fetch('INSERT_DATA', {type: 'COORDINATES', data: this.state.currentTabState.coordinates}));
         break;
     }
   };

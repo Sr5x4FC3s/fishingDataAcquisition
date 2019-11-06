@@ -47,6 +47,15 @@ const filterTables = (data) => {
   return tableLists;
 };
 
+const singleInsert = (data, callback, type) => {
+  let listofRows = callback(data, type);
+  console.log(data)
+  console.log(listofRows);
+  // return new Promise((resolve, reject) => {
+  //   resolve(query())
+  // });
+};
+
 /** 
  * @function bulkInsertRows
  * @param { Array } data
@@ -67,6 +76,7 @@ const bulkInsertRows = (data, callback) => {
 };
 
 module.exports = {
+  singleInsert, 
   bulkInsertRows,
   filterTables,
 };

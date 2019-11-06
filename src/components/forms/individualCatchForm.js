@@ -32,7 +32,7 @@ export default class IndividualCatchForm extends React.Component {
         break;
       case('DATE_TIME'):
         //will need edge cases added to handle two different types of inputs
-        information.scientificName = this.state.formValue;
+        information.time = this.state.formValue;
         this.setState({
           information: information,
         });
@@ -50,7 +50,7 @@ export default class IndividualCatchForm extends React.Component {
         });
         break;
       case('REGION_CAPTURED'):
-        information.regionCaptured = this.state.formValue;
+        information.regionId = this.state.formValue;
         this.setState({
           information: information,
         });

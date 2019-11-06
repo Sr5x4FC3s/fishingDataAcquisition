@@ -92,8 +92,8 @@ exports.tableData = [
           pk_id: "photo_id",
         },
       ],
-      columnOptions: ["region_id", "species_name", "catch_id", "photo_id", ],
-      constraintOptions: ["INT", "VARCHAR(255)", "INT", "INT", ],
+      columnOptions: ["region_id", "region_name", "species_name", "catch_id", "photo_id", ],
+      constraintOptions: ["INT", "VARCHAR(255)", "VARCHAR(255)", "INT", "INT", ],
     }
   },
   {
@@ -210,7 +210,7 @@ exports.tableData = [
           pk_id: "region_id",
         }
       ],
-      columnOptions: ["species_name", "scientific_name", "species_category", "weight", "length", "species_description", "region_id", ],
+      columnOptions: ["species_name", "scientific_name", "species_category", "species_weight", "species_length", "species_description", "region_id", ],
       constraintOptions: ["VARCHAR(255)", "VARCHAR(255)", "VARCHAR(255)", "VARCHAR(255)", "VARCHAR(255)", "VARCHAR(255)", "INT", ],
     }
   },
@@ -242,8 +242,8 @@ exports.tableData = [
           pk_id: "photo_id",
         },
       ],
-      columnOptions: ["catch_id", "time", "method_description", "region_id", "date", "water_id", "weather_id", "photo_id", ],
-      constraintOptions: ["INT", "INT", "VARCHAR(255)", "INT", "INT", "INT", "INT", "INT", ],
+      columnOptions: ["catch_id", "individual_weight", "time", "method_description", "region_id", "date", "water_id", "weather_id", "photo_id", "rig_name", "bait_name", "tackle_name", ],
+      constraintOptions: ["INT", "INT", "INT", "VARCHAR(255)", "INT", "INT", "INT", "INT", "INT",  "VARCHAR(255)",  "VARCHAR(255)", "VARCHAR(255)", ],
     }
   },
 ];

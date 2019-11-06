@@ -63,7 +63,7 @@ export default class SpeciesInputForm extends React.Component {
         break;
       case('REGIONS'):
         //needs to handle additional renders to the list from adding and also the adding from the database - options will not be hardcoded 
-        information.regions = this.state.formValue;
+        information.regionId = this.state.formValue;
         this.setState({
           information: information,
         });
