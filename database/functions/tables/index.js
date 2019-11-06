@@ -2,49 +2,44 @@
 
 exports.tableData = [
   {
-    Coordinates: {
+    Locations: {
       primary: {
         exists: true,
-        key: "coordinate_id",
+        key: "coordinates",
+      },
+      foreign: [],
+      columnOptions: ["coordinates", "location_name", "marker_color", "marker_image", "species_name", "environment_id", ],
+      constraintOptions: ["VARCHAR(255)", "VARCHAR(255)", "VARCHAR(255)", "VARCHAR(255)", "VARCHAR(255)", "INT", ],
+    }
+  },
+  {
+    LocationRelationships: {
+      primary: {
+        exists: false,
+        key: "",
       },
       foreign: [
         {
           table: "Locations",
-          pk_id: "LongLatPair",
-        }
-      ],
-      columnOptions: ["coordinate_id", "LongLatPair", ],
-      constraintOptions: ["INT", "VARCHAR(255)", ],
-    }
-  },
-  {
-    Locations: {
-      primary: {
-        exists: true,
-        key: "LongLatPair",
-      },
-      foreign: [
+          pk_id: "coordinates",
+        },
         {
           table: "Species",
           pk_id: "species_name",
         },        {
-          table: "Weather",
-          pk_id: "weather_id",
-        },
-        {
-          table: "Water",
-          pk_id: "water_id",
+          table: "Environment",
+          pk_id: "environment_id",
         },
       ],
-      columnOptions: ["LongLatPair", "longitude", "latitude", "name", "marker_color", "marker_image", "species_name", "weather_id", "water_id", ],
-      constraintOptions: ["VARCHAR(255)", "INT", "INT", "VARCHAR(255)", "VARCHAR(255)", "VARCHAR(255)", "VARCHAR(255)", "INT", "INT", ],
+      columnOptions: ["coordinates", "species_name", "environment_id", ],
+      constraintOptions: ["VARCHAR(255)", "VARCHAR(255)", "INT", ],
     }
   },
   {
-    Weather: {
+    Environment: {
       primary: {
         exists: true,
-        key: "weather_id",
+        key: "environment_id",
       },
       foreign: [
         {
@@ -52,48 +47,32 @@ exports.tableData = [
           pk_id: "date",
         }
       ],
-      columnOptions: ["weather_id", "season", "air_temp", "wind_speed", "sky_type", "barometer_pressure", "weather_events", "notable_weather", "date", ],
-      constraintOptions: ["INT", "VARCHAR(255)", "VARCHAR(255)", "INT", "VARCHAR(255)", "INT", "VARCHAR(255)", "VARCHAR(255)", "INT", ],
+      columnOptions: ["environment_id", "season", "air_temp", "wind_speed", "sky_type", "barometer_pressure", "weather_events", "notable_weather", "water_clarity", "water_temp", "ph_level", "seafloor_type", "date",],
+      constraintOptions: ["INT", "VARCHAR(255)", "VARCHAR(255)", "INT", "VARCHAR(255)", "INT", "VARCHAR(255)", "VARCHAR(255)", "VARCHAR(55)", "INT", "INT", "VARCHAR(255)", "INT",],
     }
   },
   {
-    Water: {
+    Notes: {
       primary: {
         exists: true,
-        key: "water_id",
+        key: "note_id",
       },
       foreign: [
         {
-          table: "Date",
-          pk_id: "date",
-        }
-      ],
-      columnOptions: ["water_id", "water_clarity", "water_temp", "ph_level", "sediment_type", "floor_type", "date", ],
-      constraintOptions: ["INT", "VARCHAR(55)", "INT", "INT", "VARCHAR(255)", "VARCHAR(255)", "INT", ],
-    }
-  },
-  {
-    Regions: {
-      primary: {
-        exists: true,
-        key: "region_id",
-      },
-      foreign: [
+          table: "Locations",
+          pk_id: "coordinates",
+        },
         {
           table: "Species",
           pk_id: "species_name",
-        },        
+        },
         {
-          table: "IndividualCatch",
+          table: "individualCatch",
           pk_id: "catch_id",
-        }, 
-        {
-          table: "Photos",
-          pk_id: "photo_id",
         },
       ],
-      columnOptions: ["region_id", "region_name", "species_name", "catch_id", "photo_id", ],
-      constraintOptions: ["INT", "VARCHAR(255)", "VARCHAR(255)", "INT", "INT", ],
+      columnOptions: ["note_id", "coordinates", "notes", "species_name", "catch_id", ],
+      constraintOptions: ["INT", "VARCHAR(255)", "VARCHAR(255)", "VARCHAR(255)","INT", ],
     }
   },
   {
@@ -104,40 +83,32 @@ exports.tableData = [
       },
       foreign: [
         {
-          table: "Weather",
-          pk_id: "weather_id",
-        },
-        {
-          table: "Water",
-          pk_id: "water_id",
+          table: "Environment",
+          pk_id: "environment_id",
         },
         {
           table: "IndividualCatch",
           pk_id: "catch_id",
         },
+      ],
+      columnOptions: ["date", "environment_id", "catch_id", ],
+      constraintOptions: ["INT", "INT", "INT", ],
+    }
+  },
+  {
+    PhotoRelationships: {
+      primary: {
+        exists: false,
+        key: "",
+      },
+      foreign: [
         {
           table: "Photos",
           pk_id: "photo_id",
         },
-      ],
-      columnOptions: ["date", "weather_id", "water_id", "catch_id", "photo_id", ],
-      constraintOptions: ["INT", "INT", "INT", "INT", "INT", ],
-    }
-  },
-  {
-    Photos: {
-      primary: {
-        exists: true,
-        key: "photo_id",
-      },
-      foreign: [
         {
           table: "Date",
           pk_id: "date",
-        },
-        {
-          table: "Regions",
-          pk_id: "region_id",
         },
         {
           table: "IndividualCatch",
@@ -156,8 +127,19 @@ exports.tableData = [
           pk_id: "rig_name",
         },
       ],
-      columnOptions: ["photo_id", "date", "region_id", "catch_id", "bait_name", "tackle_name", "rig_name", ],
-      constraintOptions: ["INT", "INT", "INT", "INT", "VARCHAR(255)", "VARCHAR(255)", "VARCHAR(255)", ],
+      columnOptions: ["photo_id", "date", "catch_id", "bait_name", "tackle_name", "rig_name", ],
+      constraintOptions: ["INT", "INT", "INT", "VARCHAR(255)", "VARCHAR(255)", "VARCHAR(255)", ],
+    }
+  },
+  {
+    Photos: {
+      primary: {
+        exists: true,
+        key: "photo_id",
+      },
+      foreign: [],
+      columnOptions: ["photo_id", "image"],
+      constraintOptions: ["INT", "VARCHAR(255)"],
     }
   },
   {
@@ -188,14 +170,9 @@ exports.tableData = [
         exists: true,
         key: "rig_name",
       },
-      foreign: [
-        {
-          table: "Tackle",
-          pk_id: "tackle_name",
-        }
-      ],
-      columnOptions: ["rig_name", "tackle_combination", "tackle_name", ],
-      constraintOptions: ["VARCHAR(255)", "VARCHAR(255)", "VARCHAR(255)", ],
+      foreign: [],
+      columnOptions: ["rig_name", "tackle_combination", ],
+      constraintOptions: ["VARCHAR(255)", "VARCHAR(255)", ],
     }
   },
   {
@@ -206,11 +183,11 @@ exports.tableData = [
       },
       foreign: [
         {
-          table: "Regions",
-          pk_id: "region_id",
-        }
+          table: "Notes",
+          pk_id: "note_id",
+        },
       ],
-      columnOptions: ["species_name", "scientific_name", "species_category", "species_weight", "species_length", "species_description", "region_id", ],
+      columnOptions: ["species_name", "scientific_name", "species_category", "species_weight", "species_length", "species_description", "note_id", ],
       constraintOptions: ["VARCHAR(255)", "VARCHAR(255)", "VARCHAR(255)", "VARCHAR(255)", "VARCHAR(255)", "VARCHAR(255)", "INT", ],
     }
   },
@@ -222,28 +199,36 @@ exports.tableData = [
       },
       foreign: [
         {
-          table: "Regions",
-          pk_id: "region_id",
-        },
-        {
           table: "Date",
           pk_id: "date",
         },
         {
-          table: "Water",
-          pk_id: "water_id",
+          table: "Notes",
+          pk_id: "note_id",
         },
         {
-          table: "Weather",
-          pk_id: "weather_id",
+          table: "Environment",
+          pk_id: "environment_id",
         },
         {
           table: "Photos",
           pk_id: "photo_id",
         },
+        {
+          table: "Rigs",
+          pk_id: "rig_name",
+        },
+        {
+          table: "Tackle",
+          pk_id: "tackle_name",
+        },
+        {
+          table: "Bait",
+          pk_id: "bait_name",
+        },
       ],
-      columnOptions: ["catch_id", "individual_weight", "time", "method_description", "region_id", "date", "water_id", "weather_id", "photo_id", "rig_name", "bait_name", "tackle_name", ],
-      constraintOptions: ["INT", "INT", "INT", "VARCHAR(255)", "INT", "INT", "INT", "INT", "INT",  "VARCHAR(255)",  "VARCHAR(255)", "VARCHAR(255)", ],
+      columnOptions: ["catch_id", "individual_weight", "time_id", "method_description", "date", "environment_id", "photo_id", "rig_name", "bait_name", "tackle_name", "note_id", ],
+      constraintOptions: ["INT", "INT", "INT", "VARCHAR(255)", "INT", "INT", "INT",  "VARCHAR(255)",  "VARCHAR(255)", "VARCHAR(255)", "INT", ],
     }
   },
 ];
