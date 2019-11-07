@@ -146,6 +146,15 @@ export default class IndividualCatchForm extends React.Component {
           type={'INDIVIDUAL_DETAILS'}
           state={this.state.information}
         />
+        <GenericButton 
+          action={
+            () => {
+              //replace me
+              console.log('render environment entry form')
+            }
+          }
+          name={'Add Environmental Details'}
+        />
         <button>Show Other Region of Capture</button>
         <button>Show Seafloor Topography</button>
         <button>Search Web for Largest Recorded Catch of Species</button>

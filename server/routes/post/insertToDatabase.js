@@ -16,7 +16,7 @@ insert_data.route('/insert_data').post((req, res, next) => {
 
   singleInsert(tableDetails, convertFormData, 'SPECIES_INFORMATION');
 
-  res.status(200).send('status 200 bro')
+  res.status(200).send('status 200 bro');
 
   // const tempdata = [
   //   {

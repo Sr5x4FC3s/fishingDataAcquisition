@@ -26,12 +26,28 @@ app.use(bodyParser.json());
 
 app.use('/', express.static(path.join(__dirname, '../dist'))); 
 
+/*************************** GET HANDLERS **************************/
+// app.use('/', [check_database, ]);
+
+app.get('/species', (req, res, next) => {
+  //test data set
+  const data = {
+    speciesName: 'lingcod',
+    scientificName: 'some_name',
+    weight: 'maximum 100lbs',
+    length: 'maximum length: 55"',
+    category: 'bottom fish',
+    description: 'some description',
+    notes: [{date: 'some date', note: 'some note'}, {date: 'some date', note: 'some note'}, {date: 'some date', note: 'some note'},],
+  };
+
+  // do a database query and pull results and send back 
+  res.status(200).send(data);
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.resolve('dist', 'index.html'));
 });
-
-/*************************** GET HANDLERS **************************/
-// app.use('/', [check_database, ]);
 
 /*************************** POST HANDLERS *************************/
 const options = [

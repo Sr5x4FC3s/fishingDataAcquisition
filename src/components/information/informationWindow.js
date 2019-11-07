@@ -3,7 +3,7 @@ import React from 'react';
 import SinglePointMenu from '../map/singlePointMenu';
 import AddCoordinatesForm from '../map/menuOptions/addCoordinatesForm';
 import LocationInformationForm from '../map/menuOptions/locationForm';
-import SpeciesForm from '../information/speciesInformation';
+import SpeciesInformationDisplay from '../information/speciesInformation';
 import IndividualCatchForm from '../forms/individualCatchForm';
 import DisplayContainer from './information/container/displayContainer';
 import DisplayInformationCard from './information/displayInformationCard';
@@ -43,7 +43,7 @@ const InformationWindow = (props) => (
       /> : null
     }
     {props.activeInformation.speciesInfo ? 
-      <SpeciesForm
+      <SpeciesInformationDisplay
         toggleHandler={props.toggleHandler}
         save={props.save}
       /> : null

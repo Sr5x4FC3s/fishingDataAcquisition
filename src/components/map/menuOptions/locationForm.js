@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import FormWithDropDown from '../../forms/formWithDropDown';
 import SaveButton from '../../forms/saveButton';
+import GenericButton from '../../header/button';
 
 export default class LocationInformationForm extends React.Component {
   constructor(props) {
@@ -87,14 +88,7 @@ export default class LocationInformationForm extends React.Component {
           information: information,
         });
         break;
-      case('SEDIMENT'):
-        //needs to handle additional renders to the list from adding and also the adding from the database - options will not be hardcoded 
-        information.sediment = this.state.formValue;
-        this.setState({
-          information: information,
-        });
-        break;
-      case('FLOOR_TYPE'):
+      case('SEAFLOOR_TYPE'):
         //needs to handle additional renders to the list from adding and also the adding from the database - options will not be hardcoded 
         information.floorType = this.state.formValue;
         this.setState({
@@ -291,23 +285,9 @@ export default class LocationInformationForm extends React.Component {
             date: false, 
             time: false, 
           }}
-          category={`Sediment Type`}
-          dropDown={sedimentType}
-          type={'SEDIMENT'}
-          capture={this.captureValue}
-        />
-        <FormWithDropDown 
-          options={{
-            dropDown: true, 
-            search: false, 
-            textArea: false, 
-            submit: false, 
-            date: false, 
-            time: false, 
-          }}
           category={`Floor Type`}
           dropDown={floorType}
-          type={'FLOOR_TYPE'}
+          type={'SEAFLOOR_TYPE'}
           capture={this.captureValue}
         />          
         {/* water clarity, water temperature, water ph, sediment type, water floor types, what season, air temperature, wind speed, type of skies, pressure barometer, weather events, notables */}
@@ -317,7 +297,14 @@ export default class LocationInformationForm extends React.Component {
           type={'LOCATION'}
           state={this.state.information}
         />
-        <button onClick={() => this.props.toggleHandler('species')}>Add Fish Data</button>
+        <GenericButton 
+          action={
+            () => {
+              this.props.toggleHandler('species');
+            }
+          }
+          name={'Add Fish Data'}
+        />
       </div>
     </div>
     )

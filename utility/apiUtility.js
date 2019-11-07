@@ -102,10 +102,10 @@ export const fetch = (type, data) => {
  * type legend: 'DATABASE_STATUS'
  * @return {*} response that is relative to which case is executed
  */
-export const retrieve = (type) => {
+export const retrieve = (type, param) => {
   switch(type) {
     case 'DATABASE_STATUS':
-      let request = axios.get(`/checkDatabase`)
+      return axios.get(`/checkDatabase`)
         .then(res => {
           return res;
         })
@@ -113,9 +113,16 @@ export const retrieve = (type) => {
           console.log(err);
           throw err;
         });
-      return request;
       break;
-    default: 
-      //some code
+    case('SPECIES'): 
+      return axios.get(`/species?id=${param}`)
+        .then(res => {
+          return res;
+        })
+        .catch(err => {
+          console.log(err);
+          throw err;
+        });
+      break;
   }
 };

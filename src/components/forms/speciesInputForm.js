@@ -3,6 +3,8 @@ import React from 'react';
 import IndividualCatchForm from '../forms/individualCatchForm';
 import FormWithDropDown from '../forms/formWithDropDown';
 import SaveButton from '../forms/saveButton';
+import GenericButton from '../header/button';
+import SelectSpecies from './selectSpecies';
 
 export default class SpeciesInputForm extends React.Component {
   constructor(props) {
@@ -17,6 +19,10 @@ export default class SpeciesInputForm extends React.Component {
     this.toggleIndividualForm = this.toggleIndividualForm.bind(this);
     this.captureValue = this.captureValue.bind(this);
     this.setValues = this.setValues.bind(this);
+  }
+
+  componentDidMount() {
+    //make API call to populate data from species table
   }
 
   toggleIndividualForm() {
@@ -61,13 +67,6 @@ export default class SpeciesInputForm extends React.Component {
           information: information,
         });
         break;
-      case('REGIONS'):
-        //needs to handle additional renders to the list from adding and also the adding from the database - options will not be hardcoded 
-        information.regionId = this.state.formValue;
-        this.setState({
-          information: information,
-        });
-        break;
     }
   };
 
@@ -89,94 +88,15 @@ export default class SpeciesInputForm extends React.Component {
 
     return (
       <div id='species-input-container'>
-        <FormWithDropDown 
-          options={{
-            dropDown: true, 
-            search: true, 
-            textArea: false, 
-            submit: false, 
-            date: false, 
-            time: false, 
-          }}
-          category={`Species Name`}
-          placeholder={'Enter Species Name'}
-          dropDown={speciesName}
-          type={'SPECIES_NAME'}
-          capture={this.captureValue}
+        <SelectSpecies />
+        <GenericButton 
+          action={
+            () => {
+              this.props.toggleHandler('individual');
+            }
+          }
+          name={'Add Catch'}
         />
-        <FormWithDropDown 
-          options={{
-            dropDown: true, 
-            search: true, 
-            textArea: false, 
-            submit: false, 
-            date: false, 
-            time: false, 
-          }}
-          category={`Species Scientific Name`}
-          placeholder={'Enter Scientific Name'}
-          dropDown={scientificName}
-          type={'SCIENTIFIC_NAME'}
-          capture={this.captureValue}
-        />
-        <FormWithDropDown 
-          options={{
-            dropDown: true, 
-            search: false, 
-            textArea: false, 
-            submit: false, 
-            date: false, 
-            time: false, 
-          }}
-          category={`Species Category`}
-          dropDown={speciesCategory}
-          type={'SPECIES_CATEGORY'}
-          capture={this.captureValue}
-        />
-        <FormWithDropDown 
-          options={{
-            dropDown: true, 
-            search: false, 
-            textArea: false, 
-            submit: false, 
-            date: false, 
-            time: false, 
-          }}
-          category={`Weight Range`}
-          dropDown={weightRange}
-          type={'WEIGHT'}
-          capture={this.captureValue}
-        />
-        <FormWithDropDown 
-          options={{
-            dropDown: true, 
-            search: false, 
-            textArea: false, 
-            submit: false, 
-            date: false, 
-            time: false, 
-          }}
-          category={`Length Range`}
-          dropDown={lengthRange}
-          type={'LENGTH'}
-          capture={this.captureValue}
-        />
-        <FormWithDropDown 
-          options={{
-            dropDown: true, 
-            search: false, 
-            textArea: false, 
-            submit: true, 
-            date: false, 
-            time: false, 
-          }}
-          category={`Regions`}
-          placeholder={'Enter Region'}
-          dropDown={regions}
-          type={'REGIONS'}
-          capture={this.captureValue}
-        />
-        <button id='individual-catch-info-button' onClick={() => this.props.toggleHandler('individual')}>Add Individual Details</button>
         <SaveButton 
           save={this.props.save}
           type={'SPECIES_INPUT'}

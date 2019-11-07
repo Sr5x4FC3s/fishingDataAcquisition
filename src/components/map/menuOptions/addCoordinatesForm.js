@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import FormWithDropDown from '../../forms/formWithDropDown';
 import SaveButton from '../../forms/saveButton';
+import GenericButton from '../../header/button';
 
 const AddCoordinateForm = (props) => {
   const [image, setImage] = useState('');
@@ -89,8 +90,22 @@ const AddCoordinateForm = (props) => {
           type={'COORDINATES'}
           state={information}
         />
-        <button id='add-location-info' onClick={() => props.toggleHandler('location')}>Add Location Information</button>
-        <button id='add-photos' onClick={() => props.updateTabState(null, null, props.activeCoordinate)}>Upload Photo(s)</button>
+        <GenericButton 
+          action={
+            () => {
+              props.toggleHandler('location');
+            }
+          }
+          name={'Add Environmental Details'}
+        />
+        <GenericButton 
+          action={
+            () => {
+              props.updateTabState(null, null, props.activeCoordinate);
+            }
+          }
+          name={'Upload Photo(s)'}
+        />
       </div>
     </div>
   )
