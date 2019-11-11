@@ -79,13 +79,6 @@ export default class SpeciesInputForm extends React.Component {
   };
 
   render() {
-    const speciesName = ['---------', 'rod cod', 'lingcod', 'big eye', 'tuna'];
-    const scientificName = ['---------', 'cod', 'bread', 'shake'];
-    const speciesCategory = ['---------', 'fish', 'crustacean', 'mollusk'];
-    const weightRange = ['---------', 1,5,10,15,20,25,30,35,40,45,50];
-    const lengthRange = ['---------', '5"','10"','15"','20"','25"','30"'];
-    const regions = ['---------', 'north', 'south', 'east', 'west'];
-
     return (
       <div id='species-input-container'>
         <SelectSpecies />
