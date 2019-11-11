@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class GenericButton extends React.Component {
+export default class DisabledButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -14,8 +14,7 @@ export default class GenericButton extends React.Component {
     };
 
     return (
-      <button id={this.props.name} style={styles} onClick={this.props.action}>{this.props.name}</button>
+      <button id={this.props.name} style={styles} disabled>{this.props.name}</button>
     )
   }
 };
-
