@@ -7,7 +7,10 @@ const styles = {
 };
 
 const NoteCard = (props) => (
-  <button style={styles}>{props.note.date}</button>
+  <button style={styles} onClick={() => {
+    props.change();
+    props.retrieve(props.note.date, props.note.note);
+  }}>{props.note.date}</button>
 );
 
 export default NoteCard;

@@ -38,6 +38,7 @@ app.get('/species', (req, res, next) => {
     length: 'maximum length: 55"',
     category: 'bottom fish',
     description: 'some description',
+    // notes: [],
     notes: [{date: 'some date', note: 'some note'}, {date: 'some date', note: 'some note'}, {date: 'some date', note: 'some note'},],
   };
 
