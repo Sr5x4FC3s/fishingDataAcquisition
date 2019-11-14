@@ -1,6 +1,6 @@
 import React from 'react';
 import FormWithDropDown from './formWithDropDown';
-import SpeciesCard from '../information/speciesCard';
+import SpeciesCard from '../information/information/cards/speciesCard';
 import { retrieve } from '../../../utility/apiUtility';
 
 export default class SelectSpecies extends React.Component {
@@ -90,7 +90,7 @@ export default class SelectSpecies extends React.Component {
             date: false, 
             time: false, 
           }}
-          category={`Species Name`}
+          category={`Select Species: `}
           placeholder={'Select Species'}
           dropDown={speciesName}
           type={'SPECIES_NAME'}

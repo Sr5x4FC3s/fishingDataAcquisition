@@ -3,11 +3,17 @@ import React, { useState, useEffect } from 'react';
 import FormWithDropDown from '../../forms/formWithDropDown';
 import SaveButton from '../../forms/saveButton';
 import GenericButton from '../../header/button';
+import LocationCard from '../../information/information/cards/locationCard';
+import SpeciesInformtionCard from '../../information/information/cards/speciesInformationCard';
+import { retrieve } from '../../../../utility/apiUtility';
 
 const AddCoordinateForm = (props) => {
   const [image, setImage] = useState('');
   const [color, setColor] = useState('');
   const [information, setInformation] = useState({});
+  const [locationInformation, setLocationInformation] = useState({});
+  const [searchStatus, setStatus] = useState({status: false, failedAttempts: 0,});
+  const [catchInformation, changeCatchInformation] = useState(null);
 
   const captureValue = (event, type) => {
     switch(type) {
@@ -18,11 +24,49 @@ const AddCoordinateForm = (props) => {
         setImage(event.target.value);
         break;
       case('COORDINATES'):
-        setInformation(information.color = color);
-        setInformation(information.image = image);
+        setInformation({
+          ...information,
+          color: color,
+          image: image, 
+        });
         props.save(information, 'COORDINATES');
         break;
     }
+  };
+
+  const fetchInformation = () => {
+    retrieve('LOCATION_DATA', props.activeCoordinate)
+      .then(result => {
+        if (Object.keys(result.data).length > 0) {
+          setLocationInformation({
+            ...locationInformation,
+            name: result.data.locationName,
+            photos: result.data.photos,
+            misc: result.data.misc,
+            catches: result.data.catches,
+          });
+
+          setStatus({
+            ...searchStatus,
+            status: true
+          });
+
+          return;
+        } else {
+          setStatus({
+            status: false, 
+            failedAttempts: searchStatus.failedAttempts + 1
+          });
+
+          return 
+        }
+      })
+      .catch(err => console.log(err));
+  };
+
+  const toggle = (information) => {
+    changeCatchInformation(information);
+    console.log('catch information: ', catchInformation)
   };
 
   //track marker color selections
@@ -82,10 +126,24 @@ const AddCoordinateForm = (props) => {
         dropDown={markerColorOptions}
         type={'IMAGE'}
         capture={captureValue}
-      />      
+      />
+      <LocationCard 
+        coordinates={props.activeCoordinate}
+        locationInfo={locationInformation}
+        searchStatus={searchStatus}
+        selectCatch={toggle}
+      />
+      {!catchInformation ?
+          null 
+        : 
+        <SpeciesInformtionCard 
+          catchInformation={catchInformation}
+        />
+      }
+      <div>ADD CLICKABLE IMAGES OF FISH THAT ARE AVAILABLE IN THE REGION</div>
+      <div>ADD A BUTTON THAT ALLOWS USER TO ADD FISH TO THAT LIST OR REMOVE A CUSTOM ENTRY FISH FROM THE LIST</div>
       <div id='location-button-container' style={locationContainerStyles}>
         <SaveButton
-          // save={props.save}
           save={captureValue}
           type={'COORDINATES'}
           state={information}
@@ -93,10 +151,19 @@ const AddCoordinateForm = (props) => {
         <GenericButton 
           action={
             () => {
-              props.toggleHandler('location');
+              // props.more('COORDINATE_INFO', props.coordinates);
+              fetchInformation();
             }
           }
-          name={'Add Environmental Details'}
+          name={'Location Details'}
+        />
+        <GenericButton 
+          action={
+            () => {
+              props.toggleHandler('species');
+            }
+          }
+          name={'Add Catch'}
         />
         <GenericButton 
           action={

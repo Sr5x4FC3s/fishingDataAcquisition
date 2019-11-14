@@ -149,8 +149,7 @@ export default class IndividualCatchForm extends React.Component {
         <GenericButton 
           action={
             () => {
-              //replace me
-              console.log('render environment entry form')
+              this.props.toggleHandler('location')
             }
           }
           name={'Add Environmental Details'}

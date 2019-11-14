@@ -6,11 +6,10 @@ const styles = {
   backgroundColor: 'purple',
 };
 
-const NoteCard = (props) => (
+const GenericCard = (props) => (
   <button style={styles} onClick={() => {
-    props.change();
-    props.retrieve(props.note.date, props.note.note);
-  }}>{props.note.date}</button>
+    props.action();
+  }}>{props.date}</button>
 );
 
-export default NoteCard;
+export default GenericCard;

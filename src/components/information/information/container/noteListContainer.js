@@ -1,6 +1,5 @@
 import React from 'react';
-import NoteCard from './noteCard';
-
+import GenericCard from '../cards/genericCard';
 
 const styles = {
   height: '300px',
@@ -16,10 +15,12 @@ const NotesListContainer = (props) => (
   <div id='note-list-container' style={styles}>
     {props.notes.map(note => (
       <div style={cardStyles}>
-        <NoteCard 
-          note={note} 
-          change={props.change}
-          retrieve={props.retrieve}
+        <GenericCard 
+          action={() => {
+            props.change();
+            props.retrieve(note.date, note.note);
+          }}
+          date={note.date}
         />
       </div>
     ))}

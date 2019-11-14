@@ -45,6 +45,7 @@ export default class Main extends React.Component {
     this.getClickedCoordinates = this.getClickedCoordinates.bind(this);
     this.toggleSinglePointMenu = this.toggleSinglePointMenu.bind(this);
     this.addCoordinates = this.addCoordinates.bind(this);
+    this.removeCoordinates = this.removeCoordinates.bind(this);
     this.accessMoreInformation = this.accessMoreInformation.bind(this);
     this.toggleHandler = this.toggleHandler.bind(this);
     this.removeActiveTab = this.removeActiveTab.bind(this);
@@ -215,6 +216,18 @@ export default class Main extends React.Component {
     //when this funtion is invoked adn the coordinates are added, either render this button as green(or a different) color or remove the button so it can't be selected again
   };
 
+  removeCoordinates(listOfCoordinates) {
+    listOfCoordinates.map(coordinate => {
+      if (JSON.stringify(this.state.current) === JSON.stringify(coordinate)) {
+        listOfCoordinates.splice(listOfCoordinates.indexOf(coordinate), 1);
+      }
+    });
+
+    this.setState({
+      coordinates: listOfCoordinates,
+    });
+  };
+
   accessMoreInformation(type, data) {
     // API call and grab information 
     let test = fetch(type, data).then(result => {
@@ -289,13 +302,23 @@ export default class Main extends React.Component {
         });
         break;
       case('addCoordinates'):
-        activeInformation.renderRemove = !this.state.activeInformation.renderRemove;
         let currentTabState = this.state.currentTabState;
+        activeInformation.renderRemove = !this.state.activeInformation.renderRemove;
         currentTabState.coordinatesAdded = !this.state.currentTabState.coordinatesAdded;
         this.setState({
           activeInformation: activeInformation,
           currentTabState: currentTabState,
         }, () => this.addCoordinates());
+        break;
+      case('removeCoordinates'): 
+      //possible to make a switch stmt => combine in add coordinates => add type param to togglehandler to accept argument to switch between the two 
+        let prevTabState = this.state.currentTabState;
+        activeInformation.renderRemove = !this.state.activeInformation.renderRemove;
+        prevTabState.coordinatesAdded = !this.state.currentTabState.coordinatesAdded;
+        this.setState({
+          activeInformation: activeInformation,
+          currentTabState: prevTabState,
+        }, () => this.removeCoordinates(this.state.coordinates));
         break;
       case('individual'):
         activeInformation.locationInfo = false;

@@ -124,5 +124,15 @@ export const retrieve = (type, param) => {
           throw err;
         });
       break;
+    case('LOCATION_DATA'): 
+      return axios.get(`/location?id=${param}`)
+        .then(res => {
+          return res;
+        })
+        .catch(err => {
+          console.log(err);
+          throw err;
+        });
+      break;
   }
 };

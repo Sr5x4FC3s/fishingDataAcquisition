@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import FormWithDropDown from '../forms/formWithDropDown';
-import DropDownMenuContainer from '../header/dropDownMenuContainer';
-import NotesListContainer from './noteListContainer';
-import GenericButton from '../header/button';
-import DisabledButton from '../header/disabledButton';
+import FormWithDropDown from '../../../header/dropDownMenuButton';
+import DropDownMenuContainer from '../../../header/dropDownMenuContainer';
+import NotesListContainer from '../container/noteListContainer';
+import GenericButton from '../../../header/button';
+import DisabledButton from '../../../header/disabledButton';
 
 const SpeciesCard = (props) => {
   const [isOpen, change] = useState(false);
@@ -11,8 +11,11 @@ const SpeciesCard = (props) => {
   const [isRendered, setRenderStatus] = useState(false);
 
   const retrieveInformation = (date, note) => {
-    information.date = date;
-    information.note = note;
+    setInformation({
+      date: date,
+      note: note,
+    });
+
     setRenderStatus(true);
   };
 
@@ -67,6 +70,12 @@ const SpeciesCard = (props) => {
         type={'NOTES'}
         capture={props.captureValue}
       />  
+      <GenericButton 
+        action={
+          () => console.log('API call to retrieve more information on a specific species')
+        }
+        name={'More Information'}
+      />
     </div>
   )
 };

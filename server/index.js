@@ -46,6 +46,41 @@ app.get('/species', (req, res, next) => {
   res.status(200).send(data);
 });
 
+app.get('/location', (req, res, next) => {
+  //test data set 
+  const data = {
+    locationName: 'San Francisco',
+    photos: 'some Photos',
+    misc: 'some misc items',
+    catches: [
+      {
+        species: 'lingcod',
+        date: 'some date',
+        images: 'images',
+      },
+      {
+        species: 'rockfish',
+        date: 'some date',
+        images: 'images',
+      }, 
+      {
+        species: 'halibut',
+        date: 'some date',
+        images: 'images',
+      }, 
+      {
+        species: 'perch',
+        date: 'some date',
+        images: 'images',
+      }, 
+    ]
+  };
+
+  // database query and to get catches from a set coordinate and send it back to the client at the same time
+
+  res.status(200).send(data);
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.resolve('dist', 'index.html'));
 });

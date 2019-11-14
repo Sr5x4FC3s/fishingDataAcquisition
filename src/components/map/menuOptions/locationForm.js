@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 
 import FormWithDropDown from '../../forms/formWithDropDown';
 import SaveButton from '../../forms/saveButton';
-import GenericButton from '../../header/button';
 
 export default class LocationInformationForm extends React.Component {
   constructor(props) {
@@ -296,14 +295,6 @@ export default class LocationInformationForm extends React.Component {
           save={this.props.save} 
           type={'LOCATION'}
           state={this.state.information}
-        />
-        <GenericButton 
-          action={
-            () => {
-              this.props.toggleHandler('species');
-            }
-          }
-          name={'Add Fish Data'}
         />
       </div>
     </div>

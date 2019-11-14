@@ -59,19 +59,20 @@ export default class SinglePointMenu extends React.Component {
                 Add Coordinates
               </button> 
               : 
-              <button 
-                style={buttonStyles} 
-                onClick={() => {
-                  this.props.toggleHandler('addCoordinates');
-                  this.switchButtons();
-                }}
-              >
-                Remove Coordinates
-              </button>
+              <div>
+                <button 
+                  style={buttonStyles} 
+                  onClick={() => {
+                    this.props.toggleHandler('removeCoordinates');
+                    this.switchButtons();
+                  }}
+                >
+                  Remove Coordinates
+                </button>
+                <button style={buttonStyles} onClick={() => this.props.toggleHandler()}>Location Information</button>
+              </div>
             }
-            <button style={buttonStyles} onClick={() => this.props.toggleHandler()}>Edit Information</button>
-            <button style={buttonStyles} onClick={() => this.props.toggleHandler('species')}>Species Information</button>
-            <button style={buttonStyles} onClick={() => this.props.more('COORDINATE_INFO', this.props.coordinates)}>More Information</button>
+            <button style={buttonStyles} onClick={() => this.props.toggleHandler('species')}>Species Index</button>
           </div>
         </div>
       </div>
