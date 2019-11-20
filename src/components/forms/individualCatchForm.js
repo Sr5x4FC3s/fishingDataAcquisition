@@ -3,6 +3,7 @@ import React from 'react';
 import FormWithDropDown from '../forms/formWithDropDown';
 import SaveButton from '../forms/saveButton';
 import GenericButton from '../header/button';
+import ImageDropZone from '../photo/dropZone';
 
 export default class IndividualCatchForm extends React.Component {
   constructor(props) {
@@ -95,7 +96,7 @@ export default class IndividualCatchForm extends React.Component {
           }
           name={'Show All Capture Dates'}
         />
-        <div>Upload Photos here</div>
+        <ImageDropZone />
         <button>Show All Photos of Species</button>
         <div>if button is clicked, render a carousel of photos or something</div>
         <FormWithDropDown 
