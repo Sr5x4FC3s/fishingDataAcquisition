@@ -29,9 +29,10 @@ export const httpGet = (route) => {
  * @param {String} type 
  * type legend: COORDINATE_INFO, DATABASE_STATUS, DATABASE_INIT, RESET_DATABASE, INSERT_DATA
  * @param {*} data 
+ * @param {Object} header
  * @return {*} some sort of response which is dependent on type of data we're trying to access
  */
-export const fetch = (type, data) => {
+export const fetch = (type, data, header) => {
   switch(type) {
     case 'COORDINATE_INFO':
       return axios.post(`/map_info`, data)
@@ -83,6 +84,16 @@ export const fetch = (type, data) => {
           throw err;
         });
       break;
+    case 'UPLOAD_IMAGES': 
+      return axios.post(`/upload_images`, data, header)
+        .then(res => {
+          return res;
+        })
+        .catch(err => {
+          console.log(err);
+          throw err;
+        });
+      break; 
     // case 'SAVE_INPUT_INFORMATION':
     //   return axios.post('/save_user_input', data)
     //     .then(res => {

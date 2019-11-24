@@ -1,4 +1,8 @@
 import React, { createRef, useState } from 'react';
+import { fetch } from '../../../utility/apiUtility';
+import { fileTypeCheck } from './utility/fileCheck';
+import FileDisplayContainer from './fileDisplayContainer';
+import GenericButton from '../header/button';
 
 const imageDropStyle = {
   width: '100px',
@@ -17,13 +21,59 @@ const ImageDropZone = (props) => {
   const refFromCreateRef = createRef();
 
   const onUpload = (file) => {
+    let validFile;
+
     if (file) {
-      setImage(images.push(file));
-      setFileLoaded(true);
+      validFile = fileTypeCheck(file);
+      if (validFile.validity && validFile.message === 'VALID') {
+        console.log('file: ', file);
+        setImage(images => [...images, file]);
+        setFileLoaded(true);
+      } else if (!validFile.validity && validFile.message === 'CHANGE_TO_PNG_JPG'){
+        //change this to render a message
+        console.log('please load jpeg, jpg, or png file types');
+      } else {
+        //change this to render a message
+        console.log('invalid file type');
+      }
     } else {
-      setImage(images.push(refFromCreateRef.current.files[0]));
-      setFileLoaded(true);
+      validFile = fileTypeCheck(refFromCreateRef.current.files[0]);
+      if (validFile.validity && validFile.message === 'VALID') {
+        setImage(images => [...images, refFromCreateRef.current.files[0]]);
+        setFileLoaded(true);
+      } else if (!validFile.validity && validFile.message === 'CHANGE_TO_PNG_JPG'){
+        //change this to render a message
+        console.log('please load jpeg, jpg, or png file types');
+      } else {
+        //change this to render a message
+        console.log('invalid file type');
+      }
     }
+  };
+
+  const uploadFiles = (files) => {
+    const formData = new FormData();
+
+    images.map(file => {
+      formData.append('photos', file, file.name);
+    });
+
+    const header = {
+      'Content-Type': 'multipart/form-data'
+    };
+
+    fetch('UPLOAD_IMAGES', formData, header)
+      .then(result => {
+        console.log('upload results: ', result)
+        return result;
+      })
+      .catch(result => {
+        return result;
+      });
+  };
+
+  const removeFile = (fileName) => {
+    setImage(images.filter(file => file.name !== fileName));
   };
 
   const changeHighlightedStyle = (highlightStatus) => {
@@ -51,7 +101,6 @@ const ImageDropZone = (props) => {
   };
 
   const openFileDialog = () => {
-    //fix this
     refFromCreateRef.current.click();
   };
   
@@ -97,6 +146,18 @@ const ImageDropZone = (props) => {
         />
         <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>
       </div>
+      <FileDisplayContainer 
+        images={images} 
+        removeFile={removeFile}
+      />
+      <GenericButton 
+        action={
+          () => {
+            uploadFiles(images);
+          }
+        }
+        name={'Upload'}
+      />
     </div>
   );
 };

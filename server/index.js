@@ -1,9 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const cors = require('cors');
 const port = 3003;
 
 /*************************** MIDDLEWARE ***************************/
+const save_images_locally = require('../server/middleware/multerLocalStorage');
 
 /***************************** POST ROUTES *****************************/
 const { check_database } = require('./routes/post/checkDatabase');
@@ -11,20 +13,24 @@ const { initialize_database } = require('./routes/post/initializeDatabase');
 const { drop_database } = require('./routes/post/dropDatabase');
 const { reset_database } = require('./routes/post/resetDatabase');
 const { insert_data } = require('./routes/post/insertToDatabase'); 
+const upload_images = require('./routes/post/uploadImages');
 const map_info = require('./routes/post/mapInformation');
 const coordinate_info =  require('./routes/post/retrieveCoordinateInformation');
 
 
 const app = express();
 
+//remove possibly
+app.use('/uploads', express.static(path.join(__dirname, '../dist/local/uploads')))
+
 app.use(bodyParser.urlencoded({extended: false}));
 
 app.use(bodyParser.json());
 
-/***************************** MIDDLEWARES *************************/
-// app.use('/', [check_database, ]);
-
 app.use('/', express.static(path.join(__dirname, '../dist'))); 
+
+/***************************** MIDDLEWARES *************************/
+app.use('/', [save_images_locally, ]);
 
 /*************************** GET HANDLERS **************************/
 // app.use('/', [check_database, ]);
@@ -93,7 +99,8 @@ const options = [
   reset_database, 
   insert_data, 
   map_info, 
-  coordinate_info, 
+  coordinate_info,
+  upload_images, 
 ];
 
 app.use('/', options);
