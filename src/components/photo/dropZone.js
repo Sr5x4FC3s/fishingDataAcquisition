@@ -1,4 +1,4 @@
-import React, { createRef, useState } from 'react';
+import React, { createRef, useState, useEffect } from 'react';
 import { fetch } from '../../../utility/apiUtility';
 import { fileTypeCheck } from './utility/fileCheck';
 import FileDisplayContainer from './fileDisplayContainer';
@@ -18,6 +18,7 @@ const ImageDropZone = (props) => {
   const [images, setImage] = useState([]);
   const [highlighted, setHighlights] = useState(false);
   const [filedLoaded, setFileLoaded] = useState(false);
+  const [urlList, setUrlList] = useState([]);
   const refFromCreateRef = createRef();
 
   const onUpload = (file) => {
@@ -26,7 +27,6 @@ const ImageDropZone = (props) => {
     if (file) {
       validFile = fileTypeCheck(file);
       if (validFile.validity && validFile.message === 'VALID') {
-        console.log('file: ', file);
         setImage(images => [...images, file]);
         setFileLoaded(true);
       } else if (!validFile.validity && validFile.message === 'CHANGE_TO_PNG_JPG'){
@@ -57,6 +57,9 @@ const ImageDropZone = (props) => {
     images.map(file => {
       formData.append('photos', file, file.name);
     });
+   
+    /* Clears images files and unrenders files */
+    setImage([]);
 
     const header = {
       'Content-Type': 'multipart/form-data'
@@ -64,13 +67,17 @@ const ImageDropZone = (props) => {
 
     fetch('UPLOAD_IMAGES', formData, header)
       .then(result => {
-        console.log('upload results: ', result)
+        setUrlList(urlList.concat(result.data));
         return result;
       })
       .catch(result => {
         return result;
       });
   };
+  
+  useEffect(() => {
+    props.retrieveImages(urlList);
+  }, [urlList]);
 
   const removeFile = (fileName) => {
     setImage(images.filter(file => file.name !== fileName));

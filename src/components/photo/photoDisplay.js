@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
-const ImageUploader = (props) => {
+const EnlargedImage = (props) => {
   return (
     <div></div>
   )
 };
 
-export default ImageUploader;
+export default EnlargeImage;

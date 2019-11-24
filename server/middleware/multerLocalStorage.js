@@ -15,11 +15,7 @@ const storage = multer.diskStorage({
 const upload = multer({storage});
 
 save_images_locally.use(upload.array('photos'), (req, res, next) => {
-  if (req.originalUrl.toLowerCase() === '/upload_images') {
-    next();
-  } else {
-    next();
-  }
+  next();
 });
 
 module.exports = save_images_locally;

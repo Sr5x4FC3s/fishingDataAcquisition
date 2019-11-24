@@ -4,6 +4,7 @@ import FormWithDropDown from '../forms/formWithDropDown';
 import SaveButton from '../forms/saveButton';
 import GenericButton from '../header/button';
 import ImageDropZone from '../photo/dropZone';
+import PhotoContainer from '../information/information/container/photoContainer';
 
 export default class IndividualCatchForm extends React.Component {
   constructor(props) {
@@ -12,11 +13,28 @@ export default class IndividualCatchForm extends React.Component {
       formValue: '',
       formType: '',
       information: {}, //will likely need to add default values to prevent errors
-      
+      render: {
+        showImageButton: true,
+      },
+      images: null, 
     };
 
     this.captureValue = this.captureValue.bind(this);
     this.setValues = this.setValues.bind(this);
+    this.setRenders = this.setRenders.bind(this);
+    this.retrieveImages = this.retrieveImages.bind(this);
+  };
+
+  setRenders(type) {
+    switch(type) {
+      case('IMAGE_BUTTON'):
+        this.setState({
+          render: {
+            showImageButton: !this.state.render.showImageButton,
+          },
+        });
+        break;
+    }
   };
 
   setValues(type) {
@@ -67,6 +85,12 @@ export default class IndividualCatchForm extends React.Component {
     event.preventDefault();
   };
 
+  retrieveImages(imageList) {
+    this.setState({
+      images: imageList,
+    });
+  };
+
   render() {
     const regions = ['---------', 'north', 'south', 'east', 'west'];
 
@@ -96,9 +120,24 @@ export default class IndividualCatchForm extends React.Component {
           }
           name={'Show All Capture Dates'}
         />
-        <ImageDropZone />
-        <button>Show All Photos of Species</button>
-        <div>if button is clicked, render a carousel of photos or something</div>
+        <ImageDropZone 
+          retrieveImages={this.retrieveImages}
+        />
+        {this.state.render.showImageButton ? 
+          <GenericButton 
+            action={
+              () => {
+                this.setRenders('IMAGE_BUTTON');
+              }
+            }
+            name={'Show All Images'}
+          />
+          :
+          <PhotoContainer 
+            photos={this.state.images}
+            render={this.setRenders}
+          />
+        }
         <FormWithDropDown 
           options={{dropDown: false, search: false, textArea: true, submit: false, date: false, time: false, }}
           category={`Tackle Used`}
