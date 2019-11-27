@@ -21,3 +21,6 @@
 
 ##virtualenv python
 /python/ENV/.Python
+
+##uploaded images
+/dist/local/uploads
