@@ -8,19 +8,28 @@ const backdropStyle= {
   zIndex: 20,
   backgroundColor: 'black',
   position: 'absolute',
-  opacity: 0.7,
 };
 
 const buttonContainerStyle = {
-  position: 'relative',
+  position: 'absolute',
+  top: 0,
+  left: 0,
+};
+
+const buttonStyle = {
+  backgroundColor: 'transparent',
+  border: 'none',
+  fontSize: '20px',
+  fontWeight: 'bold',
+  color: 'red',
 };
 
 const Modal = ({ type, action1, url }) => (
   ReactDOM.createPortal(
-    <div className='modal-backdrop' style={backdropStyle}>
-      <div className='modal'>
+    <div className='modal'>
+      <div className='modal-backdrop' style={backdropStyle}>
         <div className='button-container' style={buttonContainerStyle}>
-          <button className='close-image-button' onClick={action1}>&times;</button>
+          <button className='close-image-button' onClick={action1} style={buttonStyle}>&times;</button>
         </div>
         <div className='image-container'>
           {type === 'ENLARGE_IMAGE' ? 
