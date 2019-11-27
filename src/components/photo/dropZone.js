@@ -3,6 +3,8 @@ import { fetch } from '../../../utility/apiUtility';
 import { fileTypeCheck } from './utility/fileCheck';
 import FileDisplayContainer from './fileDisplayContainer';
 import GenericButton from '../header/button';
+import DisabledButton from '../header/disabledButton';
+import useLoadBar from '../hooks/loadBar/useLoadBar';
 
 const imageDropStyle = {
   width: '100px',
@@ -19,7 +21,13 @@ const ImageDropZone = (props) => {
   const [highlighted, setHighlights] = useState(false);
   const [filedLoaded, setFileLoaded] = useState(false);
   const [urlList, setUrlList] = useState([]);
+  //test
+  const [isLoading, setLoadingStatus] = useState(false);
+  const [filesSent, setNumberOfFiles] = useState(0);
   const refFromCreateRef = createRef();
+  const { percentage, setProgress } = useLoadBar(() => {
+    setLoadingStatus(false);
+  });
 
   const onUpload = (file) => {
     let validFile;
@@ -56,24 +64,43 @@ const ImageDropZone = (props) => {
 
     images.map(file => {
       formData.append('photos', file, file.name);
-    });
-   
+    });   
+
+    setNumberOfFiles(images.length);
+
     /* Clears images files and unrenders files */
     setImage([]);
+
+    //test
+    setLoadingStatus(true);
 
     const header = {
       'Content-Type': 'multipart/form-data'
     };
 
-    fetch('UPLOAD_IMAGES', formData, header)
+    const config = {
+      header: {
+        'Content-Type': 'multipart/form-data'
+      },
+      onUploadProgress: (progressEvent) => {
+        let percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+        setProgress(percentCompleted);
+      },
+    };
+
+    fetch('UPLOAD_IMAGES', formData, config)
       .then(result => {
         setUrlList(urlList.concat(result.data));
+        setNumberOfFiles(0);
         return result;
       })
       .catch(result => {
+        setNumberOfFiles(0);
         return result;
       });
   };
+
+  useEffect(() => console.log('files: ', filesSent), [filesSent]);
   
   useEffect(() => {
     props.retrieveImages(urlList);
@@ -82,6 +109,12 @@ const ImageDropZone = (props) => {
   const removeFile = (fileName) => {
     setImage(images.filter(file => file.name !== fileName));
   };
+
+  useEffect(() => {
+    if (images.length < 1 && filedLoaded) {
+      setFileLoaded(false);
+    }
+  }, [images]);
 
   const changeHighlightedStyle = (highlightStatus) => {
     let imageDropZoneContainer;
@@ -156,15 +189,23 @@ const ImageDropZone = (props) => {
       <FileDisplayContainer 
         images={images} 
         removeFile={removeFile}
+        isLoading={isLoading}
+        progress={percentage}
       />
-      <GenericButton 
-        action={
-          () => {
-            uploadFiles(images);
+      {filedLoaded ? 
+        <GenericButton 
+          action={
+            () => {
+              uploadFiles(images);
+            }
           }
-        }
-        name={'Upload'}
-      />
+          name={'Upload'}
+        />
+        : 
+        <DisabledButton 
+          name={'Upload'}
+        />
+      }
     </div>
   );
 };

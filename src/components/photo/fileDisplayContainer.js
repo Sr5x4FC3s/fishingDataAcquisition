@@ -1,25 +1,34 @@
 import React from 'react';
 import GenericButton from '../header/button';
+import LoadBar from '../loadBars/loadBar';
 
 const styles = {
   backgroundColor: 'white',
+  width: '200px', 
 };
 
-const FileDisplayContainer = (props) => (
+const FileDisplayContainer = ({ images, removeFile, isLoading, progress }) => (
   <div style={styles}>
-    {props.images.map(file => (
+    {images.map(file => (
         <div>
           {file.name}
           <GenericButton 
             action={
               () => {
-                props.removeFile(file.name);
+                removeFile(file.name);
               }
             }
             name={'X'}
           />
         </div>
       ))}
+      {isLoading ? 
+        <LoadBar 
+          progress={progress}
+        />
+        : 
+        null
+      }
   </div>
 );
 

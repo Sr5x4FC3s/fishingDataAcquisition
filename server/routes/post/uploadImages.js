@@ -23,7 +23,7 @@ upload_images.route('/upload_images').post((req, res, next) => {
     .then(result => res.status(200).send(result))
     .catch(error => {
       console.log(`${error}`);
-      res.starus(400).send();
+      res.status(400).send();
     });
 });
 
