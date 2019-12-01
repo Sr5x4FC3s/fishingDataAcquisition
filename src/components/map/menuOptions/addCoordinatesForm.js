@@ -81,10 +81,12 @@ const AddCoordinateForm = (props) => {
   const toggleViews = (type) => {
     switch(type) {
       case('IMAGE_BUTTON'):
-        toggleStates({showImageButton: !toggleViewStates.showImageButton});
+      console.log('yeet')
+        toggleStates({renderFileDrop: toggleViewStates.renderFileDrop, showImageButton: !toggleViewStates.showImageButton});
         break;
       case('FILE_DROP'): 
-        toggleStates({renderFileDrop: !toggleViewStates.renderFileDrop});
+      console.log('heyo')
+        toggleStates({showImageButton: toggleViewStates.showImageButton, renderFileDrop: !toggleViewStates.renderFileDrop});
         break;
     }
   };

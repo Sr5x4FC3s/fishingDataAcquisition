@@ -33,15 +33,19 @@ export default class IndividualCatchForm extends React.Component {
   setRenders(type) {
     switch(type) {
       case('IMAGE_BUTTON'):
+      console.log('wheet')
         this.setState({
           render: {
             showImageButton: !this.state.render.showImageButton,
+            renderFileDrop: this.state.render.renderFileDrop,
           },
         });
         break;
       case('FILE_DROP'):
+      console.log('ohiyo')
         this.setState({
           render: {
+            showImageButton: this.state.render.showImageButton,
             renderFileDrop: !this.state.render.renderFileDrop,
           },
         });

@@ -6,6 +6,7 @@ import PhotoContainer from '../container/photoContainer';
 
 const ImageDropContainer = ({ renderStatus, retrieveImages, component, images, render }) => (
   <div>
+    <button onClick={() => render('FILE_DROP')}>&times;</button>
     <ImageDropZone 
       retrieveImages={retrieveImages}
       component={component}
