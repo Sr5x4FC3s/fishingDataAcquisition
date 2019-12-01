@@ -3,8 +3,12 @@ import React from 'react';
 import FormWithDropDown from '../forms/formWithDropDown';
 import SaveButton from '../forms/saveButton';
 import GenericButton from '../header/button';
-import ImageDropZone from '../photo/dropZone';
-import PhotoContainer from '../information/information/container/photoContainer';
+import DisabledButton from '../header/disabledButton';
+// import ImageDropZone from '../photo/dropZone';
+// import PhotoContainer from '../information/information/container/photoContainer';
+
+//test
+import ImageDropContainer from '../information/information/container/imageDropContainer';
 
 export default class IndividualCatchForm extends React.Component {
   constructor(props) {
@@ -15,6 +19,7 @@ export default class IndividualCatchForm extends React.Component {
       information: {}, //will likely need to add default values to prevent errors
       render: {
         showImageButton: true,
+        renderFileDrop: false, 
       },
       images: null, 
     };
@@ -31,6 +36,13 @@ export default class IndividualCatchForm extends React.Component {
         this.setState({
           render: {
             showImageButton: !this.state.render.showImageButton,
+          },
+        });
+        break;
+      case('FILE_DROP'):
+        this.setState({
+          render: {
+            renderFileDrop: !this.state.render.renderFileDrop,
           },
         });
         break;
@@ -120,22 +132,22 @@ export default class IndividualCatchForm extends React.Component {
           }
           name={'Show All Capture Dates'}
         />
-        <ImageDropZone 
-          retrieveImages={this.retrieveImages}
-        />
-        {this.state.render.showImageButton ? 
+        {!this.state.render.renderFileDrop ?
           <GenericButton 
             action={
               () => {
-                this.setRenders('IMAGE_BUTTON');
+                this.setRenders('FILE_DROP');
               }
             }
-            name={'Show All Images'}
+            name={'Upload Image(s)'}
           />
           :
-          <PhotoContainer 
-            photos={this.state.images}
+          <ImageDropContainer
+            retrieveImages={this.retrieveImages}
+            component={'catch'}
+            images={this.state.images}
             render={this.setRenders}
+            renderStatus={this.state.render}
           />
         }
         <FormWithDropDown 

@@ -10,13 +10,19 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_SECRET,
 });
 
-upload_images.route('/upload_images').post((req, res, next) => {
+upload_images.route('/upload_images/:component').post((req, res, next) => {
   const promises = req.files.map(image => cloudinary.uploader.upload(image.path));
 
   Promise.all(promises)
     .then(result => {
       let urlList = [];
       result.map(data => urlList.push(data.url));
+      
+      if (req.params === 'catch') {
+        //save as catch images
+      } else {
+        //save as location images
+      }
       // save image url to database as a reference... does not need to be run synchronously and can resolve after the response has been sent
       return urlList;
     })

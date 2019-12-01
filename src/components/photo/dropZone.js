@@ -21,7 +21,6 @@ const ImageDropZone = (props) => {
   const [highlighted, setHighlights] = useState(false);
   const [filedLoaded, setFileLoaded] = useState(false);
   const [urlList, setUrlList] = useState([]);
-  //test
   const [isLoading, setLoadingStatus] = useState(false);
   const [filesSent, setNumberOfFiles] = useState(0);
   const refFromCreateRef = createRef();
@@ -70,8 +69,6 @@ const ImageDropZone = (props) => {
 
     /* Clears images files and unrenders files */
     setImage([]);
-
-    //test
     setLoadingStatus(true);
 
     const header = {
@@ -88,7 +85,7 @@ const ImageDropZone = (props) => {
       },
     };
 
-    fetch('UPLOAD_IMAGES', formData, config)
+    fetch('UPLOAD_IMAGES', formData, config, props.component)
       .then(result => {
         setUrlList(urlList.concat(result.data));
         setNumberOfFiles(0);

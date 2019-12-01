@@ -12,7 +12,10 @@ const useLoadBar = (callback) => {
         setPercentage(basePercent);
         if (basePercent === 100) {
           clearInterval(interval);
-          setTimeout(() => callback(), 1000);
+          setTimeout(() => {
+            callback();
+            setTimeout(() => setPercentage(0), 200);
+          }, 1000);
         };
       }, 100);
     } else {
