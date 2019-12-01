@@ -32,7 +32,7 @@ export const httpGet = (route) => {
  * @param {Object} header
  * @return {*} some sort of response which is dependent on type of data we're trying to access
  */
-export const fetch = (type, data, header) => {
+export const fetch = (type, data, header, subType) => {
   switch(type) {
     case 'COORDINATE_INFO':
       return axios.post(`/map_info`, data)
@@ -85,7 +85,7 @@ export const fetch = (type, data, header) => {
         });
       break;
     case 'UPLOAD_IMAGES': 
-      return axios.post(`/upload_images`, data, header)
+      return axios.post(`/upload_images/${subType}`, data, header)
         .then(res => {
           return res;
         })
