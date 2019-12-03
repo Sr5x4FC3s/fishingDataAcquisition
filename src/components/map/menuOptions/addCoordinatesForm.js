@@ -6,10 +6,6 @@ import GenericButton from '../../header/button';
 import DisabledButton from '../../header/disabledButton';
 import LocationCard from '../../information/information/cards/locationCard';
 import SpeciesInformationCard from '../../information/information/cards/speciesInformationCard';
-// import ImageDropZone from '../../photo/dropZone';
-// import PhotoContainer from '../../information/information/container/photoContainer';
-
-//test
 import ImageDropContainer from '../../information/information/container/imageDropContainer';
 
 import { retrieve } from '../../../../utility/apiUtility';

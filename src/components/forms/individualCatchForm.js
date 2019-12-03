@@ -4,10 +4,6 @@ import FormWithDropDown from '../forms/formWithDropDown';
 import SaveButton from '../forms/saveButton';
 import GenericButton from '../header/button';
 import DisabledButton from '../header/disabledButton';
-// import ImageDropZone from '../photo/dropZone';
-// import PhotoContainer from '../information/information/container/photoContainer';
-
-//test
 import ImageDropContainer from '../information/information/container/imageDropContainer';
 
 export default class IndividualCatchForm extends React.Component {
