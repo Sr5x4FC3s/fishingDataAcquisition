@@ -1,6 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const cloudinary = require('cloudinary');
+const { bulkInsertRows } = require('../../../database/functions/insertRows');
 
 const upload_images = express.Router();
 

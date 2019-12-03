@@ -126,9 +126,13 @@ exports.tableData = [
           table: "Rigs",
           pk_id: "rig_name",
         },
+        {
+          table: "Locations",
+          pk_id: "coordinates",
+        },
       ],
-      columnOptions: ["photo_id", "date", "catch_id", "bait_name", "tackle_name", "rig_name", ],
-      constraintOptions: ["INT", "INT", "INT", "VARCHAR(255)", "VARCHAR(255)", "VARCHAR(255)", ],
+      columnOptions: ["photo_id", "date", "catch_id", "bait_name", "tackle_name", "rig_name", "coordinates",],
+      constraintOptions: ["INT", "INT", "INT", "VARCHAR(255)", "VARCHAR(255)", "VARCHAR(255)", "VARCHAR(255)"],
     }
   },
   {
@@ -138,8 +142,8 @@ exports.tableData = [
         key: "photo_id",
       },
       foreign: [],
-      columnOptions: ["photo_id", "image"],
-      constraintOptions: ["INT", "VARCHAR(255)"],
+      columnOptions: ["photo_id", "url", "type"],
+      constraintOptions: ["INT", "VARCHAR(255)", "VARCHAR(255"],
     }
   },
   {
@@ -226,9 +230,13 @@ exports.tableData = [
           table: "Bait",
           pk_id: "bait_name",
         },
+        {
+          table: "Locations",
+          pk_id: "coordinates"
+        }
       ],
-      columnOptions: ["catch_id", "individual_weight", "time_id", "method_description", "date", "environment_id", "photo_id", "rig_name", "bait_name", "tackle_name", "note_id", ],
-      constraintOptions: ["INT", "INT", "INT", "VARCHAR(255)", "INT", "INT", "INT",  "VARCHAR(255)",  "VARCHAR(255)", "VARCHAR(255)", "INT", ],
+      columnOptions: ["catch_id", "individual_weight", "time_id", "method_description", "date", "environment_id", "photo_id", "rig_name", "bait_name", "tackle_name", "note_id", "coordinates"],
+      constraintOptions: ["INT", "INT", "INT", "VARCHAR(255)", "INT", "INT", "INT",  "VARCHAR(255)",  "VARCHAR(255)", "VARCHAR(255)", "INT", "VARCHAR(255)"],
     }
   },
 ];
