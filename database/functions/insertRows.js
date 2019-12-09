@@ -1,4 +1,4 @@
-const { query } = require('./actions.js/query');
+const { query } = require('./actions/query');
 
 /** 
  * @function filterTables

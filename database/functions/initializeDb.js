@@ -1,5 +1,5 @@
 const mysql = require('mysql');
-const { query } = require('./actions.js/query');
+const { query } = require('./actions/query');
 
 const initializeDatabase = (database) => {
   let command = `CREATE DATABASE ${database};`;

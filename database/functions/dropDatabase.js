@@ -1,6 +1,6 @@
 const mysql = require('mysql');
 
-const { query } = require('./actions.js/query');
+const { query } = require('./actions/query');
 
 const dropDatabase = (database) => {
   let command = `DROP DATABASE IF EXISTS ${database};`;

@@ -78,7 +78,6 @@ upload_images.route('/upload_images/:component').post((req, res, next) => {
             configuredData.push(createInsertObject(table, colsAndConsList[table], {
               url: url,
               type: 'catch',
-              date: currentDate,
               coordinates: 'some coordinate to be added later',
               catch_id: 1, //changes depending on what id it is
               //add more information here depending on the type
@@ -95,13 +94,12 @@ upload_images.route('/upload_images/:component').post((req, res, next) => {
             configuredData.push(createInsertObject(table, colsAndConsList[table], {
               url: url,
               type: 'location',
-              date: currentDate,
               coordinates: 'some coordinate to be added later',
             }));
           })
         });
 
-        bulkInsertRows(configuredData, listofRows);
+        // bulkInsertRows(configuredData, listofRows);
       }
       // save image url to database as a reference... does not need to be run synchronously and can resolve after the response has been sent
       return urlList;

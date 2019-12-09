@@ -1,6 +1,6 @@
 const mysql = require('mysql');
 const { connection } = require('../connection/index'); 
-const { query } = require('./actions.js/query');
+const { query } = require('./actions/query');
 
 /** 
  * @function checkTableExistence
