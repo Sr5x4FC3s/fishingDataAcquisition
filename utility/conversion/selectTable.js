@@ -23,14 +23,22 @@ const selectTable = (type) => {
       tables.push('Bait');
       tables.push('individualCatch');
       break;
-    case('LOCATION'):
+    case('LOCATION_RELATIONSHIPS'):
       tables.push('Locations');
       tables.push('Species');
-      tables.push('Water');
-      tables.push('Weather');
+      tables.push('Enviroment');
       break;
     case('COORDINATES'):
       tables.push('Coordinates');
+      tables.push('Locations');
+      break;
+    case('PHOTO_RELATIONSHIPS'): 
+      tables.push('Photos');
+      tables.push('Date');
+      tables.push('individualCatch');
+      tables.push('Rigs');
+      tables.push('Tackle');
+      tables.push('Bait');
       tables.push('Locations');
       break;
     default: 

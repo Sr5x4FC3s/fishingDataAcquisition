@@ -29,6 +29,8 @@ const filterTables = (data) => {
     }
   });
 
+  console.log('made tables: ', tables)
+
   /** create an object which contains the table names as keys and set the 
    * values as an array of arrays of data that cooresponds to the row */
   tables.forEach(table => {

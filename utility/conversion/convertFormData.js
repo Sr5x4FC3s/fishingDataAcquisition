@@ -32,6 +32,8 @@ const searchForFields = (tableName, data) => {
 const convertFormData = (data, type) => {
   let listofConverted = [];
 
+  console.log('stuff: ', data, type)
+
   data.tables.map(table => {
     let converted = {};
     let columns = [];

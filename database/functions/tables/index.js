@@ -143,7 +143,7 @@ exports.tableData = [
       },
       foreign: [],
       columnOptions: ["photo_id", "url", "type"],
-      constraintOptions: ["INT", "VARCHAR(255)", "VARCHAR(255"],
+      constraintOptions: ["INT", "VARCHAR(255)", "VARCHAR(255)"],
     }
   },
   {
