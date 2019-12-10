@@ -85,7 +85,9 @@ const ImageDropZone = (props) => {
       },
     };
 
-    fetch('UPLOAD_IMAGES', formData, config, props.component)
+    const convertedCoordinates = `${props.coordinate[0]}*${props.coordinate[1]}`;
+
+    fetch('UPLOAD_IMAGES', formData, config, props.component, convertedCoordinates)
       .then(result => {
         setUrlList(urlList.concat(result.data));
         setNumberOfFiles(0);

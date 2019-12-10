@@ -174,6 +174,7 @@ const AddCoordinateForm = (props) => {
         />
         :
         <ImageDropContainer 
+          coordinate={props.activeCoordinate}
           retrieveImages={retrieveImages}
           component={'location'}
           images={uploadedImageList}

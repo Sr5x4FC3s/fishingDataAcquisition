@@ -4,10 +4,11 @@ import DisabledButton from '../../../header/disabledButton';
 import GenericButton from '../../../header/button';
 import PhotoContainer from '../container/photoContainer';
 
-const ImageDropContainer = ({ renderStatus, retrieveImages, component, images, render }) => (
+const ImageDropContainer = ({ coordinate, renderStatus, retrieveImages, component, images, render }) => (
   <div>
     <button onClick={() => render('FILE_DROP')}>&times;</button>
-    <ImageDropZone 
+    <ImageDropZone
+      coordinate={coordinate} 
       retrieveImages={retrieveImages}
       component={component}
     />

@@ -50,6 +50,7 @@ const InformationWindow = (props) => (
     }
     {props.activeInformation.individualInfo ? 
       <IndividualCatchForm
+        activeCoordinate={props.activeCoordinate}
         toggleHandler={props.toggleHandler}
         save={props.save}
       /> : null

@@ -15,12 +15,6 @@ verifyDateExistence.use((req, res, next) => {
       checkDate(currentDate, 'VERIFY_CURRENT_DATE_ENTRY')
         .then(result => {
           if (Object.values(result[0])[0] === 0) {
-            const insertObject = [{
-              table: 'Date',
-              columns: ["date", "environment_id", "catch_id", ],
-              values: [currentDate, null, null],
-            }];
-
             const syntax = `INSERT INTO Date(date) VALUES(${currentDate});`;
 
             query(syntax, 'INSERTING_DATE_ENTRY', )

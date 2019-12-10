@@ -6,6 +6,7 @@ const { listofRows } = require('../../../database/functions/createInsert');
 const { bulkInsertRows } = require('../../../database/functions/insertRows');
 const { tableData } = require('../../../database/functions/tables/index');
 const { setCurrentDate } = require('../../../utility/createDate');
+const { convertCoordinateEntry } = require('../../../utility/conversion/convertCoordinates');
 
 const upload_images = express.Router();
 
@@ -15,7 +16,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_SECRET,
 });
 
-upload_images.route('/upload_images/:component').post((req, res, next) => {
+upload_images.route('/upload_images/:component/:coordinates').post((req, res, next) => {
   const promises = req.files.map(image => cloudinary.uploader.upload(image.path));
   const currentDate = setCurrentDate();
 
@@ -69,16 +70,21 @@ upload_images.route('/upload_images/:component').post((req, res, next) => {
       };
 
       const colsAndConsList = findTableData();
+
+      const convertedCoordinates = convertCoordinateEntry(req.params.coordinates);
       
-      if (req.params === 'catch') {
-        tableAssociationList = ['Date', 'individualCatch', 'Rigs', 'Tackle', 'Bait', 'Photos'];
+      console.log('before: ', req.params.coordinates, '\n after: ', convertedCoordinates)
+
+      if (req.params.component === 'catch') {
+        tableAssociationList = ['individualCatch', 'Rigs', 'Tackle', 'Bait', 'Photos'];
         
         urlList.map(url => {
           tableAssociationList.map(table => {
             configuredData.push(createInsertObject(table, colsAndConsList[table], {
               url: url,
+              date: currentDate,
               type: 'catch',
-              coordinates: 'some coordinate to be added later',
+              coordinates: convertedCoordinates,
               catch_id: 1, //changes depending on what id it is
               //add more information here depending on the type
             }));
@@ -87,19 +93,20 @@ upload_images.route('/upload_images/:component').post((req, res, next) => {
 
         bulkInsertRows(configuredData, listofRows);
       } else {
-        tableAssociationList = ['Date', 'Locations', 'Photos'];
+        tableAssociationList = ['Locations', 'Photos'];
         
         urlList.map(url => {
           tableAssociationList.map(table => {
             configuredData.push(createInsertObject(table, colsAndConsList[table], {
               url: url,
               type: 'location',
-              coordinates: 'some coordinate to be added later',
+              date: currentDate, 
+              coordinates: convertedCoordinates,
             }));
           })
         });
 
-        // bulkInsertRows(configuredData, listofRows);
+        bulkInsertRows(configuredData, listofRows);
       }
       // save image url to database as a reference... does not need to be run synchronously and can resolve after the response has been sent
       return urlList;

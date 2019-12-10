@@ -30,9 +30,11 @@ export const httpGet = (route) => {
  * type legend: COORDINATE_INFO, DATABASE_STATUS, DATABASE_INIT, RESET_DATABASE, INSERT_DATA
  * @param {*} data 
  * @param {Object} header
+ * @param {String} subType - when type argument selected is upload - tells server which upload component is saving the file
+ * @param {String} coordinates - appends converted to string coordinates to upload url 
  * @return {*} some sort of response which is dependent on type of data we're trying to access
  */
-export const fetch = (type, data, header, subType) => {
+export const fetch = (type, data, header, subType, coordinates) => {
   switch(type) {
     case 'COORDINATE_INFO':
       return axios.post(`/map_info`, data)
@@ -85,7 +87,7 @@ export const fetch = (type, data, header, subType) => {
         });
       break;
     case 'UPLOAD_IMAGES': 
-      return axios.post(`/upload_images/${subType}`, data, header)
+      return axios.post(`/upload_images/${subType}/${coordinates}`, data, header)
         .then(res => {
           return res;
         })

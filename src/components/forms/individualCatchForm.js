@@ -141,6 +141,7 @@ export default class IndividualCatchForm extends React.Component {
           />
           :
           <ImageDropContainer
+            coordinate={this.props.activeCoordinate}
             retrieveImages={this.retrieveImages}
             component={'catch'}
             images={this.state.images}
