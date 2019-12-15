@@ -1,12 +1,12 @@
 const express = require('express');
-const { checkDate } = require('../../database/functions/actions/checkDate');
+const { checkDate } = require('../../database/functions/actions/checkList');
 const { setCurrentDate } = require('../../utility/createDate'); 
 const { query } = require('../../database/functions/actions/query');
-const { listofRows } = require('../../database/functions/createInsert');
+
 const verifyDateExistence = express.Router();
 
 verifyDateExistence.use((req, res, next) => {
-  const urlList = ['/upload_images/catch', ];
+  const urlList = ['upload_images', ];
 
   urlList.forEach(url => {
     if (req.originalUrl === url) {

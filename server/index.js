@@ -14,6 +14,7 @@ const { drop_database } = require('./routes/post/dropDatabase');
 const { reset_database } = require('./routes/post/resetDatabase');
 const { insert_data } = require('./routes/post/insertToDatabase');
 const verifyDateExistence = require('./middleware/verifyDate'); 
+const verifyCoordinates = require('./middleware/verifyCoordinates');
 const upload_images = require('./routes/post/uploadImages');
 const map_info = require('./routes/post/mapInformation');
 const coordinate_info =  require('./routes/post/retrieveCoordinateInformation');
@@ -31,7 +32,7 @@ app.use(bodyParser.json());
 app.use('/', express.static(path.join(__dirname, '../dist'))); 
 
 /***************************** MIDDLEWARES *************************/
-app.use('/', [save_images_locally, verifyDateExistence, ]);
+app.use('/', [save_images_locally, verifyDateExistence, verifyCoordinates, ]);
 
 /*************************** GET HANDLERS **************************/
 // app.use('/', [check_database, ]);
